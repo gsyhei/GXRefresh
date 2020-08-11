@@ -35,7 +35,7 @@ extension GXRefreshBaseFooter {
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
-            // 需要内容操作屏幕
+            // 需要内容超过屏幕
             let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
             guard contentH > self.scrollView!.gx_height else { return }
             
@@ -84,16 +84,22 @@ extension GXRefreshBaseFooter {
     override func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChange(change: change)
         self.gx_top = self.contentSize.height + self.scrollViewOriginalInset.bottom
+        
+        if (!isChageAlpha()) {
+            self.alpha = 1.0
+        }
     }
     
     override func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewPanStateDidChange(change: change)
         guard self.state == .idle else { return }
         
-        if let panState = change?[NSKeyValueChangeKey.newKey] as? UIGestureRecognizer.State {
-            // 需要内容小于屏幕 & state == .ended
+        if let panState = change?[NSKeyValueChangeKey.newKey] as? Int {
+            // state == .ended
+            guard (panState == UIGestureRecognizer.State.ended.rawValue) else { return }
+            // 需要内容小于屏幕
             let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
-            guard (contentH < self.scrollView!.gx_height && panState == .ended) else { return }
+            guard (contentH < self.scrollView!.gx_height) else { return }
      
             if (self.contentOffset.y > -self.adjustedInset.top) {
                 self.state = .did
@@ -113,6 +119,10 @@ extension GXRefreshBaseFooter {
 }
 
 fileprivate extension GXRefreshBaseFooter {
+    func isChageAlpha() -> Bool {
+        let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
+        return (contentH >= self.scrollView!.gx_height)
+    }
     func didStateRefreshing() {
         if self.automaticallyChangeAlpha {
             self.alpha = 1.0
@@ -126,7 +136,7 @@ fileprivate extension GXRefreshBaseFooter {
     }
     func endStateRefreshing() {
         self.state = .idle
-        if self.automaticallyChangeAlpha {
+        if self.automaticallyChangeAlpha && isChageAlpha() {
             self.alpha = 0.0
         }
         if self.endRefreshingCompletionAction != nil {

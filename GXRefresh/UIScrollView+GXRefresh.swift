@@ -25,7 +25,7 @@ extension UIScrollView {
         }
     }
     
-    var gx_footer: UIView? {
+    var gx_footer: GXRefreshBaseFooter? {
         set {
             guard newValue != self.gx_footer else { return }
             self.gx_footer?.removeFromSuperview()
@@ -33,7 +33,7 @@ extension UIScrollView {
             objc_setAssociatedObject(self, &GXRefreshFooterKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
         get {
-            return objc_getAssociatedObject(self, &GXRefreshFooterKey) as? UIView
+            return objc_getAssociatedObject(self, &GXRefreshFooterKey) as? GXRefreshBaseFooter
         }
     }
 }

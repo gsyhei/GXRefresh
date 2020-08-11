@@ -9,12 +9,13 @@
 import UIKit
 
 class GXRefreshBaseHeader: GXRefreshComponent {
-    
+
 }
 
 extension GXRefreshBaseHeader {
     override func prepare() {
         super.prepare()
+        self.autoresizingMask = [.flexibleBottomMargin,.flexibleLeftMargin,.flexibleTopMargin,.flexibleRightMargin]
         self.gx_height = GXRefreshConfiguration.shared.headerHeight
         self.alpha = self.automaticallyChangeAlpha ? 0 : 1
     }
@@ -71,7 +72,9 @@ extension GXRefreshBaseHeader {
             self.didStateRefreshing()
         }
         else if state == .end {
-            self.endStateRefreshing()
+            DispatchQueue.main.asyncAfter(deadline: .now() + GXRefreshConfiguration.shared.enRefreshDelay) {
+                self.endStateRefreshing()
+            }
         }
     }
 }

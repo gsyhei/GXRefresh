@@ -10,22 +10,43 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    private var cellNumber: Int = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
-        self.tableView.gx_header = GXRefreshBaseHeader()
-        self.tableView.gx_header?.backgroundColor = UIColor.red
+        self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
+            self?.refreshDataSource()
+        })
+        self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
-        self.tableView.gx_footer = GXRefreshBaseFooter()
-        self.tableView.gx_footer?.backgroundColor = UIColor.red
+        self.tableView.gx_footer = GXRefreshBaseFooter(refreshingAction: { [weak self] in
+            self?.loadMoreData()
+        })
+        self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+    }
+    
+    func refreshDataSource() {
+        DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+            self.cellNumber = 10
+            self.tableView.reloadData()
+            self.tableView.gx_header?.endRefreshing()
+        }
+    }
+    
+    func loadMoreData() {
+        DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+            self.cellNumber += 10
+            self.tableView.reloadData()
+            self.tableView.gx_footer?.endRefreshing()
+        }
     }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return self.cellNumber
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

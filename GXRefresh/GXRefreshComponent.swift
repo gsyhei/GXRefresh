@@ -55,6 +55,12 @@ class GXRefreshComponent: UIView {
     open var refreshingAction: GXRefreshCallBack? = nil
     open var beginRefreshingCompletionAction: GXRefreshCallBack? = nil
     open var endRefreshingCompletionAction: GXRefreshCallBack? = nil
+    
+    open lazy var contentView: UIView = {
+        let view = UIView(frame: self.bounds)
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return view
+    }()
 
     open var isRefreshing: Bool {
         return self.state == .did || self.state == .end
@@ -85,8 +91,11 @@ class GXRefreshComponent: UIView {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    required init(refreshingAction: @escaping GXRefreshCallBack, beginCompletion: GXRefreshCallBack? = nil, endCompletion: GXRefreshCallBack? = nil) {
+        super.init(frame: .zero)
+        self.refreshingAction = refreshingAction
+        self.beginRefreshingCompletionAction = beginCompletion
+        self.endRefreshingCompletionAction = endCompletion
         self.prepare()
     }
     
@@ -127,7 +136,7 @@ fileprivate extension GXRefreshComponent {
         let options: NSKeyValueObservingOptions = [.old, .new]
         self.scrollView?.addObserver(self, forKeyPath: self.keyPath(.contentOffset), options: options, context: nil)
         self.scrollView?.addObserver(self, forKeyPath: self.keyPath(.contentSize), options: options, context: nil)
-        self.scrollView?.panGestureRecognizer.addObserver(self, forKeyPath: self.keyPath(.contentSize), options: options, context: nil)
+        self.scrollView?.panGestureRecognizer.addObserver(self, forKeyPath: self.keyPath(.panState), options: options, context: nil)
     }
     func removeObservers() {
         self.scrollView?.removeObserver(self, forKeyPath: self.keyPath(.contentOffset))
@@ -137,7 +146,10 @@ fileprivate extension GXRefreshComponent {
 }
 
 @objc extension GXRefreshComponent {
-    open func prepare() {}
+    open func prepare() {
+        self.autoresizingMask = .flexibleWidth
+        self.addSubview(self.contentView)
+    }
     open func prepareLayoutSubviews() {}
     open func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {}
     open func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {}
@@ -153,7 +165,7 @@ fileprivate extension GXRefreshComponent {
         if keyPath == self.keyPath(.contentOffset) {
             self.scrollViewContentOffsetDidChange(change: change)
         }
-        else if keyPath == self.keyPath(.contentSize) {
+        else if keyPath == self.keyPath(.panState) {
             self.scrollViewPanStateDidChange(change: change)
         }
     }
