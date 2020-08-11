@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		331F496824E1D5DC0013100D /* GXRefreshBaseFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */; };
 		332964C524E318940057484C /* GXRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332964C424E318940057484C /* GXRefreshNormalHeader.swift */; };
+		332964C724E34FA70057484C /* GXRefreshNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332964C624E34FA70057484C /* GXRefreshNormalFooter.swift */; };
 		333908BA24DF126A0081E656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333908B924DF126A0081E656 /* AppDelegate.swift */; };
 		333908BE24DF126A0081E656 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333908BD24DF126A0081E656 /* ViewController.swift */; };
 		333908C124DF126A0081E656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333908BF24DF126A0081E656 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshBaseFooter.swift; sourceTree = "<group>"; };
 		332964C424E318940057484C /* GXRefreshNormalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshNormalHeader.swift; sourceTree = "<group>"; };
+		332964C624E34FA70057484C /* GXRefreshNormalFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshNormalFooter.swift; sourceTree = "<group>"; };
 		333908B624DF126A0081E656 /* GXRefreshSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GXRefreshSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		333908B924DF126A0081E656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		333908BD24DF126A0081E656 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				336A62C324E06808008A234A /* GXRefreshBaseHeader.swift */,
 				331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */,
 				332964C424E318940057484C /* GXRefreshNormalHeader.swift */,
+				332964C624E34FA70057484C /* GXRefreshNormalFooter.swift */,
 			);
 			name = GXRefresh;
 			path = ../../GXRefresh;
@@ -287,6 +290,7 @@
 				333908BE24DF126A0081E656 /* ViewController.swift in Sources */,
 				336A62C224E02104008A234A /* GXRefreshComponent.swift in Sources */,
 				336A62C024E02086008A234A /* GXRefreshConfiguration.swift in Sources */,
+				332964C724E34FA70057484C /* GXRefreshNormalFooter.swift in Sources */,
 				336A62C424E06808008A234A /* GXRefreshBaseHeader.swift in Sources */,
 				333908BA24DF126A0081E656 /* AppDelegate.swift in Sources */,
 				332964C524E318940057484C /* GXRefreshNormalHeader.swift in Sources */,

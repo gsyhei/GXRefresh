@@ -32,6 +32,7 @@ class GXRefreshConfiguration: NSObject {
     
     open lazy var footerTextDict: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "点击或上拉加载更多",
+                .pulling: "上拉加载更多",
                 .will: "放开立即加载更多",
                 .did: "正在加载更多数据...",
                 .noMore: "已加载全部数据"]

@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         })
         self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
-        self.tableView.gx_footer = GXRefreshBaseFooter(refreshingAction: { [weak self] in
+        self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
             self?.loadMoreData()
         })
         self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)

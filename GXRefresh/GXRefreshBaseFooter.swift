@@ -9,7 +9,7 @@
 import UIKit
 
 class GXRefreshBaseFooter: GXRefreshComponent {
-    open var automaticallyRefresh: Bool = false
+    open var automaticallyRefresh: Bool = true
     open var automaticallyRefreshPercent: CGFloat = 1.0
     
     override func willMove(toSuperview newSuperview: UIView?) {
@@ -67,6 +67,9 @@ extension GXRefreshBaseFooter {
                     }
                     else if (self.state == .pulling && offset.y >= pullingOffsetY) {
                         self.state = .will
+                    }
+                    else if (self.state == .will && offset.y >= pullingOffsetY) {
+                        self.state = .did
                     }
                 }
                 else {
