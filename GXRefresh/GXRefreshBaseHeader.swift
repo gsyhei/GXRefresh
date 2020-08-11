@@ -9,11 +9,6 @@
 import UIKit
 
 class GXRefreshBaseHeader: GXRefreshComponent {
-    override var pullingProgress: CGFloat {
-        didSet {
-            
-        }
-    }
     
 }
 
@@ -36,7 +31,7 @@ extension GXRefreshBaseHeader {
             // did/end状态的情况
             guard self.state != .did && self.state != .end else { return }
             // 需要拉到刷新的offsetY
-            let pullingOffsetY = justOffsetY - self.gx_height;
+            let pullingOffsetY = justOffsetY - self.gx_height
             // 刷新头部视图透明百分比进度
             let pullingProgress: CGFloat = (justOffsetY - offset.y) / self.gx_height
             
@@ -94,11 +89,27 @@ fileprivate extension GXRefreshBaseHeader {
                 if self.automaticallyChangeAlpha {
                     self.alpha = 1.0
                 }
-            })
+            }) { (finish) in
+                if self.refreshingAction != nil {
+                    self.refreshingAction!()
+                }
+                if self.beginRefreshingCompletionAction != nil {
+                    self.beginRefreshingCompletionAction!()
+                }
+            }
         }
         else {
             self.scrollView?.contentInset = contentInset
             self.scrollView?.contentOffset = contentOffset
+            if self.automaticallyChangeAlpha {
+                self.alpha = 1.0
+            }
+            if self.refreshingAction != nil {
+                self.refreshingAction!()
+            }
+            if self.beginRefreshingCompletionAction != nil {
+                self.beginRefreshingCompletionAction!()
+            }
         }
     }
     func endStateRefreshing() {
@@ -111,6 +122,9 @@ fileprivate extension GXRefreshBaseHeader {
             }
         }) { (finished) in
             self.state = .idle
+            if self.endRefreshingCompletionAction != nil {
+                self.endRefreshingCompletionAction!()
+            }
         }
     }
 }

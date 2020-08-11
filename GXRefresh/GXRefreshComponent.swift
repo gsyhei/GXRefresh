@@ -9,6 +9,8 @@
 import UIKit
 
 extension GXRefreshComponent {
+    public typealias GXRefreshCallBack = () -> Void
+    
     @objc enum State: Int {
         case idle    = 0
         case pulling = 1
@@ -50,7 +52,10 @@ class GXRefreshComponent: UIView {
     open var scrollView: UIScrollView?
     open var scrollViewOriginalInset: UIEdgeInsets = .zero
     open var automaticallyChangeAlpha: Bool = true
-    
+    open var refreshingAction: GXRefreshCallBack? = nil
+    open var beginRefreshingCompletionAction: GXRefreshCallBack? = nil
+    open var endRefreshingCompletionAction: GXRefreshCallBack? = nil
+
     open var isRefreshing: Bool {
         return self.state == .did || self.state == .end
     }
@@ -73,7 +78,10 @@ class GXRefreshComponent: UIView {
             guard !self.isRefreshing && self.automaticallyChangeAlpha else {
                 return
             }
-            self.alpha = self.pullingProgress
+            var progress: CGFloat = self.pullingProgress
+            progress = progress < 0 ? 0 : progress
+            progress = progress > 1 ? 1 : progress
+            self.alpha = progress
         }
     }
     
