@@ -23,8 +23,8 @@ class GXRefreshNormalHeader: GXRefreshBaseHeader {
     
     open lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.darkGray
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = UIColor.gray
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         self.contentView.addSubview(label)
         return label
     }()

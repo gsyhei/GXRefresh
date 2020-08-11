@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class GXRefreshConfiguration: NSObject {
     static let shared: GXRefreshConfiguration = {
@@ -14,6 +15,8 @@ class GXRefreshConfiguration: NSObject {
         return instance
     }()
     
+    open var isPlayImpact: Bool = true
+
     open var animationDuration: TimeInterval = 0.25
     
     open var enRefreshDelay: TimeInterval = 0.5
@@ -40,6 +43,10 @@ class GXRefreshConfiguration: NSObject {
 }
 
 extension GXRefreshConfiguration {
+    func playImpact() {
+        guard self.isPlayImpact else { return }
+        AudioServicesPlaySystemSound(1519)
+    }
     func setHeaderText(_ text: String, for state: GXRefreshComponent.State) {
         self.headerTextDict.updateValue(text, forKey: state)
     }

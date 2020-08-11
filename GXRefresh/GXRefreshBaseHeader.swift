@@ -9,7 +9,7 @@
 import UIKit
 
 class GXRefreshBaseHeader: GXRefreshComponent {
-
+    private var isPlayingImpact: Bool = false
 }
 
 extension GXRefreshBaseHeader {
@@ -44,6 +44,14 @@ extension GXRefreshBaseHeader {
                 }
                 else if (self.state == .pulling && offset.y <= pullingOffsetY) {
                     self.state = .will
+                    if !self.isPlayingImpact {
+                        self.isPlayingImpact = true
+                        GXRefreshConfiguration.shared.playImpact()
+                    }
+                }
+                else if (self.state == .pulling && offset.y > pullingOffsetY + self.gx_height/3) {
+                    // 设置回到1/3处为二次震动重置点
+                    self.isPlayingImpact = false
                 }
             }
             else {
@@ -125,6 +133,7 @@ fileprivate extension GXRefreshBaseHeader {
             }
         }) { (finished) in
             self.state = .idle
+            self.isPlayingImpact = false
             if self.endRefreshingCompletionAction != nil {
                 self.endRefreshingCompletionAction!()
             }

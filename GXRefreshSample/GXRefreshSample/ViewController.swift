@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.tableFooterView = UIView()
         self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
         self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
             self?.refreshDataSource()
