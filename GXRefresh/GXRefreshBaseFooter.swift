@@ -78,7 +78,7 @@ extension GXRefreshBaseFooter {
                     if self.state == .will {
                         self.state = .did
                     }
-                    else {
+                    else if self.state != .noMore {
                         self.state = .idle
                     }
                 }
