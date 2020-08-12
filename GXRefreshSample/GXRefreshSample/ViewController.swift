@@ -40,7 +40,13 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
             self.cellNumber += 10
             self.tableView.reloadData()
-            self.tableView.gx_footer?.endRefreshing()
+            
+            if self.cellNumber == 40 {
+                self.tableView.gx_footer?.endRefreshing(isNoMore: true)
+            }
+            else {
+                self.tableView.gx_footer?.endRefreshing()
+            }
         }
     }
 }

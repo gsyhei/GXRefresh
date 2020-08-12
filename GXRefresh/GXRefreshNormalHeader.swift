@@ -9,6 +9,13 @@
 import UIKit
 
 class GXRefreshNormalHeader: GXRefreshBaseHeader {
+    private lazy var headerText: Dictionary<GXRefreshComponent.State, String> = {
+        return [.idle: "下拉刷新",
+                .pulling: "下拉可以刷新",
+                .will: "放开立即刷新",
+                .did: "正在刷新...",
+                .end: "刷新完成"]
+    }()
     
     open lazy var indicator: UIActivityIndicatorView = {
         let aiView = UIActivityIndicatorView()
@@ -47,7 +54,7 @@ fileprivate extension GXRefreshNormalHeader {
 extension GXRefreshNormalHeader {
     override func prepare() {
         super.prepare()
-        self.textLabel.text = GXRefreshConfiguration.shared.headerTextDict[.idle]
+        self.textLabel.text = self.headerText[.idle]
         self.updateTextLabel()
     }
     override func prepareLayoutSubviews() {
@@ -57,7 +64,7 @@ extension GXRefreshNormalHeader {
     override func setState(_ state: State) {
         super.setState(state)
         
-        if let text = GXRefreshConfiguration.shared.headerTextDict[state] {
+        if let text = self.headerText[state] {
             self.textLabel.text = text
             self.updateTextLabel()
         }
@@ -66,6 +73,15 @@ extension GXRefreshNormalHeader {
         }
         else if state == .end {
             self.indicator.stopAnimating()
+        }
+    }
+}
+
+extension GXRefreshNormalHeader {
+    func setHeaderText(_ text: String, for state: GXRefreshComponent.State) {
+        self.headerText.updateValue(text, forKey: state)
+        if self.state == state {
+            self.textLabel.text = text
         }
     }
 }

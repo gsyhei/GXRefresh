@@ -18,7 +18,6 @@
 		333908D124DF126C0081E656 /* GXRefreshSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333908D024DF126C0081E656 /* GXRefreshSampleTests.swift */; };
 		333908DC24DF126C0081E656 /* GXRefreshSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333908DB24DF126C0081E656 /* GXRefreshSampleUITests.swift */; };
 		333908EB24DF12EF0081E656 /* UIScrollView+GXRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333908EA24DF12EF0081E656 /* UIScrollView+GXRefresh.swift */; };
-		336A62C024E02086008A234A /* GXRefreshConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A62BF24E02086008A234A /* GXRefreshConfiguration.swift */; };
 		336A62C224E02104008A234A /* GXRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A62C124E02104008A234A /* GXRefreshComponent.swift */; };
 		336A62C424E06808008A234A /* GXRefreshBaseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A62C324E06808008A234A /* GXRefreshBaseHeader.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		333908DB24DF126C0081E656 /* GXRefreshSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshSampleUITests.swift; sourceTree = "<group>"; };
 		333908DD24DF126C0081E656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		333908EA24DF12EF0081E656 /* UIScrollView+GXRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+GXRefresh.swift"; sourceTree = "<group>"; };
-		336A62BF24E02086008A234A /* GXRefreshConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshConfiguration.swift; sourceTree = "<group>"; };
 		336A62C124E02104008A234A /* GXRefreshComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshComponent.swift; sourceTree = "<group>"; };
 		336A62C324E06808008A234A /* GXRefreshBaseHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshBaseHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				333908EA24DF12EF0081E656 /* UIScrollView+GXRefresh.swift */,
-				336A62BF24E02086008A234A /* GXRefreshConfiguration.swift */,
 				336A62C124E02104008A234A /* GXRefreshComponent.swift */,
 				336A62C324E06808008A234A /* GXRefreshBaseHeader.swift */,
 				331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */,
@@ -289,7 +286,6 @@
 				333908EB24DF12EF0081E656 /* UIScrollView+GXRefresh.swift in Sources */,
 				333908BE24DF126A0081E656 /* ViewController.swift in Sources */,
 				336A62C224E02104008A234A /* GXRefreshComponent.swift in Sources */,
-				336A62C024E02086008A234A /* GXRefreshConfiguration.swift in Sources */,
 				332964C724E34FA70057484C /* GXRefreshNormalFooter.swift in Sources */,
 				336A62C424E06808008A234A /* GXRefreshBaseHeader.swift in Sources */,
 				333908BA24DF126A0081E656 /* AppDelegate.swift in Sources */,

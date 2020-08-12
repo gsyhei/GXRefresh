@@ -7,16 +7,29 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class GXRefreshBaseHeader: GXRefreshComponent {
+    open var isPlayImpact: Bool = true
+    open var animationDuration: TimeInterval = 0.25
+    open var enRefreshDelay: TimeInterval = 0.25
+    open var headerHeight: CGFloat = 54.0 {
+        didSet {
+            self.gx_height = self.headerHeight
+        }
+    }
     private var isPlayingImpact: Bool = false
+    @available(iOS 10.0, *)
+    private lazy var generator: UIImpactFeedbackGenerator = {
+        return UIImpactFeedbackGenerator(style: .light)
+    }()
 }
 
 extension GXRefreshBaseHeader {
     override func prepare() {
         super.prepare()
         self.autoresizingMask = [.flexibleBottomMargin,.flexibleLeftMargin,.flexibleTopMargin,.flexibleRightMargin]
-        self.gx_height = GXRefreshConfiguration.shared.headerHeight
+        self.gx_height = self.headerHeight
         self.alpha = self.automaticallyChangeAlpha ? 0 : 1
     }
     override func prepareLayoutSubviews() {
@@ -28,7 +41,13 @@ extension GXRefreshBaseHeader {
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 判断header是否出现
             let justOffsetY = -self.adjustedInset.top
-            guard offset.y < justOffsetY else { return }
+            guard offset.y < justOffsetY else {
+                if (self.state == .pulling) {
+                    // 设置回到看不见就重置震动播放
+                    self.isPlayingImpact = false
+                }
+                return
+            }
             // did/end状态的情况
             guard self.state != .did && self.state != .end else { return }
             // 需要拉到刷新的offsetY
@@ -37,7 +56,7 @@ extension GXRefreshBaseHeader {
             let pullingProgress: CGFloat = (justOffsetY - offset.y) / self.gx_height
             
             // 判断是否正在拖拽
-            if self.scrollView!.isDragging {
+            if self.scrollView!.isDragging && self.scrollView!.isTracking {
                 self.pullingProgress = pullingProgress
                 if ((self.state == .idle || self.state == .will) && offset.y > pullingOffsetY) {
                     self.state = .pulling
@@ -46,12 +65,8 @@ extension GXRefreshBaseHeader {
                     self.state = .will
                     if !self.isPlayingImpact {
                         self.isPlayingImpact = true
-                        GXRefreshConfiguration.shared.playImpact()
+                        self.playImpact()
                     }
-                }
-                else if (self.state == .pulling && offset.y > pullingOffsetY + self.gx_height/3) {
-                    // 设置回到1/3处为二次震动重置点
-                    self.isPlayingImpact = false
                 }
             }
             else {
@@ -80,7 +95,7 @@ extension GXRefreshBaseHeader {
             self.didStateRefreshing()
         }
         else if state == .end {
-            DispatchQueue.main.asyncAfter(deadline: .now() + GXRefreshConfiguration.shared.enRefreshDelay) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.enRefreshDelay) {
                 self.endStateRefreshing()
             }
         }
@@ -88,13 +103,21 @@ extension GXRefreshBaseHeader {
 }
 
 fileprivate extension GXRefreshBaseHeader {
+    func playImpact() {
+        guard self.isPlayImpact else { return }
+        if #available(iOS 10.0, *) {
+            self.generator.impactOccurred()
+        } else {
+            AudioServicesPlaySystemSound(1519)
+        }
+    }
     func didStateRefreshing() {
         var contentOffset = self.contentOffset
         var contentInset = self.contentInset
         contentInset.top = self.scrollViewOriginalInset.top + self.gx_height
         if self.oldState == .idle {
             contentOffset.y -= self.gx_height
-            UIView.animate(withDuration: GXRefreshConfiguration.shared.animationDuration, animations: {
+            UIView.animate(withDuration: self.animationDuration, animations: {
                 self.scrollView?.contentInset = contentInset
                 self.scrollView?.contentOffset = contentOffset
                 if self.automaticallyChangeAlpha {
@@ -126,7 +149,7 @@ fileprivate extension GXRefreshBaseHeader {
     func endStateRefreshing() {
         var contentInset = self.contentInset
         contentInset.top = self.scrollViewOriginalInset.top
-        UIView.animate(withDuration: GXRefreshConfiguration.shared.animationDuration, animations: {
+        UIView.animate(withDuration: self.animationDuration, animations: {
             self.scrollView?.contentInset = contentInset
             if self.automaticallyChangeAlpha {
                 self.alpha = 0.0
@@ -145,8 +168,8 @@ extension GXRefreshBaseHeader {
     func beginRefreshing() {
         self.state = .did
     }
-    
-    func endRefreshing() {
+    func endRefreshing(isNoMore: Bool = false) {
         self.state = .end
+        self.scrollView?.gx_footer?.endRefreshing(isNoMore: isNoMore)
     }
 }

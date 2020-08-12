@@ -56,8 +56,8 @@ class GXRefreshComponent: UIView {
     open var beginRefreshingCompletionAction: GXRefreshCallBack? = nil
     open var endRefreshingCompletionAction: GXRefreshCallBack? = nil
     
-    open lazy var contentView: UIView = {
-        let view = UIView(frame: self.bounds)
+    open lazy var contentView: UIControl = {
+        let view = UIControl(frame: self.bounds)
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return view
     }()

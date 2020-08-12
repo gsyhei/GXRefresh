@@ -9,8 +9,13 @@
 import UIKit
 
 class GXRefreshBaseFooter: GXRefreshComponent {
-    open var automaticallyRefresh: Bool = true
+    open var automaticallyRefresh: Bool = false
     open var automaticallyRefreshPercent: CGFloat = 1.0
+    open var footerHeight: CGFloat = 44.0 {
+        didSet {
+            self.gx_height = self.footerHeight
+        }
+    }
     
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
@@ -25,7 +30,7 @@ class GXRefreshBaseFooter: GXRefreshComponent {
 extension GXRefreshBaseFooter {
     override func prepare() {
         super.prepare()
-        self.gx_height = GXRefreshConfiguration.shared.footerHeight
+        self.gx_height = self.footerHeight
         self.alpha = self.automaticallyChangeAlpha ? 0 : 1
     }
     override func prepareLayoutSubviews() {
@@ -61,11 +66,11 @@ extension GXRefreshBaseFooter {
             }
             else {
                 // 判断是否正在拖拽
-                if self.scrollView!.isDragging {
+                if self.scrollView!.isDragging && self.scrollView!.isTracking {
                     if ((self.state == .idle || self.state == .will) && offset.y < pullingOffsetY) {
                         self.state = .pulling
                     }
-                    else if (self.state == .pulling && offset.y >= pullingOffsetY) {
+                    else if (self.state == .idle || self.state == .pulling && offset.y >= pullingOffsetY) {
                         self.state = .will
                     }
                     else if (self.state == .will && offset.y >= pullingOffsetY) {
@@ -118,6 +123,9 @@ extension GXRefreshBaseFooter {
         else if state == .end {
             self.endStateRefreshing()
         }
+        else if state == .noMore {
+            self.endStateRefreshing(isNoMore: true)
+        }
     }
 }
 
@@ -137,8 +145,10 @@ fileprivate extension GXRefreshBaseFooter {
             self.beginRefreshingCompletionAction!()
         }
     }
-    func endStateRefreshing() {
-        self.state = .idle
+    func endStateRefreshing(isNoMore: Bool = false) {
+        if !isNoMore {
+            self.state = .idle
+        }
         if self.automaticallyChangeAlpha && isChageAlpha() {
             self.alpha = 0.0
         }
@@ -152,8 +162,7 @@ extension GXRefreshBaseFooter {
     func beginRefreshing() {
         self.state = .did
     }
-    
-    func endRefreshing() {
-        self.state = .end
+    func endRefreshing(isNoMore: Bool = false) {
+        self.state = isNoMore ? .noMore : .end
     }
 }
