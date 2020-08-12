@@ -43,22 +43,19 @@ extension GXRefreshBaseFooter {
             // 需要内容超过屏幕
             let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
             guard contentH > self.scrollView!.gx_height else { return }
-            
             // 判断header是否出现
             var justOffsetY = self.contentSize.height + self.adjustedInset.bottom
             justOffsetY -= (self.scrollView!.gx_height + self.gx_height)
             guard offset.y >= justOffsetY else { return }
-            
             // did/end状态的情况
             guard self.state != .did && self.state != .end else { return }
-            
             // 需要拉到刷新的offsetY
             let footerHeight = self.gx_height * self.automaticallyRefreshPercent
             let pullingOffsetY = justOffsetY + footerHeight
             // 刷新头部视图透明百分比进度
             let pullingProgress: CGFloat = (offset.y - justOffsetY) / footerHeight
             self.pullingProgress = pullingProgress
-            
+            // 自动刷新是否开启
             if self.automaticallyRefresh {
                 if self.state == .idle && offset.y >= pullingOffsetY {
                     self.state = .did

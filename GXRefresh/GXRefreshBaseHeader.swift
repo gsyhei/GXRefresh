@@ -54,10 +54,9 @@ extension GXRefreshBaseHeader {
             let pullingOffsetY = justOffsetY - self.gx_height
             // 刷新头部视图透明百分比进度
             let pullingProgress: CGFloat = (justOffsetY - offset.y) / self.gx_height
-            
+            self.pullingProgress = pullingProgress
             // 判断是否正在拖拽
             if self.scrollView!.isDragging && self.scrollView!.isTracking {
-                self.pullingProgress = pullingProgress
                 if ((self.state == .idle || self.state == .will) && offset.y > pullingOffsetY) {
                     self.state = .pulling
                 }
@@ -75,7 +74,6 @@ extension GXRefreshBaseHeader {
                 }
                 else {
                     self.state = .idle
-                    self.pullingProgress = pullingProgress
                 }
             }
         }
