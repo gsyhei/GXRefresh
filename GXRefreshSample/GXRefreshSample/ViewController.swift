@@ -15,13 +15,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.tableView.tableFooterView = UIView()
-//        self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
-//        self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
-//            self?.refreshDataSource()
-//        })
-//        self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
-                
+        self.tableView.tableFooterView = UIView()
+        self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
+        
+        //        self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
+        //            self?.refreshDataSource()
+        //        })
+        //        self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        //        self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
+        //            self?.loadMoreData()
+        //        })
+        //        self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        
+        
         var imageNames: [String] = []
         for i in 0..<31 {
             imageNames.append(String(format: "refresh%d", i))
@@ -30,18 +36,19 @@ class ViewController: UIViewController {
             self?.refreshDataSource()
         })
         header.setHeaderImages([imageNames.first!], for: .idle)
-        header.setHeaderImages(imageNames, duration: 2.0, for: .pulling)
-        header.setHeaderImages(imageNames, for: .did)
+        header.setHeaderImages(imageNames, for: .pulling)
+        header.setHeaderImages(imageNames, duration: 2.0, for: .did)
         header.setHeaderImages([imageNames.last!], for: .end)
-        
         self.tableView.gx_header = header
         self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
-        
-        
-        self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
+        let footer = GXRefreshGifFooter(refreshingAction: { [weak self] in
             self?.loadMoreData()
         })
+        footer.setFooterImages([imageNames[21]], for: .idle)
+        footer.setFooterImages(imageNames, duration: 2.0, for: .did)
+        footer.setFooterImages([imageNames.last!], for: .noMore)
+        self.tableView.gx_footer = footer
         self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
     }
     
@@ -86,11 +93,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        self.tableView.gx_header?.beginRefreshing()
+        //        self.tableView.gx_header?.beginRefreshing()
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//            self.tableView.gx_header?.endRefreshing()
-//        }
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        //            self.tableView.gx_header?.endRefreshing()
+        //        }
         
         if #available(iOS 11.0, *) {
             NSLog("safeAreaInsets = %@", NSCoder.string(for: self.tableView.safeAreaInsets))
@@ -102,7 +109,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         NSLog("contentSize = %@", NSCoder.string(for: self.tableView.contentSize))
         NSLog("bounds = %@", NSCoder.string(for: self.tableView.bounds))
         NSLog("view bounds = %@", NSCoder.string(for: self.view.bounds))
-
+        
     }
 }
 

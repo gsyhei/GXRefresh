@@ -72,7 +72,9 @@ class GXRefreshComponent: UIView {
         set {
             self.oldState = _state
             _state = newValue
-            self.setState(newValue)
+            DispatchQueue.main.async {
+                self.setState(newValue)
+            }
         }
         get {
             return _state

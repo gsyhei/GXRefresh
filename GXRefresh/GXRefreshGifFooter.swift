@@ -1,5 +1,5 @@
 //
-//  GXRefreshGifHeader.swift
+//  GXRefreshGifFooter.swift
 //  GXRefreshSample
 //
 //  Created by Gin on 2020/8/13.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class GXRefreshGifHeader: GXRefreshBaseHeader {
+class GXRefreshGifFooter: GXRefreshBaseFooter {
     open var isHiddenText: Bool = false
     
-    private lazy var headerTexts: Dictionary<GXRefreshComponent.State, String> = {
-        return [.idle: "下拉刷新",
-                .pulling: "下拉可以刷新",
-                .will: "放开立即刷新",
-                .did: "正在刷新...",
-                .end: "刷新完成"]
+    private lazy var footerTexts: Dictionary<GXRefreshComponent.State, String> = {
+        return [.idle: "点击或上拉加载更多",
+                .pulling: "上拉加载更多",
+                .will: "放开立即加载更多",
+                .did: "正在加载更多数据...",
+                .noMore: "已加载全部数据"]
     }()
-    private lazy var headerImages: Dictionary<GXRefreshComponent.State, Array<UIImage>> = {
+    private lazy var footerImages: Dictionary<GXRefreshComponent.State, Array<UIImage>> = {
         return [:]
     }()
     private lazy var stateDuration: Dictionary<GXRefreshComponent.State, TimeInterval> = {
@@ -41,7 +41,7 @@ class GXRefreshGifHeader: GXRefreshBaseHeader {
     
     override var pullingProgress: CGFloat {
         didSet {
-            if let images = self.headerImages[.pulling] {
+            if let images = self.footerImages[.pulling] {
                 var index: Int = Int(ceil(CGFloat(images.count) * self.pullingProgress))
                 if (index >= images.count) {
                     index = images.count - 1
@@ -52,7 +52,10 @@ class GXRefreshGifHeader: GXRefreshBaseHeader {
     }
 }
 
-fileprivate extension GXRefreshGifHeader {
+fileprivate extension GXRefreshGifFooter {
+    @objc func contentClicked(_ sender: UIControl) {
+        self.beginRefreshing()
+    }
     func updateContentViewLayout() {
         if self.isHiddenText {
             self.imageView.center = self.contentView.center
@@ -70,11 +73,11 @@ fileprivate extension GXRefreshGifHeader {
         }
     }
     func updateContentView(state: State) {
-        if let text = self.headerTexts[state] {
+        if let text = self.footerTexts[state] {
             self.textLabel.text = text
         }
         if state != .pulling {
-            if let images = self.headerImages[state] {
+            if let images = self.footerImages[state] {
                 let image = images.first
                 if images.count == 1 {
                     self.imageView.image = image
@@ -96,9 +99,10 @@ fileprivate extension GXRefreshGifHeader {
     }
 }
 
-extension GXRefreshGifHeader {
+extension GXRefreshGifFooter {
     override func prepare() {
         super.prepare()
+        self.contentView.addTarget(self, action: #selector(self.contentClicked(_:)), for: .touchUpInside)
         self.updateContentView(state: .idle)
     }
     override func prepareLayoutSubviews() {
@@ -107,7 +111,7 @@ extension GXRefreshGifHeader {
     }
     override func setState(_ state: State) {
         super.setState(state)
-        
+
         self.updateContentView(state: state)
         if state == .did {
             self.imageView.startAnimating()
@@ -118,12 +122,12 @@ extension GXRefreshGifHeader {
     }
 }
 
-extension GXRefreshGifHeader {
-    func setHeaderText(_ text: String, for state: GXRefreshComponent.State) {
-        self.headerTexts.updateValue(text, forKey: state)
+extension GXRefreshGifFooter {
+    func setFooterText(_ text: String, for state: GXRefreshComponent.State) {
+        self.footerTexts.updateValue(text, forKey: state)
         self.updateContentView(state: state)
     }
-    func setHeaderImages(_ imageNames: Array<String>, duration: TimeInterval? = nil, for state: GXRefreshComponent.State) {
+    func setFooterImages(_ imageNames: Array<String>, duration: TimeInterval? = nil, for state: GXRefreshComponent.State) {
         guard imageNames.count > 0 else { return }
         var images:[UIImage] = []
         for name in imageNames {
@@ -133,15 +137,15 @@ extension GXRefreshGifHeader {
             }
         }
         guard images.count > 0 else { return }
-        self.headerImages.updateValue(images, forKey: state)
+        self.footerImages.updateValue(images, forKey: state)
         if (duration != nil) {
             self.stateDuration.updateValue(duration!, forKey: state)
         }
         self.updateContentView(state: state)
     }
-    func setHeaderImages(_ images: Array<UIImage>, duration: TimeInterval? = nil, for state: GXRefreshComponent.State) {
+    func setFooterImages(_ images: Array<UIImage>, duration: TimeInterval? = nil, for state: GXRefreshComponent.State) {
         guard images.count > 0 else { return }
-        self.headerImages.updateValue(images, forKey: state)
+        self.footerImages.updateValue(images, forKey: state)
         if (duration != nil) {
             self.stateDuration.updateValue(duration!, forKey: state)
         }
