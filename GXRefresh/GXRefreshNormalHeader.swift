@@ -9,7 +9,7 @@
 import UIKit
 
 class GXRefreshNormalHeader: GXRefreshBaseHeader {
-    private lazy var headerText: Dictionary<GXRefreshComponent.State, String> = {
+    private lazy var headerTexts: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "下拉刷新",
                 .pulling: "下拉可以刷新",
                 .will: "放开立即刷新",
@@ -38,7 +38,7 @@ class GXRefreshNormalHeader: GXRefreshBaseHeader {
 }
 
 fileprivate extension GXRefreshNormalHeader {
-    func updateTextLabel() {
+    func updateContentViewLayout() {
         let nsText: NSString = (self.textLabel.text ?? "") as NSString
         let maxSize = self.bounds.size
         let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
@@ -49,25 +49,27 @@ fileprivate extension GXRefreshNormalHeader {
         self.indicator.center.y = self.contentView.center.y
         self.indicator.gx_right = self.textLabel.gx_left - 20.0
     }
+    func updateContentView(state: State) {
+        if let text = self.headerTexts[state] {
+            self.textLabel.text = text
+            self.updateContentViewLayout()
+        }
+    }
 }
 
 extension GXRefreshNormalHeader {
     override func prepare() {
         super.prepare()
-        self.textLabel.text = self.headerText[.idle]
-        self.updateTextLabel()
+        self.updateContentView(state: .idle)
     }
     override func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
-        self.updateTextLabel()
+        self.updateContentViewLayout()
     }
     override func setState(_ state: State) {
         super.setState(state)
         
-        if let text = self.headerText[state] {
-            self.textLabel.text = text
-            self.updateTextLabel()
-        }
+        self.updateContentView(state: state)
         if state == .did {
             self.indicator.startAnimating()
         }
@@ -79,7 +81,7 @@ extension GXRefreshNormalHeader {
 
 extension GXRefreshNormalHeader {
     func setHeaderText(_ text: String, for state: GXRefreshComponent.State) {
-        self.headerText.updateValue(text, forKey: state)
+        self.headerTexts.updateValue(text, forKey: state)
         if self.state == state {
             self.textLabel.text = text
         }

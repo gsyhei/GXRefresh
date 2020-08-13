@@ -9,7 +9,7 @@
 import UIKit
 
 class GXRefreshNormalFooter: GXRefreshBaseFooter {
-    private lazy var footerText: Dictionary<GXRefreshComponent.State, String> = {
+    private lazy var footerTexts: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "点击或上拉加载更多",
                 .pulling: "上拉加载更多",
                 .will: "放开立即加载更多",
@@ -37,7 +37,10 @@ class GXRefreshNormalFooter: GXRefreshBaseFooter {
 }
 
 fileprivate extension GXRefreshNormalFooter {
-    func updateTextLabel() {
+    @objc func contentClicked(_ sender: UIControl) {
+        self.beginRefreshing()
+    }
+    func updateContentViewLayout() {
         let nsText: NSString = (self.textLabel.text ?? "") as NSString
         let maxSize = self.bounds.size
         let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
@@ -48,29 +51,28 @@ fileprivate extension GXRefreshNormalFooter {
         self.indicator.center.y = self.contentView.center.y
         self.indicator.gx_right = self.textLabel.gx_left - 20.0
     }
-    @objc func contentClicked(_ sender: UIControl) {
-        self.beginRefreshing()
+    func updateContentView(state: State) {
+        if let text = self.footerTexts[state] {
+            self.textLabel.text = text
+            self.updateContentViewLayout()
+        }
     }
 }
 
 extension GXRefreshNormalFooter {
     override func prepare() {
         super.prepare()
-        self.textLabel.text = self.footerText[.idle]
-        self.updateTextLabel()
         self.contentView.addTarget(self, action: #selector(self.contentClicked(_:)), for: .touchUpInside)
+        self.updateContentView(state: .idle)
     }
     override func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
-        self.updateTextLabel()
+        self.updateContentViewLayout()
     }
     override func setState(_ state: State) {
         super.setState(state)
         
-        if let text = self.footerText[state] {
-            self.textLabel.text = text
-            self.updateTextLabel()
-        }
+        self.updateContentView(state: state)
         if state == .did {
             self.indicator.startAnimating()
         }
@@ -82,7 +84,7 @@ extension GXRefreshNormalFooter {
 
 extension GXRefreshNormalFooter {
     func setFooterText(_ text: String, for state: GXRefreshComponent.State) {
-        self.footerText.updateValue(text, forKey: state)
+        self.footerTexts.updateValue(text, forKey: state)
         if self.state == state {
             self.textLabel.text = text
         }

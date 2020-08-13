@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		331F496824E1D5DC0013100D /* GXRefreshBaseFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */; };
+		3320667724E4C2DA00D8074B /* GXRefreshGifHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */; };
 		332964C524E318940057484C /* GXRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332964C424E318940057484C /* GXRefreshNormalHeader.swift */; };
 		332964C724E34FA70057484C /* GXRefreshNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332964C624E34FA70057484C /* GXRefreshNormalFooter.swift */; };
 		333908BA24DF126A0081E656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333908B924DF126A0081E656 /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshBaseFooter.swift; sourceTree = "<group>"; };
+		3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshGifHeader.swift; sourceTree = "<group>"; };
 		332964C424E318940057484C /* GXRefreshNormalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshNormalHeader.swift; sourceTree = "<group>"; };
 		332964C624E34FA70057484C /* GXRefreshNormalFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshNormalFooter.swift; sourceTree = "<group>"; };
 		333908B624DF126A0081E656 /* GXRefreshSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GXRefreshSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */,
 				332964C424E318940057484C /* GXRefreshNormalHeader.swift */,
 				332964C624E34FA70057484C /* GXRefreshNormalFooter.swift */,
+				3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */,
 			);
 			name = GXRefresh;
 			path = ../../GXRefresh;
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				333908EB24DF12EF0081E656 /* UIScrollView+GXRefresh.swift in Sources */,
+				3320667724E4C2DA00D8074B /* GXRefreshGifHeader.swift in Sources */,
 				333908BE24DF126A0081E656 /* ViewController.swift in Sources */,
 				336A62C224E02104008A234A /* GXRefreshComponent.swift in Sources */,
 				332964C724E34FA70057484C /* GXRefreshNormalFooter.swift in Sources */,
