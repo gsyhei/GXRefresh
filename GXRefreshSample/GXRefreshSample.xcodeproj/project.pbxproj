@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3312A73124E61C2E005B502D /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3312A73024E61C2E005B502D /* RootTableViewController.swift */; };
 		331F496824E1D5DC0013100D /* GXRefreshBaseFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */; };
 		3320667724E4C2DA00D8074B /* GXRefreshGifHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */; };
 		332964C524E318940057484C /* GXRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332964C424E318940057484C /* GXRefreshNormalHeader.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3312A73024E61C2E005B502D /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshBaseFooter.swift; sourceTree = "<group>"; };
 		3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshGifHeader.swift; sourceTree = "<group>"; };
 		332964C424E318940057484C /* GXRefreshNormalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshNormalHeader.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				333908E924DF12A00081E656 /* GXRefresh */,
 				333908B924DF126A0081E656 /* AppDelegate.swift */,
+				3312A73024E61C2E005B502D /* RootTableViewController.swift */,
 				333908BD24DF126A0081E656 /* ViewController.swift */,
 				333908BF24DF126A0081E656 /* Main.storyboard */,
 				333908C224DF126C0081E656 /* Assets.xcassets */,
@@ -297,6 +300,7 @@
 				332964C724E34FA70057484C /* GXRefreshNormalFooter.swift in Sources */,
 				336A62C424E06808008A234A /* GXRefreshBaseHeader.swift in Sources */,
 				333908BA24DF126A0081E656 /* AppDelegate.swift in Sources */,
+				3312A73124E61C2E005B502D /* RootTableViewController.swift in Sources */,
 				332964C524E318940057484C /* GXRefreshNormalHeader.swift in Sources */,
 				331F496824E1D5DC0013100D /* GXRefreshBaseFooter.swift in Sources */,
 			);

@@ -11,45 +11,54 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var cellNumber: Int = 30
+    public var refreshStyle: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.tableFooterView = UIView()
         self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
-        
-        //        self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
-        //            self?.refreshDataSource()
-        //        })
-        //        self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        //        self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
-        //            self?.loadMoreData()
-        //        })
-        //        self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        
-        
-        var imageNames: [String] = []
-        for i in 0..<31 {
-            imageNames.append(String(format: "refresh%d", i))
+        self.setupRefrsh()
+    }
+    
+    func setupRefrsh() {
+        if self.refreshStyle == 0 {
+            self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
+                self?.refreshDataSource()
+            })
+            self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+            self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
+                self?.loadMoreData()
+            })
+            self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         }
-        let header = GXRefreshGifHeader(refreshingAction: { [weak self] in
-            self?.refreshDataSource()
-        })
-        header.setHeaderImages([imageNames.first!], for: .idle)
-        header.setHeaderImages(imageNames, for: .pulling)
-        header.setHeaderImages(imageNames, duration: 2.0, for: .did)
-        header.setHeaderImages([imageNames.last!], for: .end)
-        self.tableView.gx_header = header
-        self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        
-        let footer = GXRefreshGifFooter(refreshingAction: { [weak self] in
-            self?.loadMoreData()
-        })
-        footer.setFooterImages([imageNames[21]], for: .idle)
-        footer.setFooterImages(imageNames, duration: 2.0, for: .did)
-        footer.setFooterImages([imageNames.last!], for: .noMore)
-        self.tableView.gx_footer = footer
-        self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        else if self.refreshStyle == 1 {
+            var imageNames: [String] = []
+            for i in 0..<31 {
+                imageNames.append(String(format: "refresh%d", i))
+            }
+            let header = GXRefreshGifHeader(refreshingAction: { [weak self] in
+                self?.refreshDataSource()
+            })
+            header.setHeaderImages([imageNames.first!], for: .idle)
+            header.setHeaderImages(imageNames, for: .pulling)
+            header.setHeaderImages(imageNames, duration: 2.0, for: .did)
+            header.setHeaderImages([imageNames.last!], for: .end)
+            self.tableView.gx_header = header
+            self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+            
+            let footer = GXRefreshGifFooter(refreshingAction: { [weak self] in
+                self?.loadMoreData()
+            })
+            footer.setFooterImages([imageNames[21]], for: .idle)
+            footer.setFooterImages(imageNames, duration: 2.0, for: .did)
+            footer.setFooterImages([imageNames.last!], for: .noMore)
+            self.tableView.gx_footer = footer
+            self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        }
+        else if self.refreshStyle == 2 {
+            
+        }
     }
     
     func refreshDataSource() {
