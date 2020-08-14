@@ -18,9 +18,11 @@ class GXRefreshGifFooter: GXRefreshBaseFooter {
                 .did: "正在加载更多数据...",
                 .noMore: "已加载全部数据"]
     }()
+    
     private lazy var footerImages: Dictionary<GXRefreshComponent.State, Array<UIImage>> = {
         return [:]
     }()
+    
     private lazy var stateDuration: Dictionary<GXRefreshComponent.State, TimeInterval> = {
         return [:]
     }()
@@ -54,6 +56,7 @@ class GXRefreshGifFooter: GXRefreshBaseFooter {
 
 fileprivate extension GXRefreshGifFooter {
     @objc func contentClicked(_ sender: UIControl) {
+        guard self.state == .idle else { return }
         self.beginRefreshing()
     }
     func updateContentViewLayout() {
@@ -79,7 +82,7 @@ fileprivate extension GXRefreshGifFooter {
         if state != .pulling {
             if let images = self.footerImages[state] {
                 let image = images.first
-                if images.count == 1 {
+                if images.count <= 1 {
                     self.imageView.image = image
                 }
                 else {

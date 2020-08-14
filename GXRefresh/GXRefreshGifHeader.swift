@@ -18,9 +18,11 @@ class GXRefreshGifHeader: GXRefreshBaseHeader {
                 .did: "正在刷新...",
                 .end: "刷新完成"]
     }()
+    
     private lazy var headerImages: Dictionary<GXRefreshComponent.State, Array<UIImage>> = {
         return [:]
     }()
+    
     private lazy var stateDuration: Dictionary<GXRefreshComponent.State, TimeInterval> = {
         return [:]
     }()
@@ -78,8 +80,10 @@ fileprivate extension GXRefreshGifHeader {
                 let image = images.first
                 if images.count == 1 {
                     self.imageView.image = image
+                    self.imageView.animationImages = nil
                 }
                 else {
+                    self.imageView.image = nil
                     self.imageView.animationImages = images
                     if let duration = self.stateDuration[state] {
                         self.imageView.animationDuration = duration
@@ -90,6 +94,10 @@ fileprivate extension GXRefreshGifHeader {
                 if (imageHeight > self.gx_height) {
                     self.gx_height = imageHeight
                 }
+            }
+            else if state == .end {
+                self.imageView.image = nil
+                self.imageView.animationImages = nil
             }
         }
         self.updateContentViewLayout()
@@ -109,8 +117,10 @@ extension GXRefreshGifHeader {
         super.setState(state)
         
         self.updateContentView(state: state)
-        if state == .did {
-            self.imageView.startAnimating()
+        if state == .did || state == .end {
+            if (self.imageView.animationImages?.count ?? 0) > 1 {
+                self.imageView.startAnimating()
+            }
         }
         else {
             self.imageView.stopAnimating()

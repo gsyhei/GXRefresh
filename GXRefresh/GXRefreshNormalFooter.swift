@@ -16,6 +16,7 @@ class GXRefreshNormalFooter: GXRefreshBaseFooter {
                 .did: "正在加载更多数据...",
                 .noMore: "已加载全部数据"]
     }()
+    
     open lazy var indicator: UIActivityIndicatorView = {
         let aiView = UIActivityIndicatorView()
         if #available(iOS 13.0, *) {
@@ -38,6 +39,7 @@ class GXRefreshNormalFooter: GXRefreshBaseFooter {
 
 fileprivate extension GXRefreshNormalFooter {
     @objc func contentClicked(_ sender: UIControl) {
+        guard self.state == .idle else { return }
         self.beginRefreshing()
     }
     func updateContentViewLayout() {

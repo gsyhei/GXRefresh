@@ -12,7 +12,7 @@ import AudioToolbox
 class GXRefreshBaseHeader: GXRefreshComponent {
     open var isPlayImpact: Bool = true
     open var animationDuration: TimeInterval = 0.25
-    open var enRefreshDelay: TimeInterval = 0.25
+    open var enRefreshDelay: TimeInterval = 0.5
     open var headerHeight: CGFloat = 54.0 {
         didSet {
             self.gx_height = self.headerHeight
