@@ -11,6 +11,7 @@ import UIKit
 class GXRefreshBaseFooter: GXRefreshComponent {
     open var dataSource: ((_ state: State) -> Void)? = nil
     open var isTextHidden: Bool = false
+    open var isHiddenNoMoreByContent: Bool = true
     open var automaticallyRefresh: Bool = false
     open var automaticallyRefreshPercent: CGFloat = 1.0
     open var footerHeight: CGFloat = 44.0 {
@@ -115,11 +116,15 @@ extension GXRefreshBaseFooter {
     }
     override func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChange(change: change)
+        self.isHidden = (self.contentSize.height == 0)
+        // 有内容才进行设置
+        guard (self.scrollView!.gx_height > 0) else { return }
         self.gx_top = self.contentSize.height + self.scrollViewOriginalInset.bottom
-        
-        if (!isChageAlpha()) {
-            self.alpha = 1.0
-        }
+        let isContentBeyondScreen = self.isContentBeyondScreen()
+        // 内容没有超出屏幕
+        guard !isContentBeyondScreen else { return }
+        self.alpha = 1.0
+        self.isHidden = self.isHiddenNoMoreByContent && (self.state == .noMore)
     }
     override func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewPanStateDidChange(change: change)
@@ -154,7 +159,7 @@ extension GXRefreshBaseFooter {
 }
 
 fileprivate extension GXRefreshBaseFooter {
-    func isChageAlpha() -> Bool {
+    func isContentBeyondScreen() -> Bool {
         let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
         return (contentH >= self.scrollView!.gx_height)
     }
@@ -173,7 +178,7 @@ fileprivate extension GXRefreshBaseFooter {
         if !isNoMore {
             self.state = .idle
         }
-        if self.automaticallyChangeAlpha && isChageAlpha() {
+        if self.automaticallyChangeAlpha && isContentBeyondScreen() {
             self.alpha = 0.0
         }
         if self.endRefreshingCompletionAction != nil {
