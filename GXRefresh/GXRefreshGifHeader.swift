@@ -9,14 +9,13 @@
 import UIKit
 
 class GXRefreshGifHeader: GXRefreshBaseHeader {
-    private lazy var refreshImages: Dictionary<GXRefreshComponent.State, Array<UIImage>> = {
+    private(set) lazy var refreshImages: Dictionary<GXRefreshComponent.State, Array<UIImage>> = {
         return [:]
     }()
-    private lazy var stateDuration: Dictionary<GXRefreshComponent.State, TimeInterval> = {
+    private(set) lazy var stateDuration: Dictionary<GXRefreshComponent.State, TimeInterval> = {
         return [:]
     }()
-    
-    open lazy var imageView: UIImageView = {
+    private(set) lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         self.contentView.addSubview(imageView)
         return imageView

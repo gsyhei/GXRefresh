@@ -24,7 +24,7 @@ class GXRefreshBaseFooter: GXRefreshComponent {
             self.updateContentViewLayout()
         }
     }
-    open lazy var refreshTitles: Dictionary<GXRefreshComponent.State, String> = {
+    private(set) lazy var refreshTitles: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "点击或上拉加载更多",
                 .pulling: "上拉加载更多",
                 .will: "放开立即加载更多",

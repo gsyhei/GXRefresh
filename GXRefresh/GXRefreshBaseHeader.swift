@@ -25,7 +25,7 @@ class GXRefreshBaseHeader: GXRefreshComponent {
             self.updateContentViewLayout()
         }
     }
-    open lazy var refreshTitles: Dictionary<GXRefreshComponent.State, String> = {
+    private(set) lazy var refreshTitles: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "下拉刷新",
                 .pulling: "下拉可以刷新",
                 .will: "放开立即刷新",

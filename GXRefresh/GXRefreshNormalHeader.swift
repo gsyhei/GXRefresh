@@ -9,7 +9,7 @@
 import UIKit
 
 class GXRefreshNormalHeader: GXRefreshBaseHeader {
-    private lazy var indicator: UIActivityIndicatorView = {
+    private(set) lazy var indicator: UIActivityIndicatorView = {
         let frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         let aiView = UIActivityIndicatorView(frame: frame)
         if #available(iOS 13.0, *) {

@@ -49,14 +49,14 @@ protocol GXRefreshDelegate: NSObjectProtocol {
 }
 
 class GXRefreshComponent: UIView {
-    open var scrollView: UIScrollView?
-    open var scrollViewOriginalInset: UIEdgeInsets = .zero
+    private(set) var scrollView: UIScrollView?
+    private(set) var scrollViewOriginalInset: UIEdgeInsets = .zero
     open var automaticallyChangeAlpha: Bool = true
     open var refreshingAction: GXRefreshCallBack? = nil
     open var beginRefreshingCompletionAction: GXRefreshCallBack? = nil
     open var endRefreshingCompletionAction: GXRefreshCallBack? = nil
     
-    open lazy var contentView: UIControl = {
+    private(set) lazy var contentView: UIControl = {
         let view = UIControl(frame: self.bounds)
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return view
