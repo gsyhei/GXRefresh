@@ -43,15 +43,20 @@ fileprivate extension GXRefreshNormalFooter {
         self.beginRefreshing()
     }
     func updateContentViewLayout() {
-        let nsText: NSString = (self.textLabel.text ?? "") as NSString
-        let maxSize = self.bounds.size
-        let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
-        let attributes: [NSAttributedString.Key : Any] = [.font : self.textLabel.font!]
-        let rect = nsText.boundingRect(with: maxSize, options: options, attributes: attributes, context: nil)
-        self.textLabel.frame = rect
-        self.textLabel.center = self.contentView.center
-        self.indicator.center.y = self.contentView.center.y
-        self.indicator.gx_right = self.textLabel.gx_left - 20.0
+        if self.isHiddenText {
+            self.indicator.center = self.contentView.center
+        }
+        else {
+            let nsText: NSString = (self.textLabel.text ?? "") as NSString
+            let maxSize = self.bounds.size
+            let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
+            let attributes: [NSAttributedString.Key : Any] = [.font : self.textLabel.font!]
+            let rect = nsText.boundingRect(with: maxSize, options: options, attributes: attributes, context: nil)
+            self.textLabel.frame = rect
+            self.textLabel.center = self.contentView.center
+            self.indicator.center.y = self.contentView.center.y
+            self.indicator.gx_right = self.textLabel.gx_left - 20.0
+        }
     }
     func updateContentView(state: State) {
         if let text = self.footerTexts[state] {

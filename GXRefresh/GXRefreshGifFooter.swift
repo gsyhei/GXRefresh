@@ -8,9 +8,7 @@
 
 import UIKit
 
-class GXRefreshGifFooter: GXRefreshBaseFooter {
-    open var isHiddenText: Bool = false
-    
+class GXRefreshGifFooter: GXRefreshBaseFooter {    
     private lazy var footerTexts: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "点击或上拉加载更多",
                 .pulling: "上拉加载更多",

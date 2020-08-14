@@ -1,14 +1,16 @@
 //
-//  GXRefreshNormalHeader.swift
+//  GXRefreshCustomHeader.swift
 //  GXRefreshSample
 //
-//  Created by Gin on 2020/8/12.
+//  Created by Gin on 2020/8/14.
 //  Copyright © 2020 gin. All rights reserved.
 //
 
 import UIKit
 
-class GXRefreshNormalHeader: GXRefreshBaseHeader {
+class GXRefreshCustomHeader: GXRefreshBaseHeader {
+    open var dataSource: GXRefreshDataSource? = nil
+    
     private lazy var headerTexts: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "下拉刷新",
                 .pulling: "下拉可以刷新",
@@ -17,15 +19,10 @@ class GXRefreshNormalHeader: GXRefreshBaseHeader {
                 .end: "刷新完成"]
     }()
     
-    open lazy var indicator: UIActivityIndicatorView = {
-        let aiView = UIActivityIndicatorView()
-        if #available(iOS 13.0, *) {
-            aiView.style = .medium
-        } else {
-            aiView.style = .gray
-        }
-        self.contentView.addSubview(aiView)
-        return aiView
+    open lazy var customIndicator: UIView = {
+        let view = UIView()
+        self.contentView.addSubview(view)
+        return view
     }()
     
     open lazy var textLabel: UILabel = {
@@ -37,10 +34,10 @@ class GXRefreshNormalHeader: GXRefreshBaseHeader {
     }()
 }
 
-fileprivate extension GXRefreshNormalHeader {
+fileprivate extension GXRefreshCustomHeader {
     func updateContentViewLayout() {
         if self.isHiddenText {
-            self.indicator.center = self.contentView.center
+            self.customIndicator.center = self.contentView.center
         }
         else {
             let nsText: NSString = (self.textLabel.text ?? "") as NSString
@@ -50,19 +47,22 @@ fileprivate extension GXRefreshNormalHeader {
             let rect = nsText.boundingRect(with: maxSize, options: options, attributes: attributes, context: nil)
             self.textLabel.frame = rect
             self.textLabel.center = self.contentView.center
-            self.indicator.center.y = self.contentView.center.y
-            self.indicator.gx_right = self.textLabel.gx_left - 20.0
+            self.customIndicator.center.y = self.contentView.center.y
+            self.customIndicator.gx_right = self.textLabel.gx_left - 20.0
         }
     }
     func updateContentView(state: State) {
         if let text = self.headerTexts[state] {
             self.textLabel.text = text
-            self.updateContentViewLayout()
         }
+        if self.dataSource != nil {
+            self.dataSource!(state)
+        }
+        self.updateContentViewLayout()
     }
 }
 
-extension GXRefreshNormalHeader {
+extension GXRefreshCustomHeader {
     override func prepare() {
         super.prepare()
         self.updateContentView(state: .idle)
@@ -73,18 +73,11 @@ extension GXRefreshNormalHeader {
     }
     override func setState(_ state: State) {
         super.setState(state)
-        
         self.updateContentView(state: state)
-        if state == .did {
-            self.indicator.startAnimating()
-        }
-        else if state == .end {
-            self.indicator.stopAnimating()
-        }
     }
 }
 
-extension GXRefreshNormalHeader {
+extension GXRefreshCustomHeader {
     func setHeaderText(_ text: String, for state: GXRefreshComponent.State) {
         self.headerTexts.updateValue(text, forKey: state)
         if self.state == state {

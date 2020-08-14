@@ -8,9 +8,7 @@
 
 import UIKit
 
-class GXRefreshGifHeader: GXRefreshBaseHeader {
-    open var isHiddenText: Bool = false
-    
+class GXRefreshGifHeader: GXRefreshBaseHeader {    
     private lazy var headerTexts: Dictionary<GXRefreshComponent.State, String> = {
         return [.idle: "下拉刷新",
                 .pulling: "下拉可以刷新",

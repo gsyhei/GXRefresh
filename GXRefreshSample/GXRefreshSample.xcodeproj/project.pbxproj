@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3312A73124E61C2E005B502D /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3312A73024E61C2E005B502D /* RootTableViewController.swift */; };
+		3312A73324E67052005B502D /* GXRefreshCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3312A73224E67052005B502D /* GXRefreshCustomHeader.swift */; };
+		3312A73524E69A2B005B502D /* GXRefreshCustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3312A73424E69A2B005B502D /* GXRefreshCustomFooter.swift */; };
 		331F496824E1D5DC0013100D /* GXRefreshBaseFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */; };
 		3320667724E4C2DA00D8074B /* GXRefreshGifHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */; };
 		332964C524E318940057484C /* GXRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332964C424E318940057484C /* GXRefreshNormalHeader.swift */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		3312A73024E61C2E005B502D /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
+		3312A73224E67052005B502D /* GXRefreshCustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshCustomHeader.swift; sourceTree = "<group>"; };
+		3312A73424E69A2B005B502D /* GXRefreshCustomFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshCustomFooter.swift; sourceTree = "<group>"; };
 		331F496724E1D5DC0013100D /* GXRefreshBaseFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshBaseFooter.swift; sourceTree = "<group>"; };
 		3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshGifHeader.swift; sourceTree = "<group>"; };
 		332964C424E318940057484C /* GXRefreshNormalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshNormalHeader.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				332964C624E34FA70057484C /* GXRefreshNormalFooter.swift */,
 				3320667624E4C2DA00D8074B /* GXRefreshGifHeader.swift */,
 				335BD61F24E57BEA0094A0E7 /* GXRefreshGifFooter.swift */,
+				3312A73224E67052005B502D /* GXRefreshCustomHeader.swift */,
+				3312A73424E69A2B005B502D /* GXRefreshCustomFooter.swift */,
 			);
 			name = GXRefresh;
 			path = ../../GXRefresh;
@@ -292,7 +298,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3312A73324E67052005B502D /* GXRefreshCustomHeader.swift in Sources */,
 				333908EB24DF12EF0081E656 /* UIScrollView+GXRefresh.swift in Sources */,
+				3312A73524E69A2B005B502D /* GXRefreshCustomFooter.swift in Sources */,
 				3320667724E4C2DA00D8074B /* GXRefreshGifHeader.swift in Sources */,
 				333908BE24DF126A0081E656 /* ViewController.swift in Sources */,
 				336A62C224E02104008A234A /* GXRefreshComponent.swift in Sources */,
