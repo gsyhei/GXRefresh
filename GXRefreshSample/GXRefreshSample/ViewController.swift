@@ -13,6 +13,15 @@ class ViewController: UIViewController {
     private var cellNumber: Int = 30
     public var refreshStyle: Int = 0
     
+    private var headerLoadView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "refresh30"))
+        return view
+    }()
+    private var footerLoadView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "refresh30"))
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +39,6 @@ class ViewController: UIViewController {
             self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
                 self?.loadMoreData()
             })
-            self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         }
         else if self.refreshStyle == 1 {
             var imageNames: [String] = []
@@ -40,27 +48,69 @@ class ViewController: UIViewController {
             let header = GXRefreshGifHeader(refreshingAction: { [weak self] in
                 self?.refreshDataSource()
             })
-            header.setHeaderImages([imageNames.first!], for: .idle)
-            header.setHeaderImages(imageNames, for: .pulling)
-            header.setHeaderImages(imageNames, duration: 2.0, for: .did)
-            header.setHeaderImages([imageNames.last!], for: .end)
+            header.setRefreshImages([imageNames.first!], for: .idle)
+            header.setRefreshImages(imageNames, for: .pulling)
+            header.setRefreshImages(imageNames, duration: 2.0, for: .did)
+            header.setRefreshImages([imageNames.last!], for: .end)
             self.tableView.gx_header = header
             self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
             
             let footer = GXRefreshGifFooter(refreshingAction: { [weak self] in
                 self?.loadMoreData()
             })
-            footer.setFooterImages([imageNames[21]], for: .idle)
-            footer.setFooterImages(imageNames, duration: 2.0, for: .did)
-            footer.setFooterImages([imageNames.last!], for: .noMore)
+            footer.setRefreshImages([imageNames[21]], for: .idle)
+            footer.setRefreshImages(imageNames, duration: 2.0, for: .did)
+            footer.setRefreshImages([imageNames.last!], for: .noMore)
             self.tableView.gx_footer = footer
-            self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         }
         else if self.refreshStyle == 2 {
+            let header = GXRefreshCustomHeader(refreshingAction: { [weak self] in
+                self?.refreshDataSource()
+            })
+            header.isTextHidden = true
+            header.updateCustomIndicator(view: self.headerLoadView)
+            header.progressCallBack = { (view) in
+                let angle = self.rotationAngle(progress: view.pullingProgress)
+                self.headerLoadView.transform = CGAffineTransform(rotationAngle: angle)
+            }
+            header.stateCallBack = { (state) in
+                if state == .did {
+                    self.headerLoadView.layer.add(self.rotationAnimation(), forKey: nil)
+                }
+                else {
+                    self.footerLoadView.transform = .identity
+                    self.headerLoadView.layer.removeAllAnimations()
+                }
+            }
+            self.tableView.gx_header = header
             
+            
+            let footer = GXRefreshCustomFooter(refreshingAction: { [weak self] in
+                self?.loadMoreData()
+            })
+            footer.updateCustomIndicator(view: self.footerLoadView)
+            footer.progressCallBack = { (view) in
+                let angle = self.rotationAngle(progress: view.pullingProgress)
+                self.footerLoadView.transform = CGAffineTransform(rotationAngle: angle)
+            }
+            footer.stateCallBack = { (state) in
+                if state == .did {
+                    self.footerLoadView.layer.add(self.rotationAnimation(), forKey: nil)
+                }
+                else {
+                    self.footerLoadView.transform = .identity
+                    self.footerLoadView.layer.removeAllAnimations()
+                }
+            }
+            self.tableView.gx_footer = footer
         }
+        
+        self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        self.tableView.gx_footer?.backgroundColor = UIColor(white: 0.95, alpha: 1)
     }
-    
+}
+
+fileprivate extension ViewController {
     func refreshDataSource() {
         DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
             self.cellNumber = 10
@@ -68,7 +118,6 @@ class ViewController: UIViewController {
             self.tableView.gx_header?.endRefreshing()
         }
     }
-    
     func loadMoreData() {
         DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
             self.cellNumber += 10
@@ -81,6 +130,29 @@ class ViewController: UIViewController {
                 self.tableView.gx_footer?.endRefreshing()
             }
         }
+    }
+    func rotationAngle(progress: CGFloat) -> CGFloat {
+        var newProgress = progress
+        if progress < 0 {
+            newProgress = 0
+        }
+        else if (progress > 1) {
+            newProgress = 1
+        }
+        let angle = newProgress * 360
+        return (angle / 180.0 * CGFloat.pi)
+    }
+
+    func rotationAnimation() -> CABasicAnimation {
+        let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnim.fromValue = 0
+        rotationAnim.toValue = Double.pi * 2
+        rotationAnim.repeatCount = 1000
+        rotationAnim.duration = 0.5
+        rotationAnim.autoreverses = false
+        rotationAnim.isRemovedOnCompletion = false
+        
+        return rotationAnim
     }
 }
 
@@ -101,13 +173,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //        self.tableView.gx_header?.beginRefreshing()
-        
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-        //            self.tableView.gx_header?.endRefreshing()
-        //        }
-        
         if #available(iOS 11.0, *) {
             NSLog("safeAreaInsets = %@", NSCoder.string(for: self.tableView.safeAreaInsets))
             NSLog("adjustedContentInset = %@", NSCoder.string(for: self.tableView.adjustedContentInset))

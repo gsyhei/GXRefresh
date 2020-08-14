@@ -10,7 +10,8 @@ import UIKit
 
 extension GXRefreshComponent {
     public typealias GXRefreshCallBack = () -> Void
-    
+    public typealias GXRefreshDataSource = (_ state: State) -> Void
+
     @objc enum State: Int {
         case idle    = 0
         case pulling = 1
@@ -51,6 +52,7 @@ protocol GXRefreshDelegate: NSObjectProtocol {
 class GXRefreshComponent: UIView {
     open var scrollView: UIScrollView?
     open var scrollViewOriginalInset: UIEdgeInsets = .zero
+    open var isHiddenText: Bool = false
     open var automaticallyChangeAlpha: Bool = true
     open var refreshingAction: GXRefreshCallBack? = nil
     open var beginRefreshingCompletionAction: GXRefreshCallBack? = nil

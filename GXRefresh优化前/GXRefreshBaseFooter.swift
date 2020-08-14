@@ -9,8 +9,6 @@
 import UIKit
 
 class GXRefreshBaseFooter: GXRefreshComponent {
-    open var dataSource: ((_ state: State) -> Void)? = nil
-    open var isTextHidden: Bool = false
     open var automaticallyRefresh: Bool = false
     open var automaticallyRefreshPercent: CGFloat = 1.0
     open var footerHeight: CGFloat = 44.0 {
@@ -18,27 +16,6 @@ class GXRefreshBaseFooter: GXRefreshComponent {
             self.gx_height = self.footerHeight
         }
     }
-    open var textToIndicatorSpacing: CGFloat = 5.0 {
-        didSet {
-            self.updateContentViewLayout()
-        }
-    }
-    open lazy var refreshTitles: Dictionary<GXRefreshComponent.State, String> = {
-        return [.idle: "点击或上拉加载更多",
-                .pulling: "上拉加载更多",
-                .will: "放开立即加载更多",
-                .did: "正在加载更多数据...",
-                .noMore: "已加载全部数据"]
-    }()
-    open var customIndicator: UIView {
-        return UIView()
-    }
-    open lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.gray
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        return label
-    }()
     
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
@@ -53,17 +30,12 @@ class GXRefreshBaseFooter: GXRefreshComponent {
 extension GXRefreshBaseFooter {
     override func prepare() {
         super.prepare()
-        self.alpha = self.automaticallyChangeAlpha ? 0 : 1
         self.gx_height = self.footerHeight
-        self.contentView.addSubview(self.customIndicator)
-        self.contentView.addSubview(self.textLabel)
-        self.contentView.addTarget(self, action: #selector(self.contentClicked(_:)), for: .touchUpInside)
-        self.updateContentView(state: .idle)
+        self.alpha = self.automaticallyChangeAlpha ? 0 : 1
     }
     override func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
         self.gx_top = self.contentSize.height + self.scrollViewOriginalInset.bottom
-        self.updateContentViewLayout()
     }
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
@@ -113,6 +85,7 @@ extension GXRefreshBaseFooter {
             }
         }
     }
+    
     override func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChange(change: change)
         self.gx_top = self.contentSize.height + self.scrollViewOriginalInset.bottom
@@ -121,6 +94,7 @@ extension GXRefreshBaseFooter {
             self.alpha = 1.0
         }
     }
+    
     override func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewPanStateDidChange(change: change)
         guard self.state == .idle else { return }
@@ -131,7 +105,7 @@ extension GXRefreshBaseFooter {
             // 需要内容小于屏幕
             let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
             guard (contentH < self.scrollView!.gx_height) else { return }
-            
+     
             if (self.contentOffset.y > -self.adjustedInset.top) {
                 self.state = .did
             }
@@ -149,7 +123,6 @@ extension GXRefreshBaseFooter {
         else if state == .noMore {
             self.endStateRefreshing(isNoMore: true)
         }
-        self.updateContentView(state: state)
     }
 }
 
@@ -180,49 +153,13 @@ fileprivate extension GXRefreshBaseFooter {
             self.endRefreshingCompletionAction!()
         }
     }
-    @objc func contentClicked(_ sender: UIControl) {
-        guard self.state == .idle else { return }
-        self.beginRefreshing()
-    }
 }
 
 extension GXRefreshBaseFooter {
-    open func beginRefreshing() {
+    func beginRefreshing() {
         self.state = .did
     }
-    open func endRefreshing(isNoMore: Bool = false) {
+    func endRefreshing(isNoMore: Bool = false) {
         self.state = isNoMore ? .noMore : .end
-    }
-    open func updateContentViewLayout() {
-        self.textLabel.isHidden =  self.isTextHidden
-        if self.isTextHidden {
-            self.customIndicator.center = self.contentView.center
-        }
-        else {
-            let nsText: NSString = (self.textLabel.text ?? "") as NSString
-            let maxSize = self.bounds.size
-            let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
-            let attributes: [NSAttributedString.Key : Any] = [.font : self.textLabel.font!]
-            let rect = nsText.boundingRect(with: maxSize, options: options, attributes: attributes, context: nil)
-            self.textLabel.frame = rect
-            self.textLabel.center = self.contentView.center
-            self.customIndicator.center.y = self.contentView.center.y
-            self.customIndicator.gx_right = self.textLabel.gx_left - self.textToIndicatorSpacing
-        }
-    }
-    open func updateContentView(state: State) {
-        if let text = self.refreshTitles[state] {
-            self.textLabel.text = text
-        }
-        if self.dataSource != nil {
-            self.dataSource!(state)
-        }
-        self.updateContentViewLayout()
-    }
-    open func setRefreshTitles(_ text: String, for state: GXRefreshComponent.State) {
-        self.refreshTitles.updateValue(text, forKey: state)
-        if self.state == state {
-            self.textLabel.text = text
-        }
     }
 }
