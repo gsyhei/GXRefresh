@@ -35,7 +35,6 @@ class ViewController: UIViewController {
             self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
                 self?.refreshDataSource()
             })
-            self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
             self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
                 self?.loadMoreData()
             })
@@ -123,7 +122,7 @@ fileprivate extension ViewController {
             self.cellNumber += 10
             self.tableView.reloadData()
             
-            if self.cellNumber == 40 {
+            if self.cellNumber == 30 {
                 self.tableView.gx_footer?.endRefreshing(isNoMore: true)
             }
             else {
