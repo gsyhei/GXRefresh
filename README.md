@@ -4,7 +4,7 @@ Swift版的下拉刷新上拉加载，支持Gif、支持自定义刷新动画。
 
 # 喜欢就给个star哦，QQ：279694479
 
-先上效果图
+先上Demo效果图
 --
 
 ![](/GXRefresh.gif '描述')
@@ -12,9 +12,11 @@ Swift版的下拉刷新上拉加载，支持Gif、支持自定义刷新动画。
 
 Requirements
 --
-- iOS 9.0 or later
-- Xcode 11.0 or later
-- Swift 4.2 or later
+<p align="left">
+<img src="https://img.shields.io/badge/platform-ios-yellow.svg"></a>
+<img src="https://img.shields.io/github/license/johnlui/Pitaya.svg?style=flat"></a>
+<img src="https://img.shields.io/badge/language-Swift%204.2-orange.svg"></a>
+</p>
 
 Usage in you Podfile:
 --
