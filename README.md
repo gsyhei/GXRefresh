@@ -14,7 +14,7 @@ Requirements
 --
 - iOS 9.0 or later
 - Xcode 11.0 or later
-- Swift 4.0 or later
+- Swift 4.2 or later
 
 Usage in you Podfile:
 --

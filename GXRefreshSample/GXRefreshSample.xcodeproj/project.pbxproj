@@ -235,6 +235,7 @@
 				TargetAttributes = {
 					333908B524DF126A0081E656 = {
 						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1160;
 					};
 					333908CB24DF126C0081E656 = {
 						CreatedOnToolsVersion = 11.6;
@@ -493,7 +494,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gin.GXRefreshSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -512,7 +513,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gin.GXRefreshSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
