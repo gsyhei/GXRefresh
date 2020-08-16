@@ -19,7 +19,7 @@ class GXRefreshBaseFooter: GXRefreshComponent {
             self.gx_height = self.footerHeight
         }
     }
-    open var textToIndicatorSpacing: CGFloat = 5.0 {
+    open var textToIndicatorSpacing: CGFloat = 10.0 {
         didSet {
             self.updateContentViewLayout()
         }
@@ -45,7 +45,7 @@ class GXRefreshBaseFooter: GXRefreshComponent {
         super.willMove(toSuperview: newSuperview)
         guard !self.isHidden && self.scrollView != nil else { return }
         
-        var contentInset = self.contentInset
+        var contentInset = self.svContentInset
         contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
         self.scrollView?.contentInset = contentInset
     }
@@ -63,17 +63,17 @@ extension GXRefreshBaseFooter {
     }
     override func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
-        self.gx_top = self.contentSize.height + self.scrollViewOriginalInset.bottom
+        self.gx_top = self.svContentSize.height + self.scrollViewOriginalInset.bottom
         self.updateContentViewLayout()
     }
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 需要内容超过屏幕
-            let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
+            let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
             guard contentH > self.scrollView!.gx_height else { return }
             // 判断header是否出现
-            var justOffsetY = self.contentSize.height + self.adjustedInset.bottom
+            var justOffsetY = self.svContentSize.height + self.svAdjustedInset.bottom
             justOffsetY -= (self.scrollView!.gx_height + self.gx_height)
             guard offset.y >= justOffsetY else { return }
             // did/end状态的情况
@@ -116,10 +116,10 @@ extension GXRefreshBaseFooter {
     }
     override func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChange(change: change)
-        self.isHidden = (self.contentSize.height == 0)
+        self.isHidden = (self.svContentSize.height == 0)
         // 有内容才进行设置
         guard (self.scrollView!.gx_height > 0) else { return }
-        self.gx_top = self.contentSize.height + self.scrollViewOriginalInset.bottom
+        self.gx_top = self.svContentSize.height + self.scrollViewOriginalInset.bottom
         let isContentBeyondScreen = self.isContentBeyondScreen()
         // 内容没有超出屏幕
         guard !isContentBeyondScreen else { return }
@@ -134,10 +134,10 @@ extension GXRefreshBaseFooter {
             // state == .ended
             guard (panState == UIGestureRecognizer.State.ended.rawValue) else { return }
             // 需要内容小于屏幕
-            let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
+            let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
             guard (contentH < self.scrollView!.gx_height) else { return }
             
-            if (self.contentOffset.y > -self.adjustedInset.top) {
+            if (self.svContentOffset.y > -self.svAdjustedInset.top) {
                 self.state = .did
             }
         }
@@ -160,7 +160,7 @@ extension GXRefreshBaseFooter {
 
 fileprivate extension GXRefreshBaseFooter {
     func isContentBeyondScreen() -> Bool {
-        let contentH = self.contentSize.height + self.adjustedInset.top + self.adjustedInset.bottom
+        let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
         return (contentH >= self.scrollView!.gx_height)
     }
     func didStateRefreshing() {
@@ -205,13 +205,13 @@ extension GXRefreshBaseFooter {
         }
         else {
             let nsText: NSString = (self.textLabel.text ?? "") as NSString
-            let maxSize = self.bounds.size
+            let maxSize = self.contentView.bounds.size
             let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
             let attributes: [NSAttributedString.Key : Any] = [.font : self.textLabel.font!]
             let rect = nsText.boundingRect(with: maxSize, options: options, attributes: attributes, context: nil)
             self.textLabel.frame = rect
-            self.textLabel.center = self.contentView.center
-            self.customIndicator.center.y = self.contentView.center.y
+            self.textLabel.center = CGPoint(x: self.contentView.gx_width/2, y: self.contentView.gx_height/2)
+            self.customIndicator.center.y = self.textLabel.center.y
             self.customIndicator.gx_right = self.textLabel.gx_left - self.textToIndicatorSpacing
         }
     }

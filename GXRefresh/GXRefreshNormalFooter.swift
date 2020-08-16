@@ -10,14 +10,13 @@ import UIKit
 
 class GXRefreshNormalFooter: GXRefreshBaseFooter {
     private(set) lazy var indicator: UIActivityIndicatorView = {
-        let frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         let aiView = UIActivityIndicatorView(frame: frame)
         if #available(iOS 13.0, *) {
             aiView.style = .medium
         } else {
             aiView.style = .gray
         }
-        self.contentView.addSubview(aiView)
         return aiView
     }()
     override var customIndicator: UIView {

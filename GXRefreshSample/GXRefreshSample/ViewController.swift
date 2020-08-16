@@ -47,6 +47,7 @@ class ViewController: UIViewController {
             let header = GXRefreshGifHeader(refreshingAction: { [weak self] in
                 self?.refreshDataSource()
             })
+            header.isShowEndRefresh = false
             header.setRefreshImages([imageNames.first!], for: .idle)
             header.setRefreshImages(imageNames, for: .pulling)
             header.setRefreshImages(imageNames, duration: 2.0, for: .did)
@@ -67,6 +68,7 @@ class ViewController: UIViewController {
                 self?.refreshDataSource()
             })
             header.isTextHidden = true
+            header.isShowEndRefresh = false
             header.updateCustomIndicator(view: self.headerLoadView)
             header.progressCallBack = { (view) in
                 let angle = self.rotationAngle(progress: view.pullingProgress)

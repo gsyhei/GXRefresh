@@ -24,20 +24,20 @@ extension GXRefreshComponent {
         case contentSize   = "contentSize"
         case panState      = "state"
     }
-    var contentOffset: CGPoint {
+    var svContentOffset: CGPoint {
         return self.scrollView?.contentOffset ?? .zero
     }
-    var contentInset: UIEdgeInsets {
+    var svContentInset: UIEdgeInsets {
         return self.scrollView?.contentInset ?? .zero
     }
-    var adjustedInset: UIEdgeInsets {
+    var svAdjustedInset: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return self.scrollView?.adjustedContentInset ?? .zero
         } else {
             return self.scrollView?.contentInset ?? .zero
         }
     }
-    var contentSize: CGSize {
+    var svContentSize: CGSize {
         return self.scrollView?.contentSize ?? .zero
     }
 }
@@ -51,6 +51,8 @@ protocol GXRefreshDelegate: NSObjectProtocol {
 class GXRefreshComponent: UIView {
     private(set) var scrollView: UIScrollView?
     private(set) var scrollViewOriginalInset: UIEdgeInsets = .zero
+    
+    open var contentInset: UIEdgeInsets = .zero
     open var automaticallyChangeAlpha: Bool = true
     open var refreshingAction: GXRefreshCallBack? = nil
     open var beginRefreshingCompletionAction: GXRefreshCallBack? = nil
@@ -152,7 +154,9 @@ fileprivate extension GXRefreshComponent {
         self.autoresizingMask = .flexibleWidth
         self.addSubview(self.contentView)
     }
-    open func prepareLayoutSubviews() {}
+    open func prepareLayoutSubviews() {
+        self.contentView.frame = self.bounds.inset(by: self.contentInset)
+    }
     open func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {}
     open func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {}
     open func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {}

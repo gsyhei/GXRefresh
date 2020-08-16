@@ -13,14 +13,16 @@ class GXRefreshBaseHeader: GXRefreshComponent {
     open var dataSource: ((_ state: State) -> Void)? = nil
     open var isTextHidden: Bool = false
     open var isPlayImpact: Bool = true
+    open var isShowEndRefresh: Bool = true
     open var animationDuration: TimeInterval = 0.25
-    open var enRefreshDelay: TimeInterval = 0.5
+    open var endRefreshDelay: TimeInterval = 0.7
+    open var automaticallyRefreshPercent: CGFloat = 1.0
     open var headerHeight: CGFloat = 54.0 {
         didSet {
             self.gx_height = self.headerHeight
         }
     }
-    open var textToIndicatorSpacing: CGFloat = 5.0 {
+    open var textToIndicatorSpacing: CGFloat = 10.0 {
         didSet {
             self.updateContentViewLayout()
         }
@@ -32,6 +34,7 @@ class GXRefreshBaseHeader: GXRefreshComponent {
                 .did: "正在刷新...",
                 .end: "刷新完成"]
     }()
+    
     open var customIndicator: UIView {
         return UIView()
     }
@@ -60,14 +63,14 @@ extension GXRefreshBaseHeader {
     }
     override func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
-        self.gx_top = -(self.gx_height + self.contentInset.top)
+        self.gx_top = -(self.gx_height + self.svContentInset.top)
         self.updateContentViewLayout()
     }
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 判断header是否出现
-            let justOffsetY = -self.adjustedInset.top
+            let justOffsetY = -self.svAdjustedInset.top
             guard offset.y < justOffsetY else {
                 if (self.state == .pulling) {
                     // 设置回到看不见就重置震动播放
@@ -78,9 +81,10 @@ extension GXRefreshBaseHeader {
             // did/end状态的情况
             guard self.state != .did && self.state != .end else { return }
             // 需要拉到刷新的offsetY
-            let pullingOffsetY = justOffsetY - self.gx_height
+            let headerHeight = self.gx_height * self.automaticallyRefreshPercent
+            let pullingOffsetY = justOffsetY - headerHeight
             // 刷新头部视图透明百分比进度
-            let pullingProgress: CGFloat = (justOffsetY - offset.y) / self.gx_height
+            let pullingProgress: CGFloat = (justOffsetY - offset.y) / headerHeight
             self.pullingProgress = pullingProgress
             // 判断是否正在拖拽
             if self.scrollView!.isDragging && self.scrollView!.isTracking {
@@ -113,15 +117,26 @@ extension GXRefreshBaseHeader {
     }
     override func setState(_ state: State) {
         super.setState(state)
+        self.updateContentView(state: state)
         if state == .did {
             self.didStateRefreshing()
         }
         else if state == .end {
-            DispatchQueue.main.asyncAfter(deadline: .now() + self.enRefreshDelay) {
-                self.endStateRefreshing()
+            if self.isShowEndRefresh {
+                GXRefreshIndicatorView.show(to: self.contentView,
+                                            strokeColor: self.textLabel.textColor,
+                                            animationDuration: self.endRefreshDelay,
+                                            center: self.customIndicator.center)
+                {
+                    self.endStateRefreshing()
+                }
+            }
+            else {
+                DispatchQueue.main.asyncAfter(deadline: .now()+self.animationDuration) {
+                    self.endStateRefreshing()
+                }
             }
         }
-        self.updateContentView(state: state)
     }
 }
 
@@ -135,11 +150,12 @@ fileprivate extension GXRefreshBaseHeader {
         }
     }
     func didStateRefreshing() {
-        var contentOffset = self.contentOffset
-        var contentInset = self.contentInset
-        contentInset.top = self.scrollViewOriginalInset.top + self.gx_height
+        var contentOffset = self.svContentOffset
+        var contentInset = self.svContentInset
+        let headerHeight = self.gx_height * self.automaticallyRefreshPercent
+        contentInset.top = self.scrollViewOriginalInset.top + headerHeight
         if self.oldState == .idle {
-            contentOffset.y -= self.gx_height
+            contentOffset.y -= headerHeight
             UIView.animate(withDuration: self.animationDuration, animations: {
                 self.scrollView?.contentInset = contentInset
                 self.scrollView?.contentOffset = contentOffset
@@ -170,7 +186,7 @@ fileprivate extension GXRefreshBaseHeader {
         }
     }
     func endStateRefreshing() {
-        var contentInset = self.contentInset
+        var contentInset = self.svContentInset
         contentInset.top = self.scrollViewOriginalInset.top
         UIView.animate(withDuration: self.animationDuration, animations: {
             self.scrollView?.contentInset = contentInset
@@ -180,6 +196,9 @@ fileprivate extension GXRefreshBaseHeader {
         }) { (finished) in
             self.state = .idle
             self.isPlayingImpact = false
+            if self.isShowEndRefresh {
+                GXRefreshIndicatorView.hide(to: self.contentView)
+            }
             if self.endRefreshingCompletionAction != nil {
                 self.endRefreshingCompletionAction!()
             }
@@ -202,13 +221,13 @@ extension GXRefreshBaseHeader {
         }
         else {
             let nsText: NSString = (self.textLabel.text ?? "") as NSString
-            let maxSize = self.bounds.size
+            let maxSize = self.contentView.bounds.size
             let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
             let attributes: [NSAttributedString.Key : Any] = [.font : self.textLabel.font!]
             let rect = nsText.boundingRect(with: maxSize, options: options, attributes: attributes, context: nil)
             self.textLabel.frame = rect
-            self.textLabel.center = self.contentView.center
-            self.customIndicator.center.y = self.contentView.center.y
+            self.textLabel.center = CGPoint(x: self.contentView.gx_width/2, y: self.contentView.gx_height/2)
+            self.customIndicator.center.y = self.textLabel.center.y
             self.customIndicator.gx_right = self.textLabel.gx_left - self.textToIndicatorSpacing
         }
     }
