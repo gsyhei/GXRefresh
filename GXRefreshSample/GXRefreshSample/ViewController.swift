@@ -79,7 +79,7 @@ class ViewController: UIViewController {
                     self.headerLoadView.layer.add(self.rotationAnimation(), forKey: nil)
                 }
                 else {
-                    self.footerLoadView.transform = .identity
+                    self.headerLoadView.transform = .identity
                     self.headerLoadView.layer.removeAllAnimations()
                 }
             }

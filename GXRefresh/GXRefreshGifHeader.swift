@@ -60,10 +60,6 @@ fileprivate extension GXRefreshGifHeader {
                 self.gx_height = imageHeight
             }
         }
-        else if state == .end {
-            self.imageView.image = nil
-            self.imageView.animationImages = nil
-        }
     }
 }
 
@@ -77,8 +73,15 @@ extension GXRefreshGifHeader {
     override func setState(_ state: State) {
         super.setState(state)
         
-        if state == .did || state == .end {
+        if state == .did {
             if (self.imageView.animationImages?.count ?? 0) > 1 {
+                self.imageView.animationRepeatCount = 0
+                self.imageView.startAnimating()
+            }
+        }
+        else if state == .end {
+            if (self.imageView.animationImages?.count ?? 0) > 1 {
+                self.imageView.animationRepeatCount = 1
                 self.imageView.startAnimating()
             }
         }
