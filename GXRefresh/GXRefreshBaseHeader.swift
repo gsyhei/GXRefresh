@@ -27,7 +27,7 @@ class GXRefreshBaseHeader: GXRefreshComponent {
             self.updateContentViewLayout()
         }
     }
-    private(set) lazy var refreshTitles: Dictionary<GXRefreshComponent.State, String> = {
+    private(set) lazy var refreshTitles: Dictionary<State, String> = {
         return [.idle: "下拉刷新",
                 .pulling: "下拉可以刷新",
                 .will: "放开立即刷新",
@@ -240,7 +240,7 @@ extension GXRefreshBaseHeader {
         }
         self.updateContentViewLayout()
     }
-    open func setRefreshTitles(_ text: String, for state: GXRefreshComponent.State) {
+    open func setRefreshTitles(_ text: String, for state: State) {
         self.refreshTitles.updateValue(text, forKey: state)
         if self.state == state {
             self.textLabel.text = text

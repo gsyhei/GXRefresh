@@ -9,10 +9,10 @@
 import UIKit
 
 class GXRefreshGifHeader: GXRefreshBaseHeader {
-    private(set) lazy var refreshImages: Dictionary<GXRefreshComponent.State, Array<UIImage>> = {
+    private(set) lazy var refreshImages: Dictionary<State, Array<UIImage>> = {
         return [:]
     }()
-    private(set) lazy var stateDuration: Dictionary<GXRefreshComponent.State, TimeInterval> = {
+    private(set) lazy var stateDuration: Dictionary<State, TimeInterval> = {
         return [:]
     }()
     private(set) lazy var imageView: UIImageView = {
@@ -92,7 +92,7 @@ extension GXRefreshGifHeader {
 }
 
 extension GXRefreshGifHeader {
-    func setRefreshImages(_ imageNames: Array<String>, duration: TimeInterval? = nil, for state: GXRefreshComponent.State) {
+    func setRefreshImages(_ imageNames: Array<String>, duration: TimeInterval? = nil, for state: State) {
         guard imageNames.count > 0 else { return }
         var images:[UIImage] = []
         for name in imageNames {
@@ -108,7 +108,7 @@ extension GXRefreshGifHeader {
         }
         self.updateContentView(state: state)
     }
-    func setRefreshImages(_ images: Array<UIImage>, duration: TimeInterval? = nil, for state: GXRefreshComponent.State) {
+    func setRefreshImages(_ images: Array<UIImage>, duration: TimeInterval? = nil, for state: State) {
         guard images.count > 0 else { return }
         self.refreshImages.updateValue(images, forKey: state)
         if (duration != nil) {

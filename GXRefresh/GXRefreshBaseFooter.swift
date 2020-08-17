@@ -24,7 +24,7 @@ class GXRefreshBaseFooter: GXRefreshComponent {
             self.updateContentViewLayout()
         }
     }
-    private(set) lazy var refreshTitles: Dictionary<GXRefreshComponent.State, String> = {
+    private(set) lazy var refreshTitles: Dictionary<State, String> = {
         return [.idle: "点击或上拉加载更多",
                 .pulling: "上拉加载更多",
                 .will: "放开立即加载更多",
@@ -224,7 +224,7 @@ extension GXRefreshBaseFooter {
         }
         self.updateContentViewLayout()
     }
-    open func setRefreshTitles(_ text: String, for state: GXRefreshComponent.State) {
+    open func setRefreshTitles(_ text: String, for state: State) {
         self.refreshTitles.updateValue(text, forKey: state)
         if self.state == state {
             self.textLabel.text = text
