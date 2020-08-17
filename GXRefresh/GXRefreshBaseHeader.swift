@@ -103,7 +103,7 @@ extension GXRefreshBaseHeader {
                 if self.state == .will {
                     self.state = .did
                 }
-                else {
+                else if (offset.y <= pullingOffsetY) {
                     self.state = .idle
                 }
             }

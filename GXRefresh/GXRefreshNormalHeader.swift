@@ -79,8 +79,9 @@ extension GXRefreshNormalHeader {
         }
         else {
             if self.arrowView.transform == .identity {
+                let angle = CGFloat.pi-0.00001
                 UIView.animate(withDuration: self.animationDuration) {
-                    self.arrowView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                    self.arrowView.transform = CGAffineTransform(rotationAngle: angle)
                 }
             }
         }
