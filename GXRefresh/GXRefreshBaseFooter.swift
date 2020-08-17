@@ -12,7 +12,7 @@ class GXRefreshBaseFooter: GXRefreshComponent {
     open var dataSource: ((_ state: State) -> Void)? = nil
     open var isTextHidden: Bool = false
     open var isHiddenNoMoreByContent: Bool = true
-    open var automaticallyRefresh: Bool = false
+    open var automaticallyRefresh: Bool = true
     open var automaticallyRefreshPercent: CGFloat = 1.0
     open var footerHeight: CGFloat = 44.0 {
         didSet {
