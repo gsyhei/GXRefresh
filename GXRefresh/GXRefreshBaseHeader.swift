@@ -166,8 +166,8 @@ fileprivate extension GXRefreshBaseHeader {
                 if self.refreshingAction != nil {
                     self.refreshingAction!()
                 }
-                if self.beginRefreshingCompletionAction != nil {
-                    self.beginRefreshingCompletionAction!()
+                if self.beginRefreshingAction != nil {
+                    self.beginRefreshingAction!()
                 }
             }
         }
@@ -180,8 +180,8 @@ fileprivate extension GXRefreshBaseHeader {
             if self.refreshingAction != nil {
                 self.refreshingAction!()
             }
-            if self.beginRefreshingCompletionAction != nil {
-                self.beginRefreshingCompletionAction!()
+            if self.beginRefreshingAction != nil {
+                self.beginRefreshingAction!()
             }
         }
     }
@@ -199,8 +199,8 @@ fileprivate extension GXRefreshBaseHeader {
             if self.isShowEndRefresh {
                 GXRefreshIndicatorView.hide(to: self.contentView)
             }
-            if self.endRefreshingCompletionAction != nil {
-                self.endRefreshingCompletionAction!()
+            if self.endRefreshingAction != nil {
+                self.endRefreshingAction!()
             }
         }
     }

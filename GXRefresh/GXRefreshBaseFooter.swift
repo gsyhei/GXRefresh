@@ -170,8 +170,8 @@ fileprivate extension GXRefreshBaseFooter {
         if self.refreshingAction != nil {
             self.refreshingAction!()
         }
-        if self.beginRefreshingCompletionAction != nil {
-            self.beginRefreshingCompletionAction!()
+        if self.beginRefreshingAction != nil {
+            self.beginRefreshingAction!()
         }
     }
     func endStateRefreshing(isNoMore: Bool = false) {
@@ -181,8 +181,8 @@ fileprivate extension GXRefreshBaseFooter {
         if self.automaticallyChangeAlpha && isContentBeyondScreen() {
             self.alpha = 0.0
         }
-        if self.endRefreshingCompletionAction != nil {
-            self.endRefreshingCompletionAction!()
+        if self.endRefreshingAction != nil {
+            self.endRefreshingAction!()
         }
     }
     @objc func contentClicked(_ sender: UIControl) {

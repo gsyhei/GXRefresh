@@ -55,8 +55,8 @@ class GXRefreshComponent: UIView {
     open var contentInset: UIEdgeInsets = .zero
     open var automaticallyChangeAlpha: Bool = true
     open var refreshingAction: GXRefreshCallBack? = nil
-    open var beginRefreshingCompletionAction: GXRefreshCallBack? = nil
-    open var endRefreshingCompletionAction: GXRefreshCallBack? = nil
+    open var beginRefreshingAction: GXRefreshCallBack? = nil
+    open var endRefreshingAction: GXRefreshCallBack? = nil
     
     private(set) lazy var contentView: UIControl = {
         let view = UIControl(frame: self.bounds)
@@ -95,11 +95,11 @@ class GXRefreshComponent: UIView {
         }
     }
     
-    required init(refreshingAction: @escaping GXRefreshCallBack, beginCompletion: GXRefreshCallBack? = nil, endCompletion: GXRefreshCallBack? = nil) {
+    required init(completion: @escaping GXRefreshCallBack, begin: GXRefreshCallBack? = nil, end: GXRefreshCallBack? = nil) {
         super.init(frame: .zero)
-        self.refreshingAction = refreshingAction
-        self.beginRefreshingCompletionAction = beginCompletion
-        self.endRefreshingCompletionAction = endCompletion
+        self.refreshingAction = completion
+        self.beginRefreshingAction = begin
+        self.endRefreshingAction = end
         self.prepare()
     }
     

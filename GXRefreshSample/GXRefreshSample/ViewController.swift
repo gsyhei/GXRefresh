@@ -32,10 +32,10 @@ class ViewController: UIViewController {
     
     func setupRefrsh() {
         if self.refreshStyle == 0 {
-            self.tableView.gx_header = GXRefreshNormalHeader(refreshingAction: { [weak self] in
+            self.tableView.gx_header = GXRefreshNormalHeader(completion: { [weak self] in
                 self?.refreshDataSource()
             })
-            self.tableView.gx_footer = GXRefreshNormalFooter(refreshingAction: { [weak self] in
+            self.tableView.gx_footer = GXRefreshNormalFooter(completion: { [weak self] in
                 self?.loadMoreData()
             })
         }
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
             for i in 0..<31 {
                 imageNames.append(String(format: "refresh%d", i))
             }
-            let header = GXRefreshGifHeader(refreshingAction: { [weak self] in
+            let header = GXRefreshGifHeader(completion: { [weak self] in
                 self?.refreshDataSource()
             })
             header.isShowEndRefresh = false
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
             self.tableView.gx_header = header
             self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
             
-            let footer = GXRefreshGifFooter(refreshingAction: { [weak self] in
+            let footer = GXRefreshGifFooter(completion: { [weak self] in
                 self?.loadMoreData()
             })
             footer.setRefreshImages([imageNames[21]], for: .idle)
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
             self.tableView.gx_footer = footer
         }
         else if self.refreshStyle == 2 {
-            let header = GXRefreshCustomHeader(refreshingAction: { [weak self] in
+            let header = GXRefreshCustomHeader(completion: { [weak self] in
                 self?.refreshDataSource()
             })
             header.isTextHidden = true
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
             self.tableView.gx_header = header
             
             
-            let footer = GXRefreshCustomFooter(refreshingAction: { [weak self] in
+            let footer = GXRefreshCustomFooter(completion: { [weak self] in
                 self?.loadMoreData()
             })
             footer.updateCustomIndicator(view: self.footerLoadView)
