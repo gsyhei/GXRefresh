@@ -24,9 +24,9 @@ class GXRefreshGifFooter: GXRefreshBaseFooter {
     override var customIndicator: UIView {
         return self.imageView
     }
-    
     override var pullingProgress: CGFloat {
         didSet {
+            guard self.state != .noMore else { return }
             if let images = self.refreshImages[.pulling] {
                 var index: Int = Int(ceil(CGFloat(images.count) * self.pullingProgress))
                 if (index >= images.count) {

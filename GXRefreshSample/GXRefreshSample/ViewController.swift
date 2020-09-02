@@ -47,18 +47,18 @@ class ViewController: UIViewController {
             let header = GXRefreshGifHeader(completion: { [weak self] in
                 self?.refreshDataSource()
             })
-            header.isShowEndRefresh = false
             header.setRefreshImages([imageNames.first!], for: .idle)
             header.setRefreshImages(imageNames, for: .pulling)
             header.setRefreshImages(imageNames, duration: 2.0, for: .did)
-            header.setRefreshImages([imageNames.last!], for: .end)
             self.tableView.gx_header = header
             self.tableView.gx_header?.backgroundColor = UIColor(white: 0.95, alpha: 1)
             
             let footer = GXRefreshGifFooter(completion: { [weak self] in
                 self?.loadMoreData()
             })
+            footer.automaticallyRefresh = false
             footer.setRefreshImages([imageNames[21]], for: .idle)
+            footer.setRefreshImages(imageNames, for: .pulling)
             footer.setRefreshImages(imageNames, duration: 2.0, for: .did)
             footer.setRefreshImages([imageNames.last!], for: .noMore)
             self.tableView.gx_footer = footer
@@ -68,7 +68,6 @@ class ViewController: UIViewController {
                 self?.refreshDataSource()
             })
             header.isTextHidden = true
-            header.isShowEndRefresh = false
             header.updateCustomIndicator(view: self.headerLoadView)
             header.progressCallBack = { (view) in
                 let angle = self.rotationAngle(progress: view.pullingProgress)
@@ -116,7 +115,16 @@ fileprivate extension ViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
             self.cellNumber = 10
             self.tableView.reloadData()
-            self.tableView.gx_header?.endRefreshing()
+            
+            if self.refreshStyle == 0 {
+                self.tableView.gx_header?.endRefreshing(isSucceed: true, text: nil)
+            }
+            else if self.refreshStyle == 1 {
+                self.tableView.gx_header?.endRefreshing(isSucceed: false, text: "网络开小差")
+            }
+            else {
+                self.tableView.gx_header?.endRefreshing()
+            }
         }
     }
     func loadMoreData() {
@@ -143,7 +151,7 @@ fileprivate extension ViewController {
         let angle = newProgress * 360
         return (angle / 180.0 * CGFloat.pi)
     }
-
+    
     func rotationAnimation() -> CABasicAnimation {
         let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnim.fromValue = 0

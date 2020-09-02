@@ -24,7 +24,6 @@ class GXRefreshGifHeader: GXRefreshBaseHeader {
     override var customIndicator: UIView {
         return self.imageView
     }
-    
     override var pullingProgress: CGFloat {
         didSet {
             if let images = self.refreshImages[.pulling] {

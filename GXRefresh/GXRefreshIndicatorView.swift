@@ -13,6 +13,7 @@ class GXRefreshIndicatorView: UIView {
     private var lineWidth: CGFloat = 2.0
     private var strokeColor: UIColor = UIColor.blue
     private var animationDuration: TimeInterval = 0.7
+    private var isSucceed: Bool = true
 
     private(set) lazy var animationLayer: CALayer = {
         let layer = CALayer()
@@ -28,11 +29,17 @@ extension GXRefreshIndicatorView {
                     strokeColor: UIColor = .blue,
                     animationDuration: TimeInterval = 0.7,
                     size: CGSize = CGSize(width: 22, height: 22),
-                    center: CGPoint,
+                    center: CGPoint? = nil,
+                    isSucceed: Bool = true,
                     completion:@escaping GXRefreshComponent.GXRefreshCallBack)
     {
         let indicator = GXRefreshIndicatorView(frame: CGRect(origin: .zero, size: size))
-        indicator.center = center
+        if center != nil {
+            indicator.center = center!
+        } else {
+            indicator.center = view.center
+        }
+        indicator.isSucceed = isSucceed
         indicator.lineWidth = lineWidth
         indicator.strokeColor = strokeColor
         indicator.animationDuration = animationDuration
@@ -45,6 +52,7 @@ extension GXRefreshIndicatorView {
         for subview in view.subviews {
             if subview.isKind(of: GXRefreshIndicatorView.self) {
                 let indicator: GXRefreshIndicatorView = subview as! GXRefreshIndicatorView
+                indicator.stopAnimation()
                 indicator.removeFromSuperview()
             }
         }
@@ -67,6 +75,7 @@ fileprivate extension GXRefreshIndicatorView {
         circleLayer.path = path.cgPath
         
         let animation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.isRemovedOnCompletion = false
         animation.duration = self.animationDuration * 0.8
         animation.fromValue = 0.0
         animation.toValue = 1.0
@@ -92,11 +101,39 @@ fileprivate extension GXRefreshIndicatorView {
         checkLayer.path = path.cgPath
 
         let animation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.isRemovedOnCompletion = false
         animation.duration = self.animationDuration * 0.4
         animation.fromValue = 0.0
         animation.toValue = 1.0
         animation.delegate = self
-        animation.setValue("checkAnimation", forKey: "animationName")
+        animation.setValue("endAnimation", forKey: "animationName")
+        checkLayer.add(animation, forKey: nil)
+    }
+    func crossAnimation() {
+        let checkLayer: CAShapeLayer = CAShapeLayer()
+        checkLayer.frame = self.animationLayer.bounds
+        checkLayer.fillColor = UIColor.clear.cgColor
+        checkLayer.strokeColor = self.strokeColor.cgColor
+        checkLayer.lineWidth = self.lineWidth
+        checkLayer.lineCap = .round
+        checkLayer.lineJoin = .round
+        self.animationLayer.addSublayer(checkLayer)
+
+        let w = self.animationLayer.bounds.width
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: w * 0.28, y: w * 0.28))
+        path.addLine(to: CGPoint(x: w * 0.72, y: w * 0.72))
+        path.move(to: CGPoint(x: w * 0.72, y: w * 0.28))
+        path.addLine(to: CGPoint(x: w * 0.28, y: w * 0.72))
+        checkLayer.path = path.cgPath
+        
+        let animation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.isRemovedOnCompletion = false
+        animation.duration = self.animationDuration * 0.4
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.delegate = self
+        animation.setValue("endAnimation", forKey: "animationName")
         checkLayer.add(animation, forKey: nil)
     }
     func startAnimation() {
@@ -117,15 +154,18 @@ extension GXRefreshIndicatorView: CAAnimationDelegate {
         if let value: String = anim.value(forKey: "animationName") as? String {
             if value == "circleAnimation" {
                 DispatchQueue.main.asyncAfter(deadline: .now()+self.animationDuration * 0.6) {
-                    self.checkAnimation()
+                    if self.isSucceed {
+                        self.checkAnimation()
+                    } else {
+                        self.crossAnimation()
+                    }
                 }
             }
         }
     }
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if let value: String = anim.value(forKey: "animationName") as? String {
-            if value == "checkAnimation" {
-                self.stopAnimation()
+            if value == "endAnimation" {
                 if self.animationStopAction != nil {
                     self.animationStopAction!()
                 }

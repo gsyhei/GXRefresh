@@ -10,23 +10,44 @@ import UIKit
 import AudioToolbox
 
 class GXRefreshBaseHeader: GXRefreshComponent {
+    /// state下需要重写或自行增加的数据
     open var dataSource: ((_ state: State) -> Void)? = nil
+    /// 刷新文本是否隐藏
     open var isTextHidden: Bool = false
+    /// 下拉到刷新状态是否有震动
     open var isPlayImpact: Bool = true
-    open var isShowEndRefresh: Bool = true
+    /// 与scrollView相关的动画时间
     open var animationDuration: TimeInterval = 0.25
-    open var endRefreshDelay: TimeInterval = 0.7
+    /// 结束刷新动画执行时间
+    open var endRefreshDuration: TimeInterval = 0.7
+    /// 结束刷新完成后的停留时间
+    open var endRefreshDelay: TimeInterval = 0.5
+    /// 刷新下拉需要的百分比（下拉到多少刷新）
     open var automaticallyRefreshPercent: CGFloat = 1.0
+    /// 刷新头部高度
     open var headerHeight: CGFloat = 54.0 {
         didSet {
             self.gx_height = self.headerHeight
         }
     }
+    /// 指示器与文本的间隔
     open var textToIndicatorSpacing: CGFloat = 10.0 {
         didSet {
             self.updateContentViewLayout()
         }
     }
+    /// 自定指示器内容
+    open var customIndicator: UIView {
+        return UIView()
+    }
+    /// 刷新文本label
+    open lazy var textLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.gray
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    /// 刷新文本
     private(set) lazy var refreshTitles: Dictionary<State, String> = {
         return [.idle: "下拉刷新",
                 .pulling: "下拉可以刷新",
@@ -34,17 +55,12 @@ class GXRefreshBaseHeader: GXRefreshComponent {
                 .did: "正在刷新...",
                 .end: "刷新完成"]
     }()
-    
-    open var customIndicator: UIView {
-        return UIView()
-    }
-    open lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.gray
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        return label
-    }()
-        
+    /// 刷新结束动画相关
+    private(set) var isShowEndAnimated: Bool = true
+    private var isRefreshSucceed: Bool = true
+    private var isOriginalTextHidden: Bool = true
+    private var endRefreshText: String?
+    /// 震动相关
     private var isPlayingImpact: Bool = false
     @available(iOS 10.0, *)
     private lazy var generator: UIImpactFeedbackGenerator = {
@@ -68,6 +84,9 @@ extension GXRefreshBaseHeader {
     }
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
+        // did/end状态的情况
+        guard self.state != .did && self.state != .end else { return }
+        // 获取scrollView.offset
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 判断header是否出现
             let justOffsetY = -self.svAdjustedInset.top
@@ -78,8 +97,6 @@ extension GXRefreshBaseHeader {
                 }
                 return
             }
-            // did/end状态的情况
-            guard self.state != .did && self.state != .end else { return }
             // 需要拉到刷新的offsetY
             let headerHeight = self.gx_height * self.automaticallyRefreshPercent
             let pullingOffsetY = justOffsetY - headerHeight
@@ -122,25 +139,32 @@ extension GXRefreshBaseHeader {
             self.didStateRefreshing()
         }
         else if state == .end {
-            if self.isShowEndRefresh {
+            if self.isShowEndAnimated {
                 GXRefreshIndicatorView.show(to: self.contentView,
                                             strokeColor: self.textLabel.textColor,
-                                            animationDuration: self.endRefreshDelay,
-                                            center: self.customIndicator.center)
+                                            animationDuration: self.endRefreshDuration,
+                                            center: self.customIndicator.center,
+                                            isSucceed: self.isRefreshSucceed)
                 {
-                    self.endStateRefreshing()
+                    self.didStateEndRefreshing()
                 }
             }
             else {
-                DispatchQueue.main.asyncAfter(deadline: .now()+self.animationDuration) {
-                    self.endStateRefreshing()
-                }
+                self.didStateEndRefreshing()
             }
         }
     }
 }
 
 fileprivate extension GXRefreshBaseHeader {
+    func setTefreshTextLabel(for state: State) {
+        if state == .end && self.endRefreshText != nil {
+            self.textLabel.text = self.endRefreshText
+        }
+        else if let text = self.refreshTitles[state] {
+            self.textLabel.text = text
+        }
+    }
     func playImpact() {
         guard self.isPlayImpact else { return }
         if #available(iOS 10.0, *) {
@@ -185,6 +209,14 @@ fileprivate extension GXRefreshBaseHeader {
             }
         }
     }
+    func didStateEndRefreshing() {
+        if !self.isShowEndAnimated {
+            self.state = .idle
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+self.endRefreshDelay) {
+            self.endStateRefreshing()
+        }
+    }
     func endStateRefreshing() {
         var contentInset = self.svContentInset
         contentInset.top = self.scrollViewOriginalInset.top
@@ -196,7 +228,8 @@ fileprivate extension GXRefreshBaseHeader {
         }) { (finished) in
             self.state = .idle
             self.isPlayingImpact = false
-            if self.isShowEndRefresh {
+            if self.isShowEndAnimated {
+                self.isTextHidden = self.isOriginalTextHidden
                 GXRefreshIndicatorView.hide(to: self.contentView)
             }
             if self.endRefreshingAction != nil {
@@ -210,12 +243,21 @@ extension GXRefreshBaseHeader {
     open func beginRefreshing() {
         self.state = .did
     }
-    open func endRefreshing(isNoMore: Bool = false) {
+    open func endRefreshing(isNoMore: Bool = false, isSucceed: Bool? = nil, text: String? = nil) {
         self.state = .end
+        self.isShowEndAnimated = (isSucceed != nil)
+        if self.isShowEndAnimated {
+            self.isRefreshSucceed = isSucceed!
+            self.endRefreshText = text
+            self.isOriginalTextHidden = self.isTextHidden
+            self.isTextHidden = false
+        }
         self.scrollView?.gx_footer?.endRefreshing(isNoMore: isNoMore)
     }
+    
     open func updateContentViewLayout() {
-        self.textLabel.isHidden =  self.isTextHidden
+        self.textLabel.isHidden = self.isTextHidden
+        self.customIndicator.isHidden = (self.state == .end) && self.isShowEndAnimated
         if self.isTextHidden {
             self.customIndicator.center = self.contentView.center
         }
@@ -232,9 +274,7 @@ extension GXRefreshBaseHeader {
         }
     }
     open func updateContentView(state: State) {
-        if let text = self.refreshTitles[state] {
-            self.textLabel.text = text
-        }
+        self.setTefreshTextLabel(for: state)
         if self.dataSource != nil {
             self.dataSource!(state)
         }
@@ -243,7 +283,7 @@ extension GXRefreshBaseHeader {
     open func setRefreshTitles(_ text: String, for state: State) {
         self.refreshTitles.updateValue(text, forKey: state)
         if self.state == state {
-            self.textLabel.text = text
+            self.setTefreshTextLabel(for: state)
         }
     }
 }

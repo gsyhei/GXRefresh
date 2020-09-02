@@ -9,36 +9,46 @@
 import UIKit
 
 class GXRefreshBaseFooter: GXRefreshComponent {
+    /// state下需要重写或自行增加的数据
     open var dataSource: ((_ state: State) -> Void)? = nil
+    /// 刷新文本是否隐藏
     open var isTextHidden: Bool = false
+    /// 没有更多数据的情况下内容超出屏幕是否隐藏footer
     open var isHiddenNoMoreByContent: Bool = true
+    /// 是否开启自动刷新
     open var automaticallyRefresh: Bool = true
+    /// 上拉需要的百分比（下拉到多少刷新）
     open var automaticallyRefreshPercent: CGFloat = 1.0
+    /// 刷新页脚高度
     open var footerHeight: CGFloat = 44.0 {
         didSet {
             self.gx_height = self.footerHeight
         }
     }
+    /// 指示器与文本的间隔
     open var textToIndicatorSpacing: CGFloat = 10.0 {
         didSet {
             self.updateContentViewLayout()
         }
     }
+    /// 自定指示器内容
+    open var customIndicator: UIView {
+        return UIView()
+    }
+    /// 刷新文本label
+    open lazy var textLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.gray
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    /// 刷新文本
     private(set) lazy var refreshTitles: Dictionary<State, String> = {
         return [.idle: "点击或上拉加载更多",
                 .pulling: "上拉加载更多",
                 .will: "放开立即加载更多",
                 .did: "正在加载更多数据...",
                 .noMore: "已加载全部数据"]
-    }()
-    open var customIndicator: UIView {
-        return UIView()
-    }
-    open lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.gray
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        return label
     }()
     
     override func willMove(toSuperview newSuperview: UIView?) {
@@ -68,6 +78,9 @@ extension GXRefreshBaseFooter {
     }
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
+        // did/end/noMore状态下跳过
+        guard self.state != .did && self.state != .end else { return }
+        // 获取scrollView.offset
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 需要内容超过屏幕
             let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
@@ -76,8 +89,6 @@ extension GXRefreshBaseFooter {
             var justOffsetY = self.svContentSize.height + self.svAdjustedInset.bottom
             justOffsetY -= (self.scrollView!.gx_height + self.gx_height)
             guard offset.y >= justOffsetY else { return }
-            // did/end状态的情况
-            guard self.state != .did && self.state != .end else { return }
             // 需要拉到刷新的offsetY
             let footerHeight = self.gx_height * self.automaticallyRefreshPercent
             let pullingOffsetY = justOffsetY + footerHeight
@@ -98,9 +109,6 @@ extension GXRefreshBaseFooter {
                     }
                     else if (self.state == .idle || self.state == .pulling && offset.y >= pullingOffsetY) {
                         self.state = .will
-                    }
-                    else if (self.state == .will && offset.y >= pullingOffsetY) {
-                        self.state = .did
                     }
                 }
                 else {

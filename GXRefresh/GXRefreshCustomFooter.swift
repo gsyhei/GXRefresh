@@ -20,7 +20,7 @@ class GXRefreshCustomFooter: GXRefreshBaseFooter {
     }
     override var pullingProgress: CGFloat {
         didSet {
-            guard !self.isRefreshing else { return }
+            guard !self.isRefreshing && !self.automaticallyRefresh else { return }
             if (self.progressCallBack != nil) {
                 self.progressCallBack!(self)
             }
