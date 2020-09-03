@@ -55,9 +55,9 @@ class GXRefreshBaseFooter: GXRefreshComponent {
         super.willMove(toSuperview: newSuperview)
         guard !self.isHidden && self.scrollView != nil else { return }
         
-        var contentInset = self.svContentInset
-        contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
-        self.scrollView?.contentInset = contentInset
+//        var contentInset = self.svContentInset
+//        contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
+//        self.scrollView?.contentInset = contentInset
     }
 }
 
@@ -73,7 +73,16 @@ extension GXRefreshBaseFooter {
     }
     override func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
-        self.gx_top = self.svContentSize.height + self.scrollViewOriginalInset.bottom
+        self.gx_top = self.svContentHeight() + self.scrollViewOriginalInset.bottom
+        
+        var contentInset = self.svContentInset
+        if self.automaticallyRefresh {
+            contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
+            self.scrollView?.contentInset = contentInset
+        } else {
+            contentInset.bottom = self.scrollViewOriginalInset.bottom
+            self.scrollView?.contentInset = contentInset
+        }
         self.updateContentViewLayout()
     }
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
@@ -83,11 +92,15 @@ extension GXRefreshBaseFooter {
         // 获取scrollView.offset
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 需要内容超过屏幕
-            let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
-            guard contentH > self.scrollView!.gx_height else { return }
+            guard self.isContentBeyondScreen() || !self.automaticallyRefresh else { return }
             // 判断header是否出现
-            var justOffsetY = self.svContentSize.height + self.svAdjustedInset.bottom
-            justOffsetY -= (self.scrollView!.gx_height + self.gx_height)
+            var justOffsetY = self.svContentHeight() + self.svAdjustedInset.bottom
+            if self.automaticallyRefresh {
+                justOffsetY -= (self.scrollView!.gx_height + self.gx_height)
+            }
+            else {
+                justOffsetY -= self.scrollView!.gx_height
+            }
             guard offset.y >= justOffsetY else { return }
             // 需要拉到刷新的offsetY
             let footerHeight = self.gx_height * self.automaticallyRefreshPercent
@@ -107,7 +120,7 @@ extension GXRefreshBaseFooter {
                     if ((self.state == .idle || self.state == .will) && offset.y < pullingOffsetY) {
                         self.state = .pulling
                     }
-                    else if (self.state == .idle || self.state == .pulling && offset.y >= pullingOffsetY) {
+                    else if (self.state == .pulling && offset.y >= pullingOffsetY) {
                         self.state = .will
                     }
                 }
@@ -127,30 +140,25 @@ extension GXRefreshBaseFooter {
         self.isHidden = (self.svContentSize.height == 0)
         // 有内容才进行设置
         guard (self.scrollView!.gx_height > 0) else { return }
-        self.gx_top = self.svContentSize.height + self.scrollViewOriginalInset.bottom
-        let isContentBeyondScreen = self.isContentBeyondScreen()
+        self.gx_top = self.svContentHeight() + self.scrollViewOriginalInset.bottom
         // 内容没有超出屏幕
-        guard !isContentBeyondScreen else { return }
+        guard !self.isContentBeyondScreen() else { return }
         self.alpha = 1.0
         self.isHidden = self.isHiddenNoMoreByContent && (self.state == .noMore)
     }
     override func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewPanStateDidChange(change: change)
+        // 需要内容小于屏幕
+        guard self.automaticallyRefresh && !self.isContentBeyondScreen() else { return }
         guard self.state == .idle else { return }
-        
         if let panState = change?[NSKeyValueChangeKey.newKey] as? Int {
             // state == .ended
             guard (panState == UIGestureRecognizer.State.ended.rawValue) else { return }
-            // 需要内容小于屏幕
-            let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
-            guard (contentH < self.scrollView!.gx_height) else { return }
-            
             if (self.svContentOffset.y > -self.svAdjustedInset.top) {
                 self.state = .did
             }
         }
     }
-    
     override func setState(_ state: State) {
         super.setState(state)
         if state == .did {
@@ -167,11 +175,27 @@ extension GXRefreshBaseFooter {
 }
 
 fileprivate extension GXRefreshBaseFooter {
+    func svContentHeight() -> CGFloat {
+        if !self.automaticallyRefresh && !self.isContentBeyondScreen() {
+            return (self.scrollView!.gx_height - self.svAdjustedInset.top - self.svAdjustedInset.bottom)
+        }
+        return self.svContentSize.height
+    }
     func isContentBeyondScreen() -> Bool {
         let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
         return (contentH >= self.scrollView!.gx_height)
     }
     func didStateRefreshing() {
+        if !self.automaticallyRefresh {
+            var contentInset = self.svContentInset
+            contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
+            var contentOffset = self.svContentOffset
+            if !self.isContentBeyondScreen() {
+                contentOffset.y -= self.gx_height
+            }
+            self.scrollView?.contentInset = contentInset
+            self.scrollView?.contentOffset = contentOffset
+        }
         if self.automaticallyChangeAlpha {
             self.alpha = 1.0
         }
@@ -183,6 +207,11 @@ fileprivate extension GXRefreshBaseFooter {
         }
     }
     func endStateRefreshing(isNoMore: Bool = false) {
+        if !self.automaticallyRefresh {
+            var contentInset = self.svContentInset
+            contentInset.bottom = self.scrollViewOriginalInset.bottom
+            self.scrollView?.contentInset = contentInset
+        }
         if !isNoMore {
             self.state = .idle
         }
