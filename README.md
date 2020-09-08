@@ -1,11 +1,16 @@
 # GXRefresh
 Swift版的下拉刷新上拉加载，支持Gif、支持自定义刷新动画。
-若有建议或增加需求更可直接可以联系QQ：279694479
+有建议可以联系QQ交流群:1101980843，喜欢就给个star哦，谢谢关注！
+<p align="center">
+<img src="https://github.com/gsyhei/GXCardView-Swift/blob/master/QQ.jpeg">
+</p>
 
-# 喜欢就给个star哦，QQ：279694479
-
-先上Demo效果图
+先上demo菜单效果
 --
+<p align="center">
+<img src="https://github.com/gsyhei/GXRefresh/blob/master/GXRefresh.gif">
+</p>
+
 
 ![](/GXRefresh.gif '描述')
 
@@ -13,7 +18,7 @@ Swift版的下拉刷新上拉加载，支持Gif、支持自定义刷新动画。
 Requirements
 --
 <p align="left">
-<a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/badge/platform-ios-yellow.svg"></a>
+<a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/badge/platform-ios%209.0-yellow.svg"></a>
 <a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/github/license/johnlui/Pitaya.svg?style=flat"></a>
 <a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/badge/language-Swift%204.2-orange.svg"></a>
 </p>
