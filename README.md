@@ -11,10 +11,6 @@ Swift版的下拉刷新上拉加载，支持Gif、支持自定义刷新动画。
 <img src="https://github.com/gsyhei/GXRefresh/blob/master/GXRefresh.gif">
 </p>
 
-
-![](/GXRefresh.gif '描述')
-
-
 Requirements
 --
 <p align="left">
