@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension GXRefreshComponent {
-    public typealias GXRefreshCallBack = () -> Void
+public extension GXRefreshComponent {
+    typealias GXRefreshCallBack = () -> Void
     
     @objc enum State: Int {
         case idle    = 0
@@ -42,13 +42,13 @@ extension GXRefreshComponent {
     }
 }
 
-protocol GXRefreshDelegate: NSObjectProtocol {
+public protocol GXRefreshDelegate: NSObjectProtocol {
     func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?)
     func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?)
     func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?)
 }
 
-class GXRefreshComponent: UIView {
+public class GXRefreshComponent: UIView {
     private(set) var scrollView: UIScrollView?
     private(set) var scrollViewOriginalInset: UIEdgeInsets = .zero
     
@@ -107,12 +107,12 @@ class GXRefreshComponent: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         self.prepareLayoutSubviews()
     }
     
-    override func willMove(toSuperview newSuperview: UIView?) {
+    public override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         self.removeObservers()
@@ -162,7 +162,7 @@ fileprivate extension GXRefreshComponent {
     open func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {}
     open func setState(_ state: State) {}
         
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard self.isUserInteractionEnabled else { return }
         if keyPath == self.keyPath(.contentSize) {
             self.scrollViewContentSizeDidChange(change: change)

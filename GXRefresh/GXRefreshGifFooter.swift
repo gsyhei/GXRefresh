@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GXRefreshGifFooter: GXRefreshBaseFooter {    
+public class GXRefreshGifFooter: GXRefreshBaseFooter {
     private(set) lazy var refreshImages: Dictionary<State, Array<UIImage>> = {
         return [:]
     }()
@@ -21,10 +21,10 @@ class GXRefreshGifFooter: GXRefreshBaseFooter {
         return imageView
     }()
     
-    override var customIndicator: UIView {
+    public override var customIndicator: UIView {
         return self.imageView
     }
-    override var pullingProgress: CGFloat {
+    public override var pullingProgress: CGFloat {
         didSet {
             guard self.state != .noMore else { return }
             if let images = self.refreshImages[.pulling] {
@@ -63,7 +63,7 @@ fileprivate extension GXRefreshGifFooter {
     }
 }
 
-extension GXRefreshGifFooter {
+public extension GXRefreshGifFooter {
     override func prepare() {
         super.prepare()
         self.dataSource = { [weak self] (state) in
@@ -82,7 +82,7 @@ extension GXRefreshGifFooter {
     }
 }
 
-extension GXRefreshGifFooter {
+public extension GXRefreshGifFooter {
     func setRefreshImages(_ imageNames: Array<String>, duration: TimeInterval? = nil, for state: State) {
         guard imageNames.count > 0 else { return }
         var images:[UIImage] = []

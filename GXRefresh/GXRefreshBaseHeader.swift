@@ -9,7 +9,7 @@
 import UIKit
 import AudioToolbox
 
-class GXRefreshBaseHeader: GXRefreshComponent {
+public class GXRefreshBaseHeader: GXRefreshComponent {
     /// state下需要重写或自行增加的数据
     open var dataSource: ((_ state: State) -> Void)? = nil
     /// 刷新文本是否隐藏
@@ -68,7 +68,7 @@ class GXRefreshBaseHeader: GXRefreshComponent {
     }()
 }
 
-extension GXRefreshBaseHeader {
+public extension GXRefreshBaseHeader {
     override func prepare() {
         super.prepare()
         self.alpha = self.automaticallyChangeAlpha ? 0 : 1
@@ -239,11 +239,11 @@ fileprivate extension GXRefreshBaseHeader {
     }
 }
 
-extension GXRefreshBaseHeader {
-    open func beginRefreshing() {
+public extension GXRefreshBaseHeader {
+    func beginRefreshing() {
         self.state = .did
     }
-    open func endRefreshing(isNoMore: Bool = false, isSucceed: Bool? = nil, text: String? = nil) {
+    func endRefreshing(isNoMore: Bool = false, isSucceed: Bool? = nil, text: String? = nil) {
         self.state = .end
         self.isShowEndAnimated = (isSucceed != nil)
         if self.isShowEndAnimated {
@@ -255,7 +255,7 @@ extension GXRefreshBaseHeader {
         self.scrollView?.gx_footer?.endRefreshing(isNoMore: isNoMore)
     }
     
-    open func updateContentViewLayout() {
+    func updateContentViewLayout() {
         self.textLabel.isHidden = self.isTextHidden
         self.customIndicator.isHidden = (self.state == .end) && self.isShowEndAnimated
         if self.isTextHidden {
@@ -273,14 +273,14 @@ extension GXRefreshBaseHeader {
             self.customIndicator.gx_right = self.textLabel.gx_left - self.textToIndicatorSpacing
         }
     }
-    open func updateContentView(state: State) {
+    func updateContentView(state: State) {
         self.setTefreshTextLabel(for: state)
         if self.dataSource != nil {
             self.dataSource!(state)
         }
         self.updateContentViewLayout()
     }
-    open func setRefreshTitles(_ text: String, for state: State) {
+    func setRefreshTitles(_ text: String, for state: State) {
         self.refreshTitles.updateValue(text, forKey: state)
         if self.state == state {
             self.setTefreshTextLabel(for: state)

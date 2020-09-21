@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GXRefreshIndicatorView: UIView {
+public class GXRefreshIndicatorView: UIView {
     private var animationStopAction: GXRefreshComponent.GXRefreshCallBack? = nil
     private var lineWidth: CGFloat = 2.0
     private var strokeColor: UIColor = UIColor.blue
@@ -23,7 +23,7 @@ class GXRefreshIndicatorView: UIView {
     }()
 }
 
-extension GXRefreshIndicatorView {
+public extension GXRefreshIndicatorView {
     class func show(to view: UIView,
                     lineWidth: CGFloat = 2.0,
                     strokeColor: UIColor = .blue,
@@ -150,7 +150,7 @@ fileprivate extension GXRefreshIndicatorView {
 }
 
 extension GXRefreshIndicatorView: CAAnimationDelegate {
-    func animationDidStart(_ anim: CAAnimation) {
+    private func animationDidStart(_ anim: CAAnimation) {
         if let value: String = anim.value(forKey: "animationName") as? String {
             if value == "circleAnimation" {
                 DispatchQueue.main.asyncAfter(deadline: .now()+self.animationDuration * 0.6) {
@@ -163,7 +163,7 @@ extension GXRefreshIndicatorView: CAAnimationDelegate {
             }
         }
     }
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    private func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if let value: String = anim.value(forKey: "animationName") as? String {
             if value == "endAnimation" {
                 if self.animationStopAction != nil {

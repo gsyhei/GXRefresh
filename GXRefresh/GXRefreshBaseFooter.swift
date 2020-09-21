@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GXRefreshBaseFooter: GXRefreshComponent {
+public class GXRefreshBaseFooter: GXRefreshComponent {
     /// state下需要重写或自行增加的数据
     open var dataSource: ((_ state: State) -> Void)? = nil
     /// 刷新文本是否隐藏
@@ -51,17 +51,17 @@ class GXRefreshBaseFooter: GXRefreshComponent {
                 .noMore: "已加载全部数据"]
     }()
     
-    override func willMove(toSuperview newSuperview: UIView?) {
+    public override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         guard !self.isHidden && self.scrollView != nil else { return }
         
-//        var contentInset = self.svContentInset
-//        contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
-//        self.scrollView?.contentInset = contentInset
+        var contentInset = self.svContentInset
+        contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
+        self.scrollView?.contentInset = contentInset
     }
 }
 
-extension GXRefreshBaseFooter {
+public extension GXRefreshBaseFooter {
     override func prepare() {
         super.prepare()
         self.alpha = self.automaticallyChangeAlpha ? 0 : 1
@@ -228,14 +228,14 @@ fileprivate extension GXRefreshBaseFooter {
     }
 }
 
-extension GXRefreshBaseFooter {
-    open func beginRefreshing() {
+public extension GXRefreshBaseFooter {
+    func beginRefreshing() {
         self.state = .did
     }
-    open func endRefreshing(isNoMore: Bool = false) {
+    func endRefreshing(isNoMore: Bool = false) {
         self.state = isNoMore ? .noMore : .end
     }
-    open func updateContentViewLayout() {
+    func updateContentViewLayout() {
         self.textLabel.isHidden =  self.isTextHidden
         if self.isTextHidden {
             self.customIndicator.center = self.contentView.center
@@ -252,7 +252,7 @@ extension GXRefreshBaseFooter {
             self.customIndicator.gx_right = self.textLabel.gx_left - self.textToIndicatorSpacing
         }
     }
-    open func updateContentView(state: State) {
+    func updateContentView(state: State) {
         if let text = self.refreshTitles[state] {
             self.textLabel.text = text
         }
@@ -261,7 +261,7 @@ extension GXRefreshBaseFooter {
         }
         self.updateContentViewLayout()
     }
-    open func setRefreshTitles(_ text: String, for state: State) {
+    func setRefreshTitles(_ text: String, for state: State) {
         self.refreshTitles.updateValue(text, forKey: state)
         if self.state == state {
             self.textLabel.text = text

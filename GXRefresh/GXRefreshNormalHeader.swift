@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GXRefreshNormalHeader: GXRefreshBaseHeader {
+public class GXRefreshNormalHeader: GXRefreshBaseHeader {
     open var arrowImage: UIImage? = nil {
         didSet {
             guard self.arrowImage == nil else { return }
@@ -42,12 +42,12 @@ class GXRefreshNormalHeader: GXRefreshBaseHeader {
         view.addSubview(self.arrowView)
         return view
     }()
-    override var customIndicator: UIView {
+    public override var customIndicator: UIView {
         return self.customView
     }
 }
 
-extension GXRefreshNormalHeader {
+public extension GXRefreshNormalHeader {
     override func setState(_ state: State) {
         super.setState(state)
 

@@ -11,7 +11,7 @@ import UIKit
 private var GXRefreshHeaderKey = 0
 private var GXRefreshFooterKey = 1
 
-extension UIScrollView {
+public extension UIScrollView {
     
     var gx_header: GXRefreshBaseHeader? {
         set {
@@ -38,7 +38,7 @@ extension UIScrollView {
     }
 }
 
-extension UIView {
+public extension UIView {
     var gx_top: CGFloat {
         set {
             self.frame.origin.y = newValue

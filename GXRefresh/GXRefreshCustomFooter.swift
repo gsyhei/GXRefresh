@@ -8,17 +8,17 @@
 
 import UIKit
 
-class GXRefreshCustomFooter: GXRefreshBaseFooter {
+public class GXRefreshCustomFooter: GXRefreshBaseFooter {
     open var stateCallBack: ((_ state: State) -> Void)? = nil
     open var progressCallBack: ((_ view: GXRefreshCustomFooter) -> Void)? = nil
 
     private lazy var customView: UIView = {
         return UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
     }()
-    override var customIndicator: UIView {
+    public override var customIndicator: UIView {
         return self.customView
     }
-    override var pullingProgress: CGFloat {
+    public override var pullingProgress: CGFloat {
         didSet {
             guard !self.isRefreshing && !self.automaticallyRefresh else { return }
             if (self.progressCallBack != nil) {
@@ -26,7 +26,7 @@ class GXRefreshCustomFooter: GXRefreshBaseFooter {
             }
         }
     }
-    override func setState(_ state: State) {
+    public override func setState(_ state: State) {
         super.setState(state)
         if (self.stateCallBack != nil) {
             self.stateCallBack!(state)
@@ -34,8 +34,8 @@ class GXRefreshCustomFooter: GXRefreshBaseFooter {
     }
 }
 
-extension GXRefreshCustomFooter {
-    open func updateCustomIndicator(view: UIView) {
+public extension GXRefreshCustomFooter {
+    func updateCustomIndicator(view: UIView) {
         self.customIndicator.frame.size = view.frame.size
         self.customIndicator.addSubview(view)
         if (view.frame.size.height > self.gx_height) {

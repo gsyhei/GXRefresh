@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GXRefreshGifHeader: GXRefreshBaseHeader {
+public class GXRefreshGifHeader: GXRefreshBaseHeader {
     private(set) lazy var refreshImages: Dictionary<State, Array<UIImage>> = {
         return [:]
     }()
@@ -21,10 +21,10 @@ class GXRefreshGifHeader: GXRefreshBaseHeader {
         return imageView
     }()
     
-    override var customIndicator: UIView {
+    public override var customIndicator: UIView {
         return self.imageView
     }
-    override var pullingProgress: CGFloat {
+    public override var pullingProgress: CGFloat {
         didSet {
             if let images = self.refreshImages[.pulling] {
                 var index: Int = Int(ceil(CGFloat(images.count) * self.pullingProgress))
@@ -62,7 +62,7 @@ fileprivate extension GXRefreshGifHeader {
     }
 }
 
-extension GXRefreshGifHeader {
+public extension GXRefreshGifHeader {
     override func prepare() {
         super.prepare()
         self.dataSource = { [weak self] (state) in
@@ -90,7 +90,7 @@ extension GXRefreshGifHeader {
     }
 }
 
-extension GXRefreshGifHeader {
+public extension GXRefreshGifHeader {
     func setRefreshImages(_ imageNames: Array<String>, duration: TimeInterval? = nil, for state: State) {
         guard imageNames.count > 0 else { return }
         var images:[UIImage] = []

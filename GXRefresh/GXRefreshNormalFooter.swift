@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GXRefreshNormalFooter: GXRefreshBaseFooter {
+public class GXRefreshNormalFooter: GXRefreshBaseFooter {
     private(set) lazy var indicator: UIActivityIndicatorView = {
         let frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         let aiView = UIActivityIndicatorView(frame: frame)
@@ -19,12 +19,12 @@ class GXRefreshNormalFooter: GXRefreshBaseFooter {
         }
         return aiView
     }()
-    override var customIndicator: UIView {
+    public override var customIndicator: UIView {
         return self.indicator
     }
 }
 
-extension GXRefreshNormalFooter {
+public extension GXRefreshNormalFooter {
     override func setState(_ state: State) {
         super.setState(state)
         
