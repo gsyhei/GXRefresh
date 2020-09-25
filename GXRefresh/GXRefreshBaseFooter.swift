@@ -88,7 +88,8 @@ public extension GXRefreshBaseFooter {
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
         // did/end/noMore状态下跳过
-        guard self.state != .did && self.state != .end else { return }
+        let headerRefreshing: Bool = self.scrollView?.gx_header?.isRefreshing ?? false
+        guard !self.isRefreshing && !headerRefreshing else { return }
         // 获取scrollView.offset
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 需要内容超过屏幕
@@ -182,7 +183,7 @@ fileprivate extension GXRefreshBaseFooter {
         return self.svContentSize.height
     }
     func isContentBeyondScreen() -> Bool {
-        let contentH = self.svContentSize.height + self.svAdjustedInset.top + self.svAdjustedInset.bottom
+        let contentH = self.svContentSize.height + self.scrollViewOriginalInset.top + self.scrollViewOriginalInset.bottom
         return (contentH >= self.scrollView!.gx_height)
     }
     func didStateRefreshing() {

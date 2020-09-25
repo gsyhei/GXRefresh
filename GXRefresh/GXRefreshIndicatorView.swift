@@ -150,7 +150,7 @@ fileprivate extension GXRefreshIndicatorView {
 }
 
 extension GXRefreshIndicatorView: CAAnimationDelegate {
-    private func animationDidStart(_ anim: CAAnimation) {
+    public func animationDidStart(_ anim: CAAnimation) {
         if let value: String = anim.value(forKey: "animationName") as? String {
             if value == "circleAnimation" {
                 DispatchQueue.main.asyncAfter(deadline: .now()+self.animationDuration * 0.6) {
@@ -163,7 +163,7 @@ extension GXRefreshIndicatorView: CAAnimationDelegate {
             }
         }
     }
-    private func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if let value: String = anim.value(forKey: "animationName") as? String {
             if value == "endAnimation" {
                 if self.animationStopAction != nil {
