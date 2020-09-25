@@ -1,7 +1,12 @@
+
 <p align="center">
 <img src="https://github.com/gsyhei/GXRefresh/blob/master/refresh.png">
 </p>
---
+
+***
+<h2 align="center">requirements</h2>
+
+***
 <p align="center">
 <a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/badge/platform-ios%209.0-yellow.svg"></a>
 <a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/github/license/johnlui/Pitaya.svg?style=flat"></a>
