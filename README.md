@@ -1,14 +1,15 @@
-
 <p align="center">
 <img src="https://github.com/gsyhei/GXRefresh/blob/master/refresh.png">
 </p>
-<h1 align="center">GXRefresh</h1>
 <p align="center">
 <a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/badge/platform-ios%209.0-yellow.svg"></a>
 <a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/github/license/johnlui/Pitaya.svg?style=flat"></a>
 <a href="https://github.com/gsyhei/GXRefresh"><img src="https://img.shields.io/badge/language-Swift%204.2-orange.svg"></a>
 </p>
 
+---
+
+# GXRefresh
 Swift版的下拉刷新上拉加载，支持Gif、支持自定义刷新动画。
 有建议可以联系QQ交流群:1101980843，喜欢就给个star哦，谢谢关注！
 <p align="center">
