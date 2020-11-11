@@ -1,0 +1,6 @@
+framework module Pods_GXRefreshSample {
+  umbrella header "Pods-GXRefreshSample-umbrella.h"
+
+  export *
+  module * { export * }
+}

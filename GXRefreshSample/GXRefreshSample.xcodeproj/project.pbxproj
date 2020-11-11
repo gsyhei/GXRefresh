@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3302ADEC255C546C00BA64B4 /* Pods_GXRefreshSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3302ADEB255C546C00BA64B4 /* Pods_GXRefreshSample.framework */; };
+		3302ADEE255C547000BA64B4 /* GXSegmentPageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3302ADED255C547000BA64B4 /* GXSegmentPageView.framework */; };
+		3306C08D255C280C00065A11 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306C08B255C280C00065A11 /* TabViewController.swift */; };
+		3306C094255C283800065A11 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306C092255C283800065A11 /* TableViewController.swift */; };
+		3306C095255C283800065A11 /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3306C093255C283800065A11 /* TableViewController.xib */; };
 		3312A73124E61C2E005B502D /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3312A73024E61C2E005B502D /* RootTableViewController.swift */; };
 		3312A73824E6DA66005B502D /* GXRefreshCustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3312A73624E6DA66005B502D /* GXRefreshCustomFooter.swift */; };
 		3312A73924E6DA66005B502D /* GXRefreshCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3312A73724E6DA66005B502D /* GXRefreshCustomHeader.swift */; };
@@ -47,6 +52,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3302ADEB255C546C00BA64B4 /* Pods_GXRefreshSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_GXRefreshSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3302ADED255C547000BA64B4 /* GXSegmentPageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GXSegmentPageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3306C08B255C280C00065A11 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		3306C092255C283800065A11 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		3306C093255C283800065A11 /* TableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
+		3306C09C255C377C00065A11 /* Pods_GXRefreshSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_GXRefreshSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3312A73024E61C2E005B502D /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		3312A73624E6DA66005B502D /* GXRefreshCustomFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GXRefreshCustomFooter.swift; sourceTree = "<group>"; };
 		3312A73724E6DA66005B502D /* GXRefreshCustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GXRefreshCustomHeader.swift; sourceTree = "<group>"; };
@@ -73,6 +84,9 @@
 		33623B3D24E8DC17006CCAEA /* gx_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gx_arrow@2x.png"; sourceTree = "<group>"; };
 		336A62C124E02104008A234A /* GXRefreshComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshComponent.swift; sourceTree = "<group>"; };
 		336A62C324E06808008A234A /* GXRefreshBaseHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GXRefreshBaseHeader.swift; sourceTree = "<group>"; };
+		7054DF580D4D15F193C94813 /* Pods_GXRefreshSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GXRefreshSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99D52BE5E269AFA75068D742 /* Pods-GXRefreshSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GXRefreshSample.release.xcconfig"; path = "Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample.release.xcconfig"; sourceTree = "<group>"; };
+		EC721FE230C59C2F0726696A /* Pods-GXRefreshSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GXRefreshSample.debug.xcconfig"; path = "Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3302ADEE255C547000BA64B4 /* GXSegmentPageView.framework in Frameworks */,
+				3302ADEC255C546C00BA64B4 /* Pods_GXRefreshSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +123,8 @@
 				333908CF24DF126C0081E656 /* GXRefreshSampleTests */,
 				333908DA24DF126C0081E656 /* GXRefreshSampleUITests */,
 				333908B724DF126A0081E656 /* Products */,
+				96E71E938C802B075AE288ED /* Pods */,
+				A7E2D30DDD2A208EC3480B8C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +145,9 @@
 				333908B924DF126A0081E656 /* AppDelegate.swift */,
 				3312A73024E61C2E005B502D /* RootTableViewController.swift */,
 				333908BD24DF126A0081E656 /* ViewController.swift */,
+				3306C08B255C280C00065A11 /* TabViewController.swift */,
+				3306C092255C283800065A11 /* TableViewController.swift */,
+				3306C093255C283800065A11 /* TableViewController.xib */,
 				333908BF24DF126A0081E656 /* Main.storyboard */,
 				333908C224DF126C0081E656 /* Assets.xcassets */,
 				333908C424DF126C0081E656 /* LaunchScreen.storyboard */,
@@ -181,6 +202,26 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		96E71E938C802B075AE288ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC721FE230C59C2F0726696A /* Pods-GXRefreshSample.debug.xcconfig */,
+				99D52BE5E269AFA75068D742 /* Pods-GXRefreshSample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A7E2D30DDD2A208EC3480B8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3302ADED255C547000BA64B4 /* GXSegmentPageView.framework */,
+				3302ADEB255C546C00BA64B4 /* Pods_GXRefreshSample.framework */,
+				3306C09C255C377C00065A11 /* Pods_GXRefreshSample.framework */,
+				7054DF580D4D15F193C94813 /* Pods_GXRefreshSample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,9 +229,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 333908E024DF126C0081E656 /* Build configuration list for PBXNativeTarget "GXRefreshSample" */;
 			buildPhases = (
+				23D9303CB25B25316B3BB453 /* [CP] Check Pods Manifest.lock */,
 				333908B224DF126A0081E656 /* Sources */,
 				333908B324DF126A0081E656 /* Frameworks */,
 				333908B424DF126A0081E656 /* Resources */,
+				D52776A62D210C3FD645968C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,6 +332,7 @@
 				33623B3E24E8DC17006CCAEA /* gx_arrow@2x.png in Resources */,
 				333908C624DF126C0081E656 /* LaunchScreen.storyboard in Resources */,
 				333908C324DF126C0081E656 /* Assets.xcassets in Resources */,
+				3306C095255C283800065A11 /* TableViewController.xib in Resources */,
 				333908C124DF126A0081E656 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +353,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		23D9303CB25B25316B3BB453 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GXRefreshSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D52776A62D210C3FD645968C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		333908B224DF126A0081E656 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -317,6 +403,7 @@
 				333908EB24DF12EF0081E656 /* UIScrollView+GXRefresh.swift in Sources */,
 				3320667724E4C2DA00D8074B /* GXRefreshGifHeader.swift in Sources */,
 				3312A73824E6DA66005B502D /* GXRefreshCustomFooter.swift in Sources */,
+				3306C08D255C280C00065A11 /* TabViewController.swift in Sources */,
 				332655ED24E8A77600079CB9 /* GXRefreshIndicatorView.swift in Sources */,
 				333908BE24DF126A0081E656 /* ViewController.swift in Sources */,
 				336A62C224E02104008A234A /* GXRefreshComponent.swift in Sources */,
@@ -324,6 +411,7 @@
 				332964C724E34FA70057484C /* GXRefreshNormalFooter.swift in Sources */,
 				336A62C424E06808008A234A /* GXRefreshBaseHeader.swift in Sources */,
 				333908BA24DF126A0081E656 /* AppDelegate.swift in Sources */,
+				3306C094255C283800065A11 /* TableViewController.swift in Sources */,
 				3312A73124E61C2E005B502D /* RootTableViewController.swift in Sources */,
 				3312A73924E6DA66005B502D /* GXRefreshCustomHeader.swift in Sources */,
 				332964C524E318940057484C /* GXRefreshNormalHeader.swift in Sources */,
@@ -500,6 +588,7 @@
 		};
 		333908E124DF126C0081E656 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC721FE230C59C2F0726696A /* Pods-GXRefreshSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -510,6 +599,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"GXSegmentPageView\"",
+					"-framework",
+					"\"UIKit\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gin.GXRefreshSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -519,6 +616,7 @@
 		};
 		333908E224DF126C0081E656 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99D52BE5E269AFA75068D742 /* Pods-GXRefreshSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -528,6 +626,14 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"GXSegmentPageView\"",
+					"-framework",
+					"\"UIKit\"",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gin.GXRefreshSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";

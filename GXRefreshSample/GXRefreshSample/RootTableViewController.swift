@@ -15,6 +15,8 @@ class RootTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tab" { return }
+        
         let vc: ViewController = segue.destination as! ViewController
         if segue.identifier == "normal" {
             vc.refreshStyle = 0

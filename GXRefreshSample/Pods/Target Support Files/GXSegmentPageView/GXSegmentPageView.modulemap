@@ -1,0 +1,6 @@
+framework module GXSegmentPageView {
+  umbrella header "GXSegmentPageView-umbrella.h"
+
+  export *
+  module * { export * }
+}

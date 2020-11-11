@@ -1,0 +1,16 @@
+PODS:
+  - GXSegmentPageView (1.0.3)
+
+DEPENDENCIES:
+  - GXSegmentPageView (= 1.0.3)
+
+SPEC REPOS:
+  trunk:
+    - GXSegmentPageView
+
+SPEC CHECKSUMS:
+  GXSegmentPageView: 168c98a46b0157008ec973d9cfdf1c8991e11caf
+
+PODFILE CHECKSUM: b7423f6ef3a2d271a21eed6f7a56f7485bccecab
+
+COCOAPODS: 1.10.0
