@@ -1,11 +1,11 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/GXBanner" "${PODS_CONFIGURATION_BUILD_DIR}/GXCardView-Swift" "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView/GXSegmentPageView.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/GXBanner/GXBanner.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/GXCardView-Swift/GXCardView_Swift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView/GXSegmentPageView.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView/GXSegmentPageView.framework/Headers" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView"
-OTHER_LDFLAGS = $(inherited) -framework "GXSegmentPageView" -framework "UIKit"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/GXBanner/GXBanner.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/GXCardView-Swift/GXCardView_Swift.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView/GXSegmentPageView.framework/Headers" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/GXBanner" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/GXCardView-Swift" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/GXSegmentPageView"
+OTHER_LDFLAGS = $(inherited) -framework "Foundation" -framework "GXBanner" -framework "GXCardView_Swift" -framework "GXSegmentPageView" -framework "UIKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample-frameworks.sh
+${BUILT_PRODUCTS_DIR}/GXBanner/GXBanner.framework
+${BUILT_PRODUCTS_DIR}/GXCardView-Swift/GXCardView_Swift.framework
 ${BUILT_PRODUCTS_DIR}/GXSegmentPageView/GXSegmentPageView.framework

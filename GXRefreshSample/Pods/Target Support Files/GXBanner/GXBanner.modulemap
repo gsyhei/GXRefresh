@@ -1,0 +1,6 @@
+framework module GXBanner {
+  umbrella header "GXBanner-umbrella.h"
+
+  export *
+  module * { export * }
+}

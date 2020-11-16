@@ -1,16 +1,24 @@
 PODS:
+  - GXBanner (1.0.8)
+  - GXCardView-Swift (1.1.2)
   - GXSegmentPageView (1.0.3)
 
 DEPENDENCIES:
+  - GXBanner (= 1.0.8)
+  - GXCardView-Swift (= 1.1.2)
   - GXSegmentPageView (= 1.0.3)
 
 SPEC REPOS:
   trunk:
+    - GXBanner
+    - GXCardView-Swift
     - GXSegmentPageView
 
 SPEC CHECKSUMS:
+  GXBanner: b7dacf79186986d234717c1cae406afea921c92b
+  GXCardView-Swift: ddaa1d3fa1c060e7a9090a3c130187782a123dde
   GXSegmentPageView: 168c98a46b0157008ec973d9cfdf1c8991e11caf
 
-PODFILE CHECKSUM: b7423f6ef3a2d271a21eed6f7a56f7485bccecab
+PODFILE CHECKSUM: e521c35985ae609d889f3960cb926c4702308116
 
 COCOAPODS: 1.10.0

@@ -8,5 +8,8 @@ target 'GXRefreshSample' do
   inhibit_all_warnings! #抑制所有的警告!
 
 pod 'GXSegmentPageView',  '1.0.3'
+pod 'GXCardView-Swift',   '1.1.2'
+pod 'GXBanner',           '1.0.8'
+
 
 end

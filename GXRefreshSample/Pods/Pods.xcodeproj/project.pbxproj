@@ -7,63 +7,129 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06F85C05A9816A19766F9D2FADA737FE /* Pods-GXRefreshSample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F93EA8B78CA8E51F58AB9647FD2CD06 /* Pods-GXRefreshSample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0E31DB246863917082228E82156180C9 /* GXSegmentPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE2CAEE50639E3B65577FD6BB0E0D9 /* GXSegmentPageView.swift */; };
-		1BAC02FB74A44BFE70261E94F1EFD72A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
-		282BEAF7F70EAB65247B71217813F40E /* GXSegmentPageView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F760438F11181F351EA4285C43154D0 /* GXSegmentPageView-dummy.m */; };
-		3EC760D59028B603BEDF8A42BBC07AC8 /* GXSegmentView+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6163A5B9F6491BE120625C30D848565 /* GXSegmentView+Configuration.swift */; };
-		6CC2F1440F9B358535EAA24C8AECE81D /* GXSegmentTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970A815E85F73FB295C825FE3299656D /* GXSegmentTitleCell.swift */; };
+		04B5F2BDEDB268C1B21930D86F5677EE /* GXCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF977F9D3A9CFDB633E6F1E22C7898 /* GXCardCell.swift */; };
+		0CF45940C2AAA6C7F4EFD875EC20AA0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
+		0E31DB246863917082228E82156180C9 /* GXSegmentPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1E1A221EE5C18DF53702A6D4946FA1 /* GXSegmentPageView.swift */; };
+		1EE63BDFC6925B6D76CFE565E8E4A5B2 /* Pods-GXRefreshSample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F93EA8B78CA8E51F58AB9647FD2CD06 /* Pods-GXRefreshSample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		282BEAF7F70EAB65247B71217813F40E /* GXSegmentPageView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E83F99B7D1DB5C8F01486F42B57CF /* GXSegmentPageView-dummy.m */; };
+		2EFE46DCBBB46CAE2603B7BE299A6D3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		3EC760D59028B603BEDF8A42BBC07AC8 /* GXSegmentView+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A7D7812928A3E2347FBA1C5B21DB1 /* GXSegmentView+Configuration.swift */; };
+		44DB5910DD30FA092E2EA785CB1546E9 /* GXBannerFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9AD4CEB9C2A8B2223C30A18B42E29D /* GXBannerFlowLayout.swift */; };
+		599EB3BC0F225727F9927D19C072DD57 /* GXCardView-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD3DB04DC0BAF31960167B8956CCD67 /* GXCardView-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5A238D5FE964BCB51A279A302141026A /* GXCardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C7EAAA2D79F2195922EBD0D1A0212 /* GXCardLayout.swift */; };
+		5C5D46F904EB6D4205CDE6C66DA1AA5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		60B1033205BBCAD29FC679BDB56091B4 /* GXBanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2143E8E42EDC1A1D3B01A7F1885558 /* GXBanner-dummy.m */; };
+		64F9A4E3BD54F49998624CD23F6530A8 /* Pods-GXRefreshSample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BDB8C6592E4410162345CD8B90408C /* Pods-GXRefreshSample-dummy.m */; };
+		6CC2F1440F9B358535EAA24C8AECE81D /* GXSegmentTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA2D10FCCA5659D60D65AFA42B1A47 /* GXSegmentTitleCell.swift */; };
 		701BE1DB4A21221EEDB016AC3B31ADF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
-		743116F4CA07E21C4A85805679FA9967 /* GXSegmentTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A6A442CF57D4EDD25C9B96C182E9C3 /* GXSegmentTitleView.swift */; };
-		883D77D3DE0C392D24E0F0CE907E7959 /* GXSegmentPageView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A37D9C586D516B015AE524E8681011 /* GXSegmentPageView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		743116F4CA07E21C4A85805679FA9967 /* GXSegmentTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D09E06B46A34D7CDEB18BF50B9440A /* GXSegmentTitleView.swift */; };
+		82BD93549667584C2FD8A6896EF7BE10 /* GXBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEA911F01E40C1C329B73CF1EA0CCE /* GXBanner.swift */; };
+		883D77D3DE0C392D24E0F0CE907E7959 /* GXSegmentPageView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8725242084D7C995319F872926ED5AEC /* GXSegmentPageView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A1E1B1BEFFDC6D686DCC91F92BCEC89 /* GXCardView-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A353B37B65B510A43BBA62C6B37775 /* GXCardView-Swift-dummy.m */; };
 		A6878A8D00F417B99CC224FA49F24664 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
-		DF2A92444C054CCC1D278FEB63C380B1 /* Pods-GXRefreshSample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BDB8C6592E4410162345CD8B90408C /* Pods-GXRefreshSample-dummy.m */; };
+		B0AB7DD5965368F44E5387AB7A16F46F /* GXBanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D381D7F34FC60F358DBF436169352AAC /* GXBanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BD9FB5906C1E37B8984C00CCB18FD340 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
+		CF973C608662F354EDE2534C24BDBAAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		DA7EA049A2B6B1DBE51946F3660F624B /* GXCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C6147C169AE0FE2E777F4316E5295 /* GXCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C3B957E1730DC6DB4063C1C5673FCC90 /* PBXContainerItemProxy */ = {
+		1192F38401DC0636803EB73C698758AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C22984ACFEC6F39BAB317B20586EA0A3;
+			remoteInfo = "GXCardView-Swift";
+		};
+		4C63EC204C1371039F90D5FC1CE9DA14 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 217F6BEB97466C67162534F96AFCD1A4;
 			remoteInfo = GXSegmentPageView;
 		};
+		8D799C381F4ADAA74DF4E3BD508DBDB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 782411E88698DB78D95A63A77F94C5EB;
+			remoteInfo = GXBanner;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D1517B2E8590C2CBA46DDB2B14F9BCB /* GXSegmentPageView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXSegmentPageView-Info.plist"; sourceTree = "<group>"; };
+		006AD1774689A07C28D51E740F859DED /* GXBanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXBanner.debug.xcconfig; sourceTree = "<group>"; };
+		082A219B23973D65957994464DED0A38 /* GXSegmentPageView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXSegmentPageView.modulemap; sourceTree = "<group>"; };
+		0979316BD446E5B533C59B61C1E520CE /* GXCardView-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "GXCardView-Swift.modulemap"; sourceTree = "<group>"; };
+		0F2143E8E42EDC1A1D3B01A7F1885558 /* GXBanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXBanner-dummy.m"; sourceTree = "<group>"; };
 		1489601061CAE6CAF72EDA2E7391B532 /* Pods-GXRefreshSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXRefreshSample.release.xcconfig"; sourceTree = "<group>"; };
 		1BB66FEBE2037C69AD97770EBD23D872 /* Pods-GXRefreshSample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GXRefreshSample.modulemap"; sourceTree = "<group>"; };
 		21DFD4C0EEBDDE2CD5BA0CDC6686E01D /* Pods-GXRefreshSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXRefreshSample.debug.xcconfig"; sourceTree = "<group>"; };
+		26FA895E5D999BD27D5A3794D92B5A71 /* GXBanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXBanner.release.xcconfig; sourceTree = "<group>"; };
 		2AD9401B4D87C37D86A5B164443F7212 /* Pods_GXRefreshSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GXRefreshSample.framework; path = "Pods-GXRefreshSample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD3DB04DC0BAF31960167B8956CCD67 /* GXCardView-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXCardView-Swift-umbrella.h"; sourceTree = "<group>"; };
+		2CF6F97E594070F539DC66D273DC21DC /* GXCardView-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "GXCardView-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		322F1C642351CFF7A12A1706F8737C3B /* Pods-GXRefreshSample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXRefreshSample-acknowledgements.plist"; sourceTree = "<group>"; };
-		3F760438F11181F351EA4285C43154D0 /* GXSegmentPageView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXSegmentPageView-dummy.m"; sourceTree = "<group>"; };
+		3AEEA911F01E40C1C329B73CF1EA0CCE /* GXBanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXBanner.swift; path = GXBanner/GXBanner.swift; sourceTree = "<group>"; };
+		3E3C6147C169AE0FE2E777F4316E5295 /* GXCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXCardView.swift; path = "GXCardView-Swift/GXCardView.swift"; sourceTree = "<group>"; };
+		3EEF977F9D3A9CFDB633E6F1E22C7898 /* GXCardCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXCardCell.swift; path = "GXCardView-Swift/GXCardCell.swift"; sourceTree = "<group>"; };
+		448A7D7812928A3E2347FBA1C5B21DB1 /* GXSegmentView+Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GXSegmentView+Configuration.swift"; path = "GXSegmentPageView/GXSegmentView+Configuration.swift"; sourceTree = "<group>"; };
 		533BD75EDDD7A3C0B04CCD3EAE636670 /* Pods-GXRefreshSample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GXRefreshSample-frameworks.sh"; sourceTree = "<group>"; };
-		58EF30B94F389A1487CC9B2CD722B33B /* GXSegmentPageView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXSegmentPageView.release.xcconfig; sourceTree = "<group>"; };
-		6EE030231A3FF167F1219EEB4072358A /* GXSegmentPageView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXSegmentPageView-prefix.pch"; sourceTree = "<group>"; };
+		63FC90C0085451C2B4FB3E28BE0C8B1A /* GXBanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXBanner-prefix.pch"; sourceTree = "<group>"; };
+		6F1E1A221EE5C18DF53702A6D4946FA1 /* GXSegmentPageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXSegmentPageView.swift; path = GXSegmentPageView/GXSegmentPageView.swift; sourceTree = "<group>"; };
+		7A37F2B7245141688DAE694D80D1A9AA /* GXCardView_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GXCardView_Swift.framework; path = "GXCardView-Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E2E83F99B7D1DB5C8F01486F42B57CF /* GXSegmentPageView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXSegmentPageView-dummy.m"; sourceTree = "<group>"; };
+		7EAD6F8807DC680B477A06020CE9E0DD /* GXSegmentPageView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXSegmentPageView.debug.xcconfig; sourceTree = "<group>"; };
 		7F93EA8B78CA8E51F58AB9647FD2CD06 /* Pods-GXRefreshSample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GXRefreshSample-umbrella.h"; sourceTree = "<group>"; };
 		81027BCE0E7770C58D2BFD8B8320B9DB /* GXSegmentPageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GXSegmentPageView.framework; path = GXSegmentPageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81C838C3D6D19249E41FC9EA6489151C /* GXBanner-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXBanner-Info.plist"; sourceTree = "<group>"; };
+		8358D1052D2D049981D8FD59AD5177FA /* GXBanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXBanner.modulemap; sourceTree = "<group>"; };
+		8725242084D7C995319F872926ED5AEC /* GXSegmentPageView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXSegmentPageView-umbrella.h"; sourceTree = "<group>"; };
+		875E7C122C3CE3904AD1FF7B10E685A6 /* GXCardView-Swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXCardView-Swift-Info.plist"; sourceTree = "<group>"; };
 		8B1593A5FAE40AD899555CA0D842A61F /* Pods-GXRefreshSample-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXRefreshSample-Info.plist"; sourceTree = "<group>"; };
-		970A815E85F73FB295C825FE3299656D /* GXSegmentTitleCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXSegmentTitleCell.swift; path = GXSegmentPageView/GXSegmentTitleCell.swift; sourceTree = "<group>"; };
+		920158148F8EA93A0837D2017E7BEFF7 /* GXCardView-Swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXCardView-Swift-prefix.pch"; sourceTree = "<group>"; };
+		93A353B37B65B510A43BBA62C6B37775 /* GXCardView-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXCardView-Swift-dummy.m"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B2EFF78431BC88B5B785D1A040AB011E /* GXSegmentPageView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXSegmentPageView.modulemap; sourceTree = "<group>"; };
-		B4CE2CAEE50639E3B65577FD6BB0E0D9 /* GXSegmentPageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXSegmentPageView.swift; path = GXSegmentPageView/GXSegmentPageView.swift; sourceTree = "<group>"; };
-		C9A6A442CF57D4EDD25C9B96C182E9C3 /* GXSegmentTitleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXSegmentTitleView.swift; path = GXSegmentPageView/GXSegmentTitleView.swift; sourceTree = "<group>"; };
+		BB9AD4CEB9C2A8B2223C30A18B42E29D /* GXBannerFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXBannerFlowLayout.swift; path = GXBanner/GXBannerFlowLayout.swift; sourceTree = "<group>"; };
+		CBC4747C1BDAE2A931C44E41C699726B /* GXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GXBanner.framework; path = GXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1D5EC5983129407F233E3E216992B81 /* GXCardView-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "GXCardView-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		E4A37D9C586D516B015AE524E8681011 /* GXSegmentPageView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXSegmentPageView-umbrella.h"; sourceTree = "<group>"; };
+		D2D09E06B46A34D7CDEB18BF50B9440A /* GXSegmentTitleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXSegmentTitleView.swift; path = GXSegmentPageView/GXSegmentTitleView.swift; sourceTree = "<group>"; };
+		D381D7F34FC60F358DBF436169352AAC /* GXBanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXBanner-umbrella.h"; sourceTree = "<group>"; };
+		D94C7EAAA2D79F2195922EBD0D1A0212 /* GXCardLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXCardLayout.swift; path = "GXCardView-Swift/GXCardLayout.swift"; sourceTree = "<group>"; };
+		DE4AFB9F7B0C7262B789CAB2966AD1A9 /* GXSegmentPageView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXSegmentPageView-Info.plist"; sourceTree = "<group>"; };
+		DECA2D10FCCA5659D60D65AFA42B1A47 /* GXSegmentTitleCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXSegmentTitleCell.swift; path = GXSegmentPageView/GXSegmentTitleCell.swift; sourceTree = "<group>"; };
 		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		EEBD3C8CFFE1E55FEA554C8F3BFEEE10 /* Pods-GXRefreshSample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GXRefreshSample-acknowledgements.markdown"; sourceTree = "<group>"; };
-		F6163A5B9F6491BE120625C30D848565 /* GXSegmentView+Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GXSegmentView+Configuration.swift"; path = "GXSegmentPageView/GXSegmentView+Configuration.swift"; sourceTree = "<group>"; };
 		F8BDB8C6592E4410162345CD8B90408C /* Pods-GXRefreshSample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GXRefreshSample-dummy.m"; sourceTree = "<group>"; };
-		FC752BDBC77596AC0ACE5EB1E9BC3CEC /* GXSegmentPageView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXSegmentPageView.debug.xcconfig; sourceTree = "<group>"; };
+		FD9B34A838F55D54DDB9875C2D854790 /* GXSegmentPageView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXSegmentPageView-prefix.pch"; sourceTree = "<group>"; };
+		FE9BC85D5A6728AD9526033AC89668E8 /* GXSegmentPageView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXSegmentPageView.release.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B84CA56FF1C2FDD7B9A6A8AEEC3617DA /* Frameworks */ = {
+		6B456D328920685082B52F1D0A565FCC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BAC02FB74A44BFE70261E94F1EFD72A /* Foundation.framework in Frameworks */,
+				CF973C608662F354EDE2534C24BDBAAA /* Foundation.framework in Frameworks */,
+				BD9FB5906C1E37B8984C00CCB18FD340 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BEC3788EBA86FB3F54DCFE0018AEE18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EFE46DCBBB46CAE2603B7BE299A6D3B /* Foundation.framework in Frameworks */,
+				0CF45940C2AAA6C7F4EFD875EC20AA0C /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75D9C68165F4F8ACDCDD629FB9FAB3D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C5D46F904EB6D4205CDE6C66DA1AA5B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +145,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0322982B8E96179ED95196803BFA1126 /* Pods */ = {
+		023A98BD0BDF2E115150387333E3BCFA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DB3773EA1D8EBE0019CDB3BB0D31019F /* GXSegmentPageView */,
+				8358D1052D2D049981D8FD59AD5177FA /* GXBanner.modulemap */,
+				0F2143E8E42EDC1A1D3B01A7F1885558 /* GXBanner-dummy.m */,
+				81C838C3D6D19249E41FC9EA6489151C /* GXBanner-Info.plist */,
+				63FC90C0085451C2B4FB3E28BE0C8B1A /* GXBanner-prefix.pch */,
+				D381D7F34FC60F358DBF436169352AAC /* GXBanner-umbrella.h */,
+				006AD1774689A07C28D51E740F859DED /* GXBanner.debug.xcconfig */,
+				26FA895E5D999BD27D5A3794D92B5A71 /* GXBanner.release.xcconfig */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/GXBanner";
 			sourceTree = "<group>";
 		};
 		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
@@ -112,12 +185,50 @@
 			path = "Target Support Files/Pods-GXRefreshSample";
 			sourceTree = "<group>";
 		};
+		19DBFE24A713488D3A61FD7474BFDC30 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0979316BD446E5B533C59B61C1E520CE /* GXCardView-Swift.modulemap */,
+				93A353B37B65B510A43BBA62C6B37775 /* GXCardView-Swift-dummy.m */,
+				875E7C122C3CE3904AD1FF7B10E685A6 /* GXCardView-Swift-Info.plist */,
+				920158148F8EA93A0837D2017E7BEFF7 /* GXCardView-Swift-prefix.pch */,
+				2CD3DB04DC0BAF31960167B8956CCD67 /* GXCardView-Swift-umbrella.h */,
+				D1D5EC5983129407F233E3E216992B81 /* GXCardView-Swift.debug.xcconfig */,
+				2CF6F97E594070F539DC66D273DC21DC /* GXCardView-Swift.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GXCardView-Swift";
+			sourceTree = "<group>";
+		};
 		215013533E5D748B33163A48BAF4F678 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				19947392609EEE8CA77FAC56F7DA8D62 /* Pods-GXRefreshSample */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		5642437DD1F4CB1FE1C4C368DC7C82E0 /* GXBanner */ = {
+			isa = PBXGroup;
+			children = (
+				3AEEA911F01E40C1C329B73CF1EA0CCE /* GXBanner.swift */,
+				BB9AD4CEB9C2A8B2223C30A18B42E29D /* GXBannerFlowLayout.swift */,
+				023A98BD0BDF2E115150387333E3BCFA /* Support Files */,
+			);
+			name = GXBanner;
+			path = GXBanner;
+			sourceTree = "<group>";
+		};
+		59C42615E674C00111EAC3FFCA899441 /* GXCardView-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				3EEF977F9D3A9CFDB633E6F1E22C7898 /* GXCardCell.swift */,
+				D94C7EAAA2D79F2195922EBD0D1A0212 /* GXCardLayout.swift */,
+				3E3C6147C169AE0FE2E777F4316E5295 /* GXCardView.swift */,
+				19DBFE24A713488D3A61FD7474BFDC30 /* Support Files */,
+			);
+			name = "GXCardView-Swift";
+			path = "GXCardView-Swift";
 			sourceTree = "<group>";
 		};
 		59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */ = {
@@ -129,25 +240,29 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		C7A37762E7C42C4D96EE5639C1322ACF /* Products */ = {
+		68312B7579590474945FB8EA617FAC0E /* GXSegmentPageView */ = {
 			isa = PBXGroup;
 			children = (
-				81027BCE0E7770C58D2BFD8B8320B9DB /* GXSegmentPageView.framework */,
-				2AD9401B4D87C37D86A5B164443F7212 /* Pods_GXRefreshSample.framework */,
+				6F1E1A221EE5C18DF53702A6D4946FA1 /* GXSegmentPageView.swift */,
+				DECA2D10FCCA5659D60D65AFA42B1A47 /* GXSegmentTitleCell.swift */,
+				D2D09E06B46A34D7CDEB18BF50B9440A /* GXSegmentTitleView.swift */,
+				448A7D7812928A3E2347FBA1C5B21DB1 /* GXSegmentView+Configuration.swift */,
+				A291EB55744D15C72548648AF008D60F /* Support Files */,
 			);
-			name = Products;
+			name = GXSegmentPageView;
+			path = GXSegmentPageView;
 			sourceTree = "<group>";
 		};
-		CF05DD75492E04B56CE9B64C6EE7936F /* Support Files */ = {
+		A291EB55744D15C72548648AF008D60F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B2EFF78431BC88B5B785D1A040AB011E /* GXSegmentPageView.modulemap */,
-				3F760438F11181F351EA4285C43154D0 /* GXSegmentPageView-dummy.m */,
-				0D1517B2E8590C2CBA46DDB2B14F9BCB /* GXSegmentPageView-Info.plist */,
-				6EE030231A3FF167F1219EEB4072358A /* GXSegmentPageView-prefix.pch */,
-				E4A37D9C586D516B015AE524E8681011 /* GXSegmentPageView-umbrella.h */,
-				FC752BDBC77596AC0ACE5EB1E9BC3CEC /* GXSegmentPageView.debug.xcconfig */,
-				58EF30B94F389A1487CC9B2CD722B33B /* GXSegmentPageView.release.xcconfig */,
+				082A219B23973D65957994464DED0A38 /* GXSegmentPageView.modulemap */,
+				7E2E83F99B7D1DB5C8F01486F42B57CF /* GXSegmentPageView-dummy.m */,
+				DE4AFB9F7B0C7262B789CAB2966AD1A9 /* GXSegmentPageView-Info.plist */,
+				FD9B34A838F55D54DDB9875C2D854790 /* GXSegmentPageView-prefix.pch */,
+				8725242084D7C995319F872926ED5AEC /* GXSegmentPageView-umbrella.h */,
+				7EAD6F8807DC680B477A06020CE9E0DD /* GXSegmentPageView.debug.xcconfig */,
+				FE9BC85D5A6728AD9526033AC89668E8 /* GXSegmentPageView.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/GXSegmentPageView";
@@ -158,33 +273,41 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
-				0322982B8E96179ED95196803BFA1126 /* Pods */,
-				C7A37762E7C42C4D96EE5639C1322ACF /* Products */,
+				EF1966A4FECBF37F66EF28F3490037C5 /* Pods */,
+				D89C15F64CEAF09C73E158E1B4F22468 /* Products */,
 				215013533E5D748B33163A48BAF4F678 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		DB3773EA1D8EBE0019CDB3BB0D31019F /* GXSegmentPageView */ = {
+		D89C15F64CEAF09C73E158E1B4F22468 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B4CE2CAEE50639E3B65577FD6BB0E0D9 /* GXSegmentPageView.swift */,
-				970A815E85F73FB295C825FE3299656D /* GXSegmentTitleCell.swift */,
-				C9A6A442CF57D4EDD25C9B96C182E9C3 /* GXSegmentTitleView.swift */,
-				F6163A5B9F6491BE120625C30D848565 /* GXSegmentView+Configuration.swift */,
-				CF05DD75492E04B56CE9B64C6EE7936F /* Support Files */,
+				CBC4747C1BDAE2A931C44E41C699726B /* GXBanner.framework */,
+				7A37F2B7245141688DAE694D80D1A9AA /* GXCardView_Swift.framework */,
+				81027BCE0E7770C58D2BFD8B8320B9DB /* GXSegmentPageView.framework */,
+				2AD9401B4D87C37D86A5B164443F7212 /* Pods_GXRefreshSample.framework */,
 			);
-			name = GXSegmentPageView;
-			path = GXSegmentPageView;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF1966A4FECBF37F66EF28F3490037C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5642437DD1F4CB1FE1C4C368DC7C82E0 /* GXBanner */,
+				59C42615E674C00111EAC3FFCA899441 /* GXCardView-Swift */,
+				68312B7579590474945FB8EA617FAC0E /* GXSegmentPageView */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		424D55AB6A90300CF569DEC6A8A540C5 /* Headers */ = {
+		6B56CA8D928BE6C6D18F0D34D90088E9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F85C05A9816A19766F9D2FADA737FE /* Pods-GXRefreshSample-umbrella.h in Headers */,
+				1EE63BDFC6925B6D76CFE565E8E4A5B2 /* Pods-GXRefreshSample-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +316,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				883D77D3DE0C392D24E0F0CE907E7959 /* GXSegmentPageView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EF9DD6B9FA8995BB0AD1B70A3F95A29 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				599EB3BC0F225727F9927D19C072DD57 /* GXCardView-Swift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4E9AA4F73A9119889C0DC4A2536BBFD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0AB7DD5965368F44E5387AB7A16F46F /* GXBanner-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,21 +358,59 @@
 		};
 		60C3133F89A099F4BAB0345681C9FE6C /* Pods-GXRefreshSample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83DC964B923248152D18C770D38653A3 /* Build configuration list for PBXNativeTarget "Pods-GXRefreshSample" */;
+			buildConfigurationList = E8E4B5E5038E46627D97A0EC5324A01D /* Build configuration list for PBXNativeTarget "Pods-GXRefreshSample" */;
 			buildPhases = (
-				424D55AB6A90300CF569DEC6A8A540C5 /* Headers */,
-				EEA416D4EC42F3F378FFEE06CC7824F5 /* Sources */,
-				B84CA56FF1C2FDD7B9A6A8AEEC3617DA /* Frameworks */,
-				58DF7C882CAFE778950361222BC83B51 /* Resources */,
+				6B56CA8D928BE6C6D18F0D34D90088E9 /* Headers */,
+				6ADA760B2B0B57B39178A47CC307C819 /* Sources */,
+				75D9C68165F4F8ACDCDD629FB9FAB3D7 /* Frameworks */,
+				9AF889348AFD64E2F2E3C57C29751F67 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9AA5B52F7448D0F55E618857AF55698E /* PBXTargetDependency */,
+				A0C251647ADF41D6597F935972338B12 /* PBXTargetDependency */,
+				2009B01D1C43A304D1FCADB431CF3592 /* PBXTargetDependency */,
+				E415743B598D5CB2217C4C080697566B /* PBXTargetDependency */,
 			);
 			name = "Pods-GXRefreshSample";
 			productName = "Pods-GXRefreshSample";
 			productReference = 2AD9401B4D87C37D86A5B164443F7212 /* Pods_GXRefreshSample.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		782411E88698DB78D95A63A77F94C5EB /* GXBanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E72AD31C5CC92B0EB7752513301F28AF /* Build configuration list for PBXNativeTarget "GXBanner" */;
+			buildPhases = (
+				B4E9AA4F73A9119889C0DC4A2536BBFD /* Headers */,
+				E17342D3CBBAD6B1EC09B2B71A0270BE /* Sources */,
+				6B456D328920685082B52F1D0A565FCC /* Frameworks */,
+				CF5FAAD31598196797BA45D911802780 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GXBanner;
+			productName = GXBanner;
+			productReference = CBC4747C1BDAE2A931C44E41C699726B /* GXBanner.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C22984ACFEC6F39BAB317B20586EA0A3 /* GXCardView-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD8BC8DD9588C23D4017FBFC24DA47B5 /* Build configuration list for PBXNativeTarget "GXCardView-Swift" */;
+			buildPhases = (
+				8EF9DD6B9FA8995BB0AD1B70A3F95A29 /* Headers */,
+				7790FCC4B1C663703319287D16B8CF06 /* Sources */,
+				6BEC3788EBA86FB3F54DCFE0018AEE18 /* Frameworks */,
+				136C7C0F596BE7276A99C727DF5EA281 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GXCardView-Swift";
+			productName = "GXCardView-Swift";
+			productReference = 7A37F2B7245141688DAE694D80D1A9AA /* GXCardView_Swift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -254,10 +431,12 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = C7A37762E7C42C4D96EE5639C1322ACF /* Products */;
+			productRefGroup = D89C15F64CEAF09C73E158E1B4F22468 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				782411E88698DB78D95A63A77F94C5EB /* GXBanner */,
+				C22984ACFEC6F39BAB317B20586EA0A3 /* GXCardView-Swift */,
 				217F6BEB97466C67162534F96AFCD1A4 /* GXSegmentPageView */,
 				60C3133F89A099F4BAB0345681C9FE6C /* Pods-GXRefreshSample */,
 			);
@@ -265,6 +444,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		136C7C0F596BE7276A99C727DF5EA281 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		164ECD602A8FF47B5BBB8D0EFC3323C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -272,7 +458,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58DF7C882CAFE778950361222BC83B51 /* Resources */ = {
+		9AF889348AFD64E2F2E3C57C29751F67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF5FAAD31598196797BA45D911802780 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -294,29 +487,62 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EEA416D4EC42F3F378FFEE06CC7824F5 /* Sources */ = {
+		6ADA760B2B0B57B39178A47CC307C819 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF2A92444C054CCC1D278FEB63C380B1 /* Pods-GXRefreshSample-dummy.m in Sources */,
+				64F9A4E3BD54F49998624CD23F6530A8 /* Pods-GXRefreshSample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7790FCC4B1C663703319287D16B8CF06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04B5F2BDEDB268C1B21930D86F5677EE /* GXCardCell.swift in Sources */,
+				5A238D5FE964BCB51A279A302141026A /* GXCardLayout.swift in Sources */,
+				8A1E1B1BEFFDC6D686DCC91F92BCEC89 /* GXCardView-Swift-dummy.m in Sources */,
+				DA7EA049A2B6B1DBE51946F3660F624B /* GXCardView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E17342D3CBBAD6B1EC09B2B71A0270BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60B1033205BBCAD29FC679BDB56091B4 /* GXBanner-dummy.m in Sources */,
+				82BD93549667584C2FD8A6896EF7BE10 /* GXBanner.swift in Sources */,
+				44DB5910DD30FA092E2EA785CB1546E9 /* GXBannerFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9AA5B52F7448D0F55E618857AF55698E /* PBXTargetDependency */ = {
+		2009B01D1C43A304D1FCADB431CF3592 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GXCardView-Swift";
+			target = C22984ACFEC6F39BAB317B20586EA0A3 /* GXCardView-Swift */;
+			targetProxy = 1192F38401DC0636803EB73C698758AE /* PBXContainerItemProxy */;
+		};
+		A0C251647ADF41D6597F935972338B12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GXBanner;
+			target = 782411E88698DB78D95A63A77F94C5EB /* GXBanner */;
+			targetProxy = 8D799C381F4ADAA74DF4E3BD508DBDB5 /* PBXContainerItemProxy */;
+		};
+		E415743B598D5CB2217C4C080697566B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GXSegmentPageView;
 			target = 217F6BEB97466C67162534F96AFCD1A4 /* GXSegmentPageView */;
-			targetProxy = C3B957E1730DC6DB4063C1C5673FCC90 /* PBXContainerItemProxy */;
+			targetProxy = 4C63EC204C1371039F90D5FC1CE9DA14 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1907DD8BAC2F8D705A8022CBAD96A864 /* Debug */ = {
+		1523EC9F9C05668A3DA026BCFBFA40EC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21DFD4C0EEBDDE2CD5BA0CDC6686E01D /* Pods-GXRefreshSample.debug.xcconfig */;
+			baseConfigurationReference = 1489601061CAE6CAF72EDA2E7391B532 /* Pods-GXRefreshSample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -345,10 +571,46 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
+		};
+		1E4B811EC134018412576D6AF106290E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26FA895E5D999BD27D5A3794D92B5A71 /* GXBanner.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GXBanner/GXBanner-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GXBanner/GXBanner-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/GXBanner/GXBanner.modulemap";
+				PRODUCT_MODULE_NAME = GXBanner;
+				PRODUCT_NAME = GXBanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -416,9 +678,77 @@
 			};
 			name = Debug;
 		};
+		6C38A4D6DA31C11D3687587923C60DFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 006AD1774689A07C28D51E740F859DED /* GXBanner.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GXBanner/GXBanner-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GXBanner/GXBanner-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/GXBanner/GXBanner.modulemap";
+				PRODUCT_MODULE_NAME = GXBanner;
+				PRODUCT_NAME = GXBanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9465422DD5543B0F8A612440F3DFC47B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1D5EC5983129407F233E3E216992B81 /* GXCardView-Swift.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GXCardView-Swift/GXCardView-Swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GXCardView-Swift/GXCardView-Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/GXCardView-Swift/GXCardView-Swift.modulemap";
+				PRODUCT_MODULE_NAME = GXCardView_Swift;
+				PRODUCT_NAME = GXCardView_Swift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		A0FC9097250BF6D2993EE9F56174542E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58EF30B94F389A1487CC9B2CD722B33B /* GXSegmentPageView.release.xcconfig */;
+			baseConfigurationReference = FE9BC85D5A6728AD9526033AC89668E8 /* GXSegmentPageView.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -440,6 +770,77 @@
 				MODULEMAP_FILE = "Target Support Files/GXSegmentPageView/GXSegmentPageView.modulemap";
 				PRODUCT_MODULE_NAME = GXSegmentPageView;
 				PRODUCT_NAME = GXSegmentPageView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B68F63B266C5438633BE834EC435F524 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21DFD4C0EEBDDE2CD5BA0CDC6686E01D /* Pods-GXRefreshSample.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C0264985D3A72A00C751BD8E5AABA937 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CF6F97E594070F539DC66D273DC21DC /* GXCardView-Swift.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GXCardView-Swift/GXCardView-Swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GXCardView-Swift/GXCardView-Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/GXCardView-Swift/GXCardView-Swift.modulemap";
+				PRODUCT_MODULE_NAME = GXCardView_Swift;
+				PRODUCT_NAME = GXCardView_Swift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -513,46 +914,9 @@
 			};
 			name = Release;
 		};
-		F5C3998D7DEA323DE21C76B069DB746B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1489601061CAE6CAF72EDA2E7391B532 /* Pods-GXRefreshSample.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GXRefreshSample/Pods-GXRefreshSample.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		F7A376D9CAAE5885A555634D802EF933 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC752BDBC77596AC0ACE5EB1E9BC3CEC /* GXSegmentPageView.debug.xcconfig */;
+			baseConfigurationReference = 7EAD6F8807DC680B477A06020CE9E0DD /* GXSegmentPageView.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -605,11 +969,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83DC964B923248152D18C770D38653A3 /* Build configuration list for PBXNativeTarget "Pods-GXRefreshSample" */ = {
+		E72AD31C5CC92B0EB7752513301F28AF /* Build configuration list for PBXNativeTarget "GXBanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1907DD8BAC2F8D705A8022CBAD96A864 /* Debug */,
-				F5C3998D7DEA323DE21C76B069DB746B /* Release */,
+				6C38A4D6DA31C11D3687587923C60DFF /* Debug */,
+				1E4B811EC134018412576D6AF106290E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8E4B5E5038E46627D97A0EC5324A01D /* Build configuration list for PBXNativeTarget "Pods-GXRefreshSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B68F63B266C5438633BE834EC435F524 /* Debug */,
+				1523EC9F9C05668A3DA026BCFBFA40EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD8BC8DD9588C23D4017FBFC24DA47B5 /* Build configuration list for PBXNativeTarget "GXCardView-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9465422DD5543B0F8A612440F3DFC47B /* Debug */,
+				C0264985D3A72A00C751BD8E5AABA937 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
