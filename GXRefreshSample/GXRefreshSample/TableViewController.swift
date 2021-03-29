@@ -53,15 +53,20 @@ fileprivate extension TableViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
             self.cellNumber = 10
             self.tableView.reloadData()
-            
             self.tableView.gx_header?.endRefreshing(isSucceed: true, text: nil)
         }
     }
     func loadMoreData() {
         DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+            let random = arc4random_uniform(2);
+            guard random > 1 else {
+                self.cellNumber = 5
+                self.tableView.reloadData()
+                self.tableView.gx_footer?.endRefreshing(isNoMore: true)
+                return
+            }
             self.cellNumber += 10
             self.tableView.reloadData()
-            
             if self.cellNumber == 30 {
                 self.tableView.gx_footer?.endRefreshing(isNoMore: true)
             }

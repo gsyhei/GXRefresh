@@ -13,7 +13,7 @@ public class GXRefreshBaseFooter: GXRefreshComponent {
     open var dataSource: ((_ state: State) -> Void)? = nil
     /// 刷新文本是否隐藏
     open var isTextHidden: Bool = false
-    /// 没有更多数据的情况下内容超出屏幕是否隐藏footer
+    /// 没有更多数据的情况下内容未超出屏幕是否隐藏footer
     open var isHiddenNoMoreByContent: Bool = true
     /// 是否开启自动刷新
     open var automaticallyRefresh: Bool = true
@@ -222,6 +222,7 @@ fileprivate extension GXRefreshBaseFooter {
         if self.endRefreshingAction != nil {
             self.endRefreshingAction!()
         }
+        self.isHidden = self.isHiddenNoMoreByContent && (self.state == .noMore)
     }
     @objc func contentClicked(_ sender: UIControl) {
         guard self.state == .idle else { return }
