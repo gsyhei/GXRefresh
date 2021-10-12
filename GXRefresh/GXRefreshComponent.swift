@@ -95,7 +95,7 @@ public class GXRefreshComponent: UIView {
         }
     }
     
-    required init(completion: @escaping GXRefreshCallBack, begin: GXRefreshCallBack? = nil, end: GXRefreshCallBack? = nil) {
+    public required init(completion: @escaping GXRefreshCallBack, begin: GXRefreshCallBack? = nil, end: GXRefreshCallBack? = nil) {
         super.init(frame: .zero)
         self.refreshingAction = completion
         self.beginRefreshingAction = begin
