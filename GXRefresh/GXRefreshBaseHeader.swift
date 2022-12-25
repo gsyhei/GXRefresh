@@ -9,7 +9,7 @@
 import UIKit
 import AudioToolbox
 
-public class GXRefreshBaseHeader: GXRefreshComponent {
+open class GXRefreshBaseHeader: GXRefreshComponent {
     /// state下需要重写或自行增加的数据
     open var dataSource: ((_ state: State) -> Void)? = nil
     /// 刷新文本是否隐藏
@@ -62,7 +62,6 @@ public class GXRefreshBaseHeader: GXRefreshComponent {
     private var endRefreshText: String?
     /// 震动相关
     private var isPlayingImpact: Bool = false
-    @available(iOS 10.0, *)
     private lazy var generator: UIImpactFeedbackGenerator = {
         return UIImpactFeedbackGenerator(style: .light)
     }()

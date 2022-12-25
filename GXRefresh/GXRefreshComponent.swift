@@ -48,7 +48,7 @@ public protocol GXRefreshDelegate: NSObjectProtocol {
     func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?)
 }
 
-public class GXRefreshComponent: UIView {
+open class GXRefreshComponent: UIView {
     private(set) var scrollView: UIScrollView?
     private(set) var scrollViewOriginalInset: UIEdgeInsets = .zero
     
@@ -103,7 +103,7 @@ public class GXRefreshComponent: UIView {
         self.prepare()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

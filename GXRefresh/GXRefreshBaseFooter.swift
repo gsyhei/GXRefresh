@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class GXRefreshBaseFooter: GXRefreshComponent {
+open class GXRefreshBaseFooter: GXRefreshComponent {
     /// state下需要重写或自行增加的数据
     open var dataSource: ((_ state: State) -> Void)? = nil
     /// 刷新文本是否隐藏
