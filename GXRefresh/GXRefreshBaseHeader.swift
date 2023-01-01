@@ -67,8 +67,8 @@ open class GXRefreshBaseHeader: GXRefreshComponent {
     }()
 }
 
-public extension GXRefreshBaseHeader {
-    override func prepare() {
+extension GXRefreshBaseHeader {
+    override open func prepare() {
         super.prepare()
         self.alpha = self.automaticallyChangeAlpha ? 0 : 1
         self.gx_height = self.headerHeight
@@ -76,12 +76,12 @@ public extension GXRefreshBaseHeader {
         self.contentView.addSubview(self.textLabel)
         self.updateContentView(state: .idle)
     }
-    override func prepareLayoutSubviews() {
+    override open func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
         self.gx_top = -(self.gx_height + self.svContentInset.top)
         self.updateContentViewLayout()
     }
-    override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
         // did/end状态的情况
         guard self.state != .did && self.state != .end else { return }
@@ -125,13 +125,13 @@ public extension GXRefreshBaseHeader {
             }
         }
     }
-    override func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewContentSizeDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChange(change: change)
     }
-    override func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewPanStateDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewPanStateDidChange(change: change)
     }
-    override func setState(_ state: State) {
+    override open func setState(_ state: State) {
         super.setState(state)
         self.updateContentView(state: state)
         if state == .did {
