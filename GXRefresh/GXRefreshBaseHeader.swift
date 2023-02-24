@@ -36,14 +36,25 @@ open class GXRefreshBaseHeader: GXRefreshComponent {
             self.updateContentViewLayout()
         }
     }
-    /// 自定指示器内容
-    open var customIndicator: UIView {
-        return UIView()
+    /// 内容统一颜色
+    open var contentColor: UIColor = .gray {
+        didSet {
+            self.textLabel.textColor = contentColor
+        }
     }
+    /// 文本颜色（不设置则为contentColor）
+    open var textColor: UIColor = .gray {
+        didSet {
+            self.textLabel.textColor = textColor
+        }
+    }
+    /// 自定指示器内容
+    open var customIndicator: UIView? { return nil }
+    
     /// 刷新文本label
     open lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.gray
+        label.textColor = self.textColor
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
@@ -72,7 +83,9 @@ extension GXRefreshBaseHeader {
         super.prepare()
         self.alpha = self.automaticallyChangeAlpha ? 0 : 1
         self.gx_height = self.headerHeight
-        self.contentView.addSubview(self.customIndicator)
+        if let custom = self.customIndicator {
+            self.contentView.addSubview(custom)
+        }
         self.contentView.addSubview(self.textLabel)
         self.updateContentView(state: .idle)
     }
@@ -140,9 +153,9 @@ extension GXRefreshBaseHeader {
         else if state == .end {
             if self.isShowEndAnimated {
                 GXRefreshIndicatorView.show(to: self.contentView,
-                                            strokeColor: self.textLabel.textColor,
+                                            strokeColor: self.contentColor,
                                             animationDuration: self.endRefreshDuration,
-                                            center: self.customIndicator.center,
+                                            center: self.customIndicator?.center,
                                             isSucceed: self.isRefreshSucceed)
                 {
                     self.didStateEndRefreshing()
@@ -256,9 +269,9 @@ public extension GXRefreshBaseHeader {
     
     func updateContentViewLayout() {
         self.textLabel.isHidden = self.isTextHidden
-        self.customIndicator.isHidden = (self.state == .end) && self.isShowEndAnimated
+        self.customIndicator?.isHidden = (self.state == .end) && self.isShowEndAnimated
         if self.isTextHidden {
-            self.customIndicator.center = self.contentView.center
+            self.customIndicator?.center = self.contentView.center
         }
         else {
             let nsText: NSString = (self.textLabel.text ?? "") as NSString
@@ -268,8 +281,8 @@ public extension GXRefreshBaseHeader {
             let rect = nsText.boundingRect(with: maxSize, options: options, attributes: attributes, context: nil)
             self.textLabel.frame = rect
             self.textLabel.center = CGPoint(x: self.contentView.gx_width/2, y: self.contentView.gx_height/2)
-            self.customIndicator.center.y = self.textLabel.center.y
-            self.customIndicator.gx_right = self.textLabel.gx_left - self.textToIndicatorSpacing
+            self.customIndicator?.center.y = self.textLabel.center.y
+            self.customIndicator?.gx_right = self.textLabel.gx_left - self.textToIndicatorSpacing
         }
     }
     func updateContentView(state: State) {

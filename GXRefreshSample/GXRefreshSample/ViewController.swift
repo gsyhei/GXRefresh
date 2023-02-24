@@ -32,12 +32,16 @@ class ViewController: UIViewController {
     
     func setupRefrsh() {
         if self.refreshStyle == 0 {
-            self.tableView.gx_header = GXRefreshNormalHeader(completion: { [weak self] in
+            let header = GXRefreshNormalHeader(completion: { [weak self] in
                 self?.refreshDataSource()
             })
-            self.tableView.gx_footer = GXRefreshNormalFooter(completion: { [weak self] in
+            header.contentColor = .systemBlue
+            let footer = GXRefreshNormalFooter(completion: { [weak self] in
                 self?.loadMoreData()
             })
+            footer.contentColor = .systemBlue
+            self.tableView.gx_header = header
+            self.tableView.gx_footer = footer
         }
         else if self.refreshStyle == 1 {
             var imageNames: [String] = []

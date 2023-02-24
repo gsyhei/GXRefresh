@@ -9,6 +9,12 @@
 import UIKit
 
 public class GXRefreshNormalHeader: GXRefreshBaseHeader {
+    open override var contentColor: UIColor {
+        didSet {
+            self.indicator.color = self.contentColor
+            self.arrowView.tintColor = self.contentColor
+        }
+    }
     open var arrowImage: UIImage? = nil {
         didSet {
             guard self.arrowImage == nil else { return }
@@ -24,13 +30,17 @@ public class GXRefreshNormalHeader: GXRefreshBaseHeader {
         } else {
             aiView.style = .gray
         }
+        aiView.color = self.contentColor
         return aiView
     }()
     private(set) lazy var arrowView: UIImageView = {
         let imageView = UIImageView()
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.isHidden = true
-        imageView.image = UIImage(named: "gx_arrow", in: Bundle(for: GXRefreshNormalHeader.self), compatibleWith: nil)
+        var arrowImage = UIImage(named: "gx_arrow", in: Bundle(for: GXRefreshNormalHeader.self), compatibleWith: nil)
+        arrowImage = arrowImage?.withRenderingMode(.alwaysTemplate)
+        imageView.image = arrowImage
+        imageView.tintColor = self.contentColor
         return imageView
     }()
     private var indicatorSize: CGSize = CGSize(width: 25, height: 25)

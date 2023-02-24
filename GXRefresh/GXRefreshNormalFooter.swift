@@ -9,6 +9,11 @@
 import UIKit
 
 public class GXRefreshNormalFooter: GXRefreshBaseFooter {
+    open override var contentColor: UIColor {
+        didSet {
+            self.indicator.color = self.contentColor
+        }
+    }
     private(set) lazy var indicator: UIActivityIndicatorView = {
         let frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         let aiView = UIActivityIndicatorView(frame: frame)
@@ -17,6 +22,7 @@ public class GXRefreshNormalFooter: GXRefreshBaseFooter {
         } else {
             aiView.style = .gray
         }
+        aiView.color = self.contentColor
         return aiView
     }()
     public override var customIndicator: UIView {

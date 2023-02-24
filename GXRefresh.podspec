@@ -9,14 +9,14 @@
 Pod::Spec.new do |s|
 
   s.name          = "GXRefresh"
-  s.version       = "1.1.0"
+  s.version       = "1.1.1"
   s.swift_version = "5"
   s.summary       = "Swift版的下拉刷新上拉加载，支持Gif、支持自定义刷新动画。"
   s.homepage      = "https://github.com/gsyhei/GXRefresh"
   s.license       = { :type => "MIT", :file => "LICENSE" }
   s.author        = { "Gin" => "279694479@qq.com" }
   s.platform      = :ios, "11.0"
-  s.source        = { :git => "https://github.com/gsyhei/GXRefresh.git", :tag => "1.1.0" }
+  s.source        = { :git => "https://github.com/gsyhei/GXRefresh.git", :tag => "1.1.1" }
   s.requires_arc  = true
   s.source_files  = "GXRefresh"
   s.resources     = 'GXRefresh/Resource/**/*'
