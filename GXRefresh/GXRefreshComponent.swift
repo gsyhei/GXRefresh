@@ -120,8 +120,6 @@ open class GXRefreshComponent: UIView {
             scrollView.alwaysBounceVertical = true
             self.scrollView = scrollView
             self.scrollViewOriginalInset = scrollView.contentInset
-            
-            self.gx_left = scrollView.gx_left
             self.gx_width = scrollView.gx_width
             
             self.addObservers()
