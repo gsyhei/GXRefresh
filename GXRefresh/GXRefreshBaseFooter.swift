@@ -61,11 +61,11 @@ open class GXRefreshBaseFooter: GXRefreshComponent {
                 .did: "正在加载更多数据...",
                 .noMore: "已加载全部数据"]
     }()
-    
+
     public override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         guard !self.isHidden && self.scrollView != nil else { return }
-        
+
         var contentInset = self.svContentInset
         contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
         self.scrollView?.contentInset = contentInset
@@ -87,7 +87,7 @@ public extension GXRefreshBaseFooter {
     override func prepareLayoutSubviews() {
         super.prepareLayoutSubviews()
         self.gx_top = self.svContentHeight() + self.scrollViewOriginalInset.bottom
-        
+
         var contentInset = self.svContentInset
         if self.automaticallyRefresh {
             contentInset.bottom = self.scrollViewOriginalInset.bottom + self.gx_height
@@ -153,7 +153,7 @@ public extension GXRefreshBaseFooter {
         super.scrollViewContentSizeDidChange(change: change)
         self.isHidden = (self.svContentSize.height == 0)
         // 有内容才进行设置
-        guard (self.scrollView!.gx_height > 0) else { return }
+        guard (self.svContentSize.height > 0) else { return }
         self.gx_top = self.svContentHeight() + self.scrollViewOriginalInset.bottom
         // 内容没有超出屏幕
         guard !self.isContentBeyondScreen() else { return }
@@ -235,7 +235,7 @@ fileprivate extension GXRefreshBaseFooter {
         if self.endRefreshingAction != nil {
             self.endRefreshingAction!()
         }
-        self.isHidden = self.isHiddenNoMoreByContent && (self.state == .noMore)
+        self.isHidden = self.isHiddenNoMoreByContent && !isContentBeyondScreen() && (self.state == .noMore)
     }
     @objc func contentClicked(_ sender: UIControl) {
         guard self.state == .idle else { return }
