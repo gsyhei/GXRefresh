@@ -97,7 +97,8 @@ extension GXRefreshBaseHeader {
     override open func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
         // did/end状态的情况
-        guard self.state != .did && self.state != .end else { return }
+        let footerRefreshing: Bool = self.scrollView?.gx_footer?.isRefreshing ?? false
+        guard !self.isRefreshing && !footerRefreshing else { return }
         // 获取scrollView.offset
         if let offset = change?[NSKeyValueChangeKey.newKey] as? CGPoint {
             // 判断header是否出现

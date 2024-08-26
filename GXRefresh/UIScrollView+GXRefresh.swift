@@ -36,6 +36,16 @@ public extension UIScrollView {
             return objc_getAssociatedObject(self, &GXRefreshFooterKey) as? GXRefreshBaseFooter
         }
     }
+    
+    func gx_endRefreshing(isNoMore: Bool = false, isSucceed: Bool? = nil, text: String? = nil) {
+        if let header = self.gx_header {
+            header.endRefreshing(isNoMore: isNoMore, isSucceed: isSucceed, text: text)
+        }
+        if let footer = self.gx_footer {
+            footer.endRefreshing(isNoMore: isNoMore)
+        }
+    }
+    
 }
 
 public extension UIView {
