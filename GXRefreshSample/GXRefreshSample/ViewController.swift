@@ -17,6 +17,17 @@ class ViewController: UIViewController {
         let view = UIImageView(image: UIImage(named: "refresh30"))
         return view
     }()
+    private var headerLoadView1: UIActivityIndicatorView = {
+        if #available(iOS 13.0, *) {
+            let view = UIActivityIndicatorView(style: .large)
+            view.hidesWhenStopped = false
+            return view
+        } else {
+            let view = UIActivityIndicatorView(style: .gray)
+            view.hidesWhenStopped = false
+            return view
+        }
+    }()
     private var footerLoadView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "refresh30"))
         return view
@@ -72,18 +83,21 @@ class ViewController: UIViewController {
                 self?.refreshDataSource()
             })
             header.isTextHidden = true
-            header.updateCustomIndicator(view: self.headerLoadView)
+            header.updateCustomIndicator(view: self.headerLoadView1)
             header.progressCallBack = { (view) in
-                let angle = self.rotationAngle(progress: view.pullingProgress)
-                self.headerLoadView.transform = CGAffineTransform(rotationAngle: angle)
+//                let angle = self.rotationAngle(progress: view.pullingProgress)
+//                self.headerLoadView.transform = CGAffineTransform(rotationAngle: angle)
             }
             header.stateCallBack = { (state) in
                 if state == .did {
-                    self.headerLoadView.layer.add(self.rotationAnimation(), forKey: nil)
+                    self.headerLoadView1.startAnimating()
+//                    self.headerLoadView.layer.add(self.rotationAnimation(), forKey: nil)
                 }
-                else {
-                    self.headerLoadView.transform = .identity
-                    self.headerLoadView.layer.removeAllAnimations()
+                else if state == .end {
+                    self.headerLoadView1.stopAnimating()
+
+//                    self.headerLoadView.transform = .identity
+//                    self.headerLoadView.layer.removeAllAnimations()
                 }
             }
             self.tableView.gx_header = header
